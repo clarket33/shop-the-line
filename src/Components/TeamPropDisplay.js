@@ -77,12 +77,12 @@ const TeamPropDisplay = (game) => {
           <Select key={"prop: " + propChoices + game.game_id} variant="outlined" label="Prop" color="blue" value={prop} onChange={(values) => propSelect(values)} className="z-10" containerProps={{className: "min-w-[60px]",}}>
                     {propChoices.map((team_prop) => (
                       <Option key={team_prop} value={team_prop} className="flex items-center gap-2">
-                        {team_prop_choices[team_prop]}
+                        {team_prop !== "spreads" ? team_prop_choices[team_prop] : team_prop_choices[team_prop + "_" + game.sport]}
                       </Option>
                     ))}
                   </Select>
         );
-      }, [prop, propChoices, propSelect, game.game_id]);
+      }, [prop, propChoices, propSelect, game.game_id, game.sport]);
 
       const sortSelector = useMemo(() => {
         return (

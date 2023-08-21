@@ -71,7 +71,10 @@ export const player_prop_choices = {
 
 export const team_prop_choices={ 
     "totals":"Total",
-    "spreads":"Spread",
+    "spreads_americanfootball_nfl":"Spread",
+    "spreads_baseball_mlb":"Run Line",
+    "spreads_icehockey_nhl":"Puck Line",
+    "spreads_basketball_nba":"Spread",
     "h2h":"Moneyline"
   }
 
