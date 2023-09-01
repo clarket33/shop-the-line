@@ -40,7 +40,7 @@ const GameOverview = (game) => {
                     <br></br>
                     {game.curScore?<span>{game.curScore[1].score} - {game.curScore[0].score}</span>:<></>}
                     </Typography>
-                    {!isLive ?
+                    {!isLive && daysTilStart <= 2 ?
                     <div className="h-18 w-48 mx-auto flex justify-center items-center">
                         {showTeamProps===true?<Button variant="text" className="w-1/2 border-r-2 font-bold" color="blue" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Team<br></br>Props</span></Button>
                         :<Button variant="text" className="w-1/2 border-r-2" color="blue-gray" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Team<br></br>Props</span></Button>}
