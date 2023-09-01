@@ -236,7 +236,7 @@ function App() {
                   }}
                 />
         {filterText && (
-          <span className="absolute right-0 top-1 mr-2">
+          <span className="absolute right-0 top-1.5 mr-2">
             <IconButton
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent"
