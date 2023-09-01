@@ -29,7 +29,7 @@ function App() {
   const numGamesPerPage = 9;
   const [filteredGames, setFilteredGames] = useState([]);
   const [sport, setSport] = useState(window.localStorage.getItem('sport') || 'americanfootball_nfl');
-  const [filterText, setFilterText] = useState(window.sessionStorage.getItem('filter_text_' + sport) ? window.sessionStorage.getItem('filter_text_' + sport) : '');
+  const [filterText, setFilterText] = useState(window.sessionStorage.getItem('filter_text_' + sport) ? window.sessionStorage.getItem('filter_text_' + sport) : "");
   const [bookies, setBookies] = useState(window.localStorage.getItem('usState')?state_bookmakers[window.localStorage.getItem('usState')]:state_bookmakers["New York"]) ;
   const [stateName, setStateName] = useState(window.localStorage.getItem('usState') || "All");
   const [openNav, setOpenNav] = useState(false);
@@ -122,6 +122,8 @@ function App() {
 
     useEffect(() => {
       if(games && !games.error){
+        console.log(games);
+        console.log("filterText: ", filterText);
         let gamesFiltered = games.filter((game) => game.away_team.toLowerCase().includes(filterText.toLowerCase()) || game.home_team.toLowerCase().includes(filterText.toLowerCase()) || team_codes[game.away_team].toLowerCase().includes(filterText.toLowerCase())
         || team_codes[game.home_team].toLowerCase().includes(filterText.toLowerCase()));
         setFilteredGames(gamesFiltered);
