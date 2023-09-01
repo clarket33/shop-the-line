@@ -124,8 +124,8 @@ function App() {
       if(games && !games.error){
         console.log(games);
         console.log("filterText: ", filterText);
-        let gamesFiltered = games.filter((game) => game.away_team.toLowerCase().includes(filterText.toLowerCase()) || game.home_team.toLowerCase().includes(filterText.toLowerCase()) || team_codes[game.away_team].toLowerCase().includes(filterText.toLowerCase())
-        || team_codes[game.home_team].toLowerCase().includes(filterText.toLowerCase()));
+        let gamesFiltered = games.filter((game) => game.away_team.toLowerCase().includes(filterText.toLowerCase()) || game.home_team.toLowerCase().includes(filterText.toLowerCase()) || (team_codes[game.away_team] ? team_codes[game.away_team].toLowerCase().includes(filterText.toLowerCase()):false)
+        || (team_codes[game.home_team] ? team_codes[game.home_team].toLowerCase().includes(filterText.toLowerCase()):false));
         setFilteredGames(gamesFiltered);
       
         let pageNumber = Math.min(3,Math.ceil(gamesFiltered.length / numGamesPerPage));
