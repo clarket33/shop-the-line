@@ -281,6 +281,13 @@ function App() {
               <div>{InputInHeader}</div>
             </div>
           </div>
+          {!openNav ?
+          <div className="lg:hidden absolute top-15 right-20 mt-3 text-blue-700 opacity-70">
+            <Typography variant="small">
+                <span className="flex items-center justify-center font-semibold">{league_titles[sport]}
+                <img className="h-4 w-4 object-cover ml-1" src={sportImages[sport + ".png"]} alt={sport} /></span>
+            </Typography>
+          </div>:<></>}
           <IconButton
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -290,8 +297,8 @@ function App() {
             {openNav ? (
               <XMarkIcon className="h-6 w-6" strokeWidth={2} />
             ) : (
-              <Bars3Icon className="h-6 w-6" strokeWidth={2} />
-            )}
+             <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+            )} 
           </IconButton>
         </div>
         <Collapse open={openNav}>
@@ -305,19 +312,7 @@ function App() {
       </Navbar>
 
       
-        <div className="hidden lg:block opacity-50">
-          <Typography variant="h1" color="blue">
-            <span className="flex items-center justify-center mt-3">{league_titles[sport]}
-            <img className="h-12 w-12 object-cover ml-3" src={sportImages[sport + ".png"]} alt={sport} /></span>
-          </Typography>
-        </div>
-        <div className="lg:hidden opacity-50">
-          <Typography variant="h3" color="blue">
-            <span className="flex items-center justify-center mt-3">{league_titles[sport]}
-            <img className="h-8 w-8 object-cover ml-3" src={sportImages[sport + ".png"]} alt={sport} /></span>
-          </Typography>
-        </div>
-      
+     
 
       {status === "loading" || status === "error" ?
         <div className="flex flex-wrap justify-center items-center mt-8 mb-8">
