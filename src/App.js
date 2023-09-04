@@ -174,8 +174,9 @@ function App() {
           color="blue-gray"
           className="p-1 font-medium"
         >
-          {sport === 'basketball_nba' ?<button className={active}>NBA</button>:
-          <button className={inactive} onClick={() => sportChange('basketball_nba')}>NBA</button>}
+          {sport === 'basketball_nba' ?<button className={active}>NBA<img className="h-4 w-4 object-cover ml-1" src={sportImages["basketball_nba.png"]} alt={sport} /></button>:
+          <button className={inactive} onClick={() => sportChange('basketball_nba')}>NBA
+          <img className="h-4 w-4 object-cover ml-1 grayscale" src={sportImages["basketball_nba.png"]} alt={sport} /></button>}
         </Typography>
         <Typography
           as="li"
@@ -183,8 +184,9 @@ function App() {
           color="blue-gray"
           className="p-1 font-medium"
         >
-          {sport === 'americanfootball_nfl' ?<button className={active}>NFL</button>:
-          <button className={inactive} onClick={() => sportChange('americanfootball_nfl')}>NFL</button>}
+          {sport === 'americanfootball_nfl' ?<button className={active}>NFL<img className="h-4 w-4 object-cover ml-1" src={sportImages["americanfootball_nfl.png"]} alt={sport} /></button>:
+          <button className={inactive} onClick={() => sportChange('americanfootball_nfl')}>NFL
+          <img className="h-4 w-4 object-cover ml-1 grayscale" src={sportImages["americanfootball_nfl.png"]} alt={sport} /></button>}
         </Typography>
         <Typography
           as="li"
@@ -192,8 +194,9 @@ function App() {
           color="blue-gray"
           className="p-1 font-medium"
         >
-          {sport === 'icehockey_nhl' ?<button className={active}>NHL</button>:
-          <button className={inactive} onClick={() => sportChange('icehockey_nhl')}>NHL</button>}
+          {sport === 'icehockey_nhl' ?<button className={active}>NHL<img className="h-4 w-4 object-cover ml-1" src={sportImages["icehockey_nhl.png"]} alt={sport} /></button>:
+          <button className={inactive} onClick={() => sportChange('icehockey_nhl')}>NHL
+          <img className="h-4 w-4 object-cover ml-1 grayscale" src={sportImages["icehockey_nhl.png"]} alt={sport} /></button>}
         </Typography>
         <Typography
           as="li"
@@ -201,8 +204,9 @@ function App() {
           color="blue-gray"
           className="p-1 font-medium"
         >
-          {sport === 'baseball_mlb' ?<button className={active}>MLB</button>:
-          <button className={inactive} onClick={() => sportChange('baseball_mlb')}>MLB</button>}
+          {sport === 'baseball_mlb' ?<button className={active}>MLB<img className="h-4 w-4 object-cover ml-1" src={sportImages["baseball_mlb.png"]} alt={sport} /></button>:
+          <button className={inactive} onClick={() => sportChange('baseball_mlb')}>MLB
+          <img className="h-4 w-4 object-cover ml-1 grayscale" src={sportImages["baseball_mlb.png"]} alt={sport} /></button>}
         </Typography>
       </ul>
     );
