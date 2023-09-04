@@ -5,7 +5,7 @@ import './App.css';
 import Footer from "./Components/Footer";
 import 'bootstrap/dist/css/bootstrap.css';
 import CookieConsent from "react-cookie-consent";
-import { state_bookmakers, team_codes } from "./Resources.js";
+import { state_bookmakers, team_codes, league_titles } from "./Resources.js";
 import { 
   Collapse,
   Input,
@@ -38,6 +38,7 @@ function App() {
   const [checkedBest, setCheckedBest] = useState(window.sessionStorage.getItem('checkedBest') === 'true' ? true : false);
   const stateImages = importAll(require.context('./Images/StateIcons/', true, /\.(png|jpe?g|svg)$/));
   const teamImages = importAll(require.context('./Images/TeamImages/', true, /\.(png|jpe?g|svg)$/));
+  const sportImages = importAll(require.context('./Images/Sports/', true, /\.(png|jpe?g|svg)$/));
 
   const filterGames = useCallback(
     ({ target }) => {
@@ -302,7 +303,22 @@ function App() {
             {InputInHeader}
         </div>
       </Navbar>
+
       
+        <div className="hidden lg:block opacity-50">
+          <Typography variant="h1" color="blue">
+            <span className="flex items-center justify-center mt-3">{league_titles[sport]}
+            <img className="h-12 w-12 object-cover ml-3" src={sportImages[sport + ".png"]} alt={sport} /></span>
+          </Typography>
+        </div>
+        <div className="lg:hidden opacity-50">
+          <Typography variant="h3" color="blue">
+            <span className="flex items-center justify-center mt-3">{league_titles[sport]}
+            <img className="h-8 w-8 object-cover ml-3" src={sportImages[sport + ".png"]} alt={sport} /></span>
+          </Typography>
+        </div>
+      
+
       {status === "loading" || status === "error" ?
         <div className="flex flex-wrap justify-center items-center mt-8 mb-8">
           {status === "loading" ? <Spinner className="h-12 w-12" />:
@@ -314,7 +330,8 @@ function App() {
         <label className="relative inline-flex items-center mr-5 cursor-pointer">
             <input type="checkbox" checked={checkedBest} className="sr-only peer" onChange={(value) => checkedBestChange(value.target.checked)}></input>
             <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-400 dark:peer-focus:ring-blue-700 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-300"></div>
-            <span className="ml-3 text-sm font-medium text-blue-gray-500"> Only Show Best Lines</span>       
+            <span className="lg:hidden ml-3 text-xs font-medium text-blue-gray-500"> Only Show Best Lines</span>    
+            <span className="hidden lg:block ml-3 text-sm font-medium text-blue-gray-500"> Only Show Best Lines</span>     
         </label>
         
       </div>
