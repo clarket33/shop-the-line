@@ -68,7 +68,7 @@ const GameOverview = (game) => {
                     <br></br>
                     {game.curScore?<span>{game.curScore[1].score} - {game.curScore[0].score}</span>:<></>}
                     </Typography>
-                    {!isLive && daysTilStart <= 2 ?
+                    {!isLive && ((daysTilStart <= 2 && game.sport !== 'americanfootball_nfl') || (daysTilStart <= 8 && game.sport === 'americanfootball_nfl')) ?
                     <div className="h-24 w-48 mx-auto flex justify-center items-center">
                         {showTeamProps===true?<Button variant="text" className="w-1/2 border-r-2 font-bold" color="blue" onClick={() => teamPress()}>Team<br></br>Props</Button>
                         :<Button variant="text" className="w-1/2 border-r-2" color="blue-gray" onClick={() => teamPress()}>Team<br></br>Props</Button>}
