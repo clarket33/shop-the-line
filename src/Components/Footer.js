@@ -119,10 +119,10 @@ const Footer = () => {
         </div>
       </div> 
       <div className="hidden md:grid mx-auto flex items-center justify-center text-center max-w-screen-md mb-4">
-        <span className="text-gray-500 text-sm">Ages 21+. This site is purely for entertainment purposes, without involving real money betting. Gambling can be addictive, so please play responsibly. If you or someone you know is struggling with a gambling problem and seeks assistance, call 1-800-GAMBLER</span>
+        <span className="text-gray-500 text-sm">Ages 21+. This site is for entertainment and informational purposes only, and no real money betting is involved. If you or someone you know has a gambling problem, please call 1-800-GAMBLER for help</span>
       </div>
       <div className="md:hidden mx-auto flex items-center justify-center text-center max-w-xs mb-4">
-        <span className="text-gray-500 text-sm">Ages 21+. This site is purely for entertainment purposes, without involving real money betting. Gambling can be addictive, so please play responsibly. If you or someone you know is struggling with a gambling problem and seeks assistance, call 1-800-GAMBLER</span>
+        <span className="text-gray-500 text-sm">Ages 21+. This site is for entertainment and informational purposes only, and no real money betting is involved. If you or someone you know has a gambling problem, please call 1-800-GAMBLER for help</span>
       </div>
     </div>);
   };
