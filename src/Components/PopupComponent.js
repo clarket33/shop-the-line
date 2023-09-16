@@ -3,6 +3,7 @@ import Popup from 'reactjs-popup';
 import InstructionCarousel from './InstructionCarousel';
 import SportsBookList from './SportsBookList';
 import Policy from './Policy';
+import FullPropList from './FullPropList';
 
 const PopupComponent = (type) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -12,6 +13,7 @@ const PopupComponent = (type) => {
   else if(type.type === "sportsbook-list") title = "Sportsbooks"
   else if(type.type === "privacy") title = "Privacy Policy"
   else if(type.type === "terms") title = "Terms of Use";
+  else if(type.type === "prop-list") title = " suite of props";
 
   const handleClick = () => {
     setIsPopupOpen(true);
@@ -22,7 +24,7 @@ const PopupComponent = (type) => {
           
           <span className={type.text} onClick={handleClick}>{title}</span>
           
-          <div className={isPopupOpen ? "overlay" : ""}>
+          <span className={isPopupOpen ? "overlay" : ""}>
               <Popup
                   open={isPopupOpen}
                   onClose={() => setIsPopupOpen(false)}
@@ -38,12 +40,13 @@ const PopupComponent = (type) => {
                 </div> : type.type === "sportsbook-list" ?
                 <div>
                   <SportsBookList></SportsBookList>
-                </div> : 
+                </div> : type.type === "terms" || type.type === "privacy" ?
                 <div>
                   <Policy title={title}></Policy>
-                </div>}
+                </div> : type.type === "prop-list" ?
+                  <FullPropList></FullPropList> : <></>}
               </Popup>
-          </div>
+          </span>
           
       </span>
     );

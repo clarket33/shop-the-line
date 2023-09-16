@@ -6,6 +6,7 @@ import Footer from "./Components/Footer";
 import 'bootstrap/dist/css/bootstrap.css';
 import CookieConsent from "react-cookie-consent";
 import { state_bookmakers, team_codes, league_titles } from "./Resources.js";
+import { useAuth0 } from '@auth0/auth0-react';
 import { 
   Collapse,
   Input,
@@ -14,9 +15,16 @@ import {
   IconButton,
   Select,
   Option,
-  Spinner
+  Spinner,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Button
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon, ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
+import PowerIcon from "./Images/Misc/sign-in.png";
+import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import { useQuery } from "@tanstack/react-query";
 
 import {americanfootball_nfl_team_props, americanfootball_nfl_scores} from './SampleData/americanfootball_nfl_team_props.js';
@@ -39,6 +47,13 @@ function App() {
   const stateImages = importAll(require.context('./Images/StateIcons/', true, /\.(png|jpe?g|svg)$/));
   const teamImages = importAll(require.context('./Images/TeamImages/', true, /\.(png|jpe?g|svg)$/));
   const sportImages = importAll(require.context('./Images/Sports/', true, /\.(png|jpe?g|svg)$/));
+  const {
+    isAuthenticated,
+    loginWithRedirect,
+    logout,
+    user,
+    isLoading,
+  } = useAuth0();
 
   const filterGames = useCallback(
     ({ target }) => {
@@ -162,6 +177,11 @@ function App() {
     window.sessionStorage.setItem('checkedBest', checkedChoice);
   }
 
+  function fullLogout(){
+    sessionStorage.clear();
+    logout();
+  }
+
   function NavList() {
     let inactive = "flex items-center hover:text-blue-700 transition-colors";
     let active = "flex items-center font-bold text-blue-700 transition-colors";
@@ -212,6 +232,23 @@ function App() {
     );
   }
 
+  // profile menu component
+  let profileMenuItems;
+  if(isAuthenticated){
+  profileMenuItems = [
+    {
+      label: "Sign Out",
+      icon: PowerIcon
+    }
+  ]
+  }else{ 
+  profileMenuItems = [
+    {
+      label: "Sign In",
+      icon: PowerIcon
+    }
+  ]};
+
   const SelectInHeader = useMemo(() => {
     return (
       <Select key={stateName} selected={(element) => element && React.cloneElement(element, {className: "flex items-center px-0 gap-2 pointer-events-none",})} 
@@ -255,6 +292,46 @@ function App() {
     );
   }, [filterText, filterGames]);
 
+  function ProfileMenu() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+   
+    const closeMenu = () => setIsMenuOpen(false);
+   
+    return (
+      <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
+        <MenuHandler>
+          
+           <IconButton variant="text" color="blue-gray" className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto">
+            <Cog6ToothIcon className="h-4 w-4" />
+          </IconButton>
+          
+        </MenuHandler>
+        <MenuList className="p-1">
+          {profileMenuItems.map(({ label, icon, action }, key) => {
+            return (
+              <MenuItem
+                key={label}
+                onClick={isAuthenticated ? fullLogout : loginWithRedirect}
+                className={`flex items-center gap-2 rounded}`}
+              >
+                <img className="h-4 w-4" strokeWidth="2" src={icon} alt={"Sign-In"} />
+                <Typography
+                  as="span"
+                  variant="small"
+                  className="font-normal"
+                  color={"inherit"}
+                >
+                  {label}
+                </Typography>
+              </MenuItem>
+            );
+          })}
+        </MenuList>
+      </Menu>
+    );
+  }
+
+  console.log(user);  
   return (
     <div>
       <CookieConsent
@@ -280,30 +357,37 @@ function App() {
             <NavList />
           </div>
           <div className="hidden lg:block">
-            <div className="min-w-[450px] grid grid-cols-2 gap-2">
-              <div>{SelectInHeader}</div>
-              <div>{InputInHeader}</div>
+            <div className="min-w-[450px] flex gap-2">
+              <div className="w-6/12">{SelectInHeader}</div>
+              <div className="w-6/12">{InputInHeader}</div>
+              <div className="w-2/12">
+                <ProfileMenu/>
+              </div>
             </div>
           </div>
           {!openNav ?
-          <div className="lg:hidden absolute top-15 right-20 mt-3 text-blue-700 opacity-70">
+          <div className="lg:hidden absolute top-15 right-20 mt-3 mr-6 text-blue-700 opacity-70">
             <Typography variant="small">
                 <span className="flex items-center justify-center font-semibold">{league_titles[sport]}
                 <img className="h-4 w-4 object-cover ml-1" src={sportImages[sport + ".png"]} alt={league_titles[sport]} /></span>
             </Typography>
           </div>:<></>}
-          <IconButton
-            variant="text"
-            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-            ripple={false}
-            onClick={() => setOpenNav(!openNav)}
-          >
-            {openNav ? (
-              <XMarkIcon className="h-6 w-6" strokeWidth={2} />
-            ) : (
-             <Bars3Icon className="h-6 w-6" strokeWidth={2} />
-            )} 
-          </IconButton>
+          <div className="lg:hidden grid grid-cols-2">
+            <IconButton
+              variant="text"
+              className="ml-auto mt-2 h-6 w-6 hover:bg-transparent focus:bg-transparent active:bg-transparent"
+              color="blue-gray"
+              ripple={false}
+              onClick={() => setOpenNav(!openNav)}
+            >
+              {openNav ? (
+                <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+              ) : (
+                <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+              )} 
+            </IconButton>
+            <ProfileMenu className="h-6 w-6 hover:bg-transparent focus:bg-transparent active:bg-transparent"/>
+          </div>
         </div>
         <Collapse open={openNav}>
           <NavList />
@@ -312,6 +396,7 @@ function App() {
          lg:hidden">
             {SelectInHeader}
             {InputInHeader}
+        
         </div>
       </Navbar>
 
@@ -323,7 +408,16 @@ function App() {
           {status === "loading" ? <Spinner className="h-12 w-12" />:
           status === "error" ? <span className="text-red-500 font-bold text-sm text-center">An unexpected error has occurred. Please try again later</span>:<></> }
         </div> : <div>
-     
+      
+      {!isAuthenticated && !isLoading ? 
+        <div className="mx-auto max-w-screen-sm items-center justify-center text-center mt-6 mb-6">
+          <Typography color="blue-gray" className="text-sm font-medium text-blue-gray-500">
+            <span>You're currently exploring our limited preview. To enjoy our complete <PopupComponent type="prop-list" text="text-blue-500 cursor-pointer hover:underline"/> and customization options, simply <button className="text-blue-500 cursor-pointer hover:underline" rel="noopener noreferrer" onClick={loginWithRedirect}> authenticate</button> for free.</span>
+          </Typography>
+          <Button onClick={loginWithRedirect}>Sign In</Button>
+        </div>
+       : <></>}
+
       {filteredGames.length > 0 ?
       <div className="flex items-center justify-center mt-3">
         <label className="relative inline-flex items-center mr-5 cursor-pointer">
@@ -353,6 +447,7 @@ function App() {
                 curScore={game.scores}
                 teamImages={teamImages}
                 checkedBest={checkedBest}
+                authenticated={isAuthenticated}
               />:<></>
             )): <span className="text-gray-500 font-bold drop-shadow-lg text-5xl text-center">No Upcoming Games</span>}
           </div>
