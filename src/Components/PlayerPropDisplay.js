@@ -1,5 +1,5 @@
 import React,{ useEffect, useState, useMemo, useCallback } from "react";
-import { player_prop_choices } from "../Resources.js";
+import { player_prop_choices, all_player_props } from "../Resources.js";
 import { useData } from './DataContext.js';
 import { 
     Select,
@@ -27,6 +27,7 @@ const PlayerPropDisplay = (event) => {
             for(const bookmaker of data.bookmakers){
                 if(event.bookies.has(bookmaker.key)){
                     for(const market of bookmaker.markets){
+                        if(!all_player_props.has(market.key)) continue;
                         if(!individual_props.has(market.key)){
                             individual_props.set(market.key, new Map());
                             playerPropChoices.push(market.key);
