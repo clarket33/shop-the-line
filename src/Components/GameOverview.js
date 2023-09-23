@@ -15,7 +15,7 @@ import {
 const GameOverview = (game) => {
     const [showTeamProps,setShowTeamProps] = useState(window.sessionStorage.getItem('team_prop_clicked_' + game.game_id) === 'true' ? true : false);
     const [showPlayerProps, setShowPlayerProps] = useState(window.sessionStorage.getItem('player_prop_clicked_' + game.game_id) === 'true' ? true : false);
-    const [eitherPropClicked, setPlayerPropsClicked] = useState(window.sessionStorage.getItem('player_prop_clicked_' + game.game_id) === 'true' ? true : false);
+    const [eitherPropClicked, setPlayerPropsClicked] = useState(window.sessionStorage.getItem('player_prop_clicked_' + game.game_id) === 'true' || window.sessionStorage.getItem('team_prop_clicked_' + game.game_id) === 'true' ? true : false);
     const today = process.env.JEST_WORKER_ID ? new Date('2023-09-06T00:20:00Z') : new Date();
     const gameStart = new Date(game.startTime);
     const isLive = today>=gameStart;

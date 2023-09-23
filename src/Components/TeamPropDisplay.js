@@ -12,10 +12,10 @@ const TeamPropDisplay = (game) => {
     const [propChoices, setPropChoices] = useState([]);
     const [subPropChoices, setSubPropChoices] = useState([]);
     const [data, setData] = useState(new Map());
-    const [prop, setProp] = useState(window.localStorage.getItem('team_prop_' + game.game_id) || "h2h");
-    const [subProp, setSubProp] = useState(window.localStorage.getItem('team_sub_prop_' + game.game_id) || "h2h");
+    const [prop, setProp] = useState(window.sessionStorage.getItem('team_prop_' + game.game_id) || "h2h");
+    const [subProp, setSubProp] = useState(window.sessionStorage.getItem('team_sub_prop_' + game.game_id) || "h2h");
     const [sortChoices, setSortChoices] = useState([]);
-    const [sorter, setSorter] = useState(window.localStorage.getItem('team_prop_sorter_' + game.game_id) || "");
+    const [sorter, setSorter] = useState(window.sessionStorage.getItem('team_prop_sorter_' + game.game_id) || "");
     const { data:additional_markets = {}, status = "success" } = useData() || {};
     const [additionalMarketsData, setAdditionalMarketsData] = useState(additional_markets);
 
@@ -81,12 +81,12 @@ const TeamPropDisplay = (game) => {
                                     if(k > -1){
                                         let matchedSpread = market.outcomes[k];
                                         let curKey; 
-                                        if(outcome.name === game.away_team){
+                                        if(outcome.point === 0) curKey = "EVEN";
+                                        else if(outcome.name === game.away_team){
                                             curKey = team_codes[outcome.name] + " " + (outcome.point > 0 ? "+" + outcome.point : outcome.point) + " | " + team_codes[matchedSpread.name] + " " + (matchedSpread.point > 0 ? "+" + matchedSpread.point : matchedSpread.point);
                                         }else{
                                             curKey = team_codes[matchedSpread.name] + " " + (matchedSpread.point > 0 ? "+" + matchedSpread.point : matchedSpread.point) + " | " + team_codes[outcome.name] + " " + (outcome.point > 0 ? "+" + outcome.point : outcome.point);
                                         }
-                                        //(curKey);
                                         if(!team_props.get(category).has(curKey)){
                                             team_props.get(category).set(curKey, new Map());
                                         }
@@ -134,7 +134,7 @@ const TeamPropDisplay = (game) => {
             for(const key of data.get(prop).keys()){
                 subPropChoices.push(key);
             }
-            setSubPropChoices(prop === "alternate_spreads" ? subPropChoices.sort(alt_spread_sort) : subPropChoices);
+            setSubPropChoices(prop === "alternate_spreads" ? subPropChoices.sort(alt_spread_sort) : subPropChoices.sort(partial_periods_sort));
         }
       
     }, [data, prop]);
@@ -164,8 +164,10 @@ const TeamPropDisplay = (game) => {
         if(subPropChoices.length > 0){
             let foundSubProp = false;
             for(const subPrp of subPropChoices){
-                if(subPrp === subProp){
+                if((prop !== "alternate_spreads" && additional_team_prop_titles[subPrp] === additional_team_prop_titles[subProp]) || (prop === "alternate_spreads" && subPrp === subProp)){
                     foundSubProp = true;
+                    setSubProp(subPrp);
+                    window.sessionStorage.setItem('team_sub_prop_' + game.game_id, subPrp);
                     break;
                 }
             }
@@ -174,8 +176,9 @@ const TeamPropDisplay = (game) => {
                 window.sessionStorage.setItem('team_sub_prop_' + game.game_id, subPropChoices[0]);
             }
         }
-        
-    }, [subPropChoices, subProp, game]);
+        // eslint-disable-next-line
+    }, [subPropChoices, game]);
+    
 
     useEffect(() => {
         if(sortChoices.length > 0){
@@ -190,7 +193,7 @@ const TeamPropDisplay = (game) => {
     const propSelect = useCallback((propChoice) => {
         if(propChoice !== prop){
             setProp(propChoice);
-            window.localStorage.setItem('team_prop_' + game.game_id, propChoice);
+            window.sessionStorage.setItem('team_prop_' + game.game_id, propChoice);
         }
     }, [game.game_id, prop]);
 
@@ -204,7 +207,7 @@ const TeamPropDisplay = (game) => {
     const sorterSelect = useCallback((sorterChoice) => {
         if(sorterChoice !== sorter){
             setSorter(sorterChoice);
-            window.localStorage.setItem('team_prop_sorter_' + game.game_id, sorterChoice);
+            window.sessionStorage.setItem('team_prop_sorter_' + game.game_id, sorterChoice);
         }
     }, [sorter, game.game_id]);
 
@@ -255,9 +258,13 @@ const TeamPropDisplay = (game) => {
       }, [sorter, sortChoices, sorterSelect, game.game_id]);
 
     function alt_spread_sort(a, b){
-        let arrA = a.split(" ");
-        let arrB = b.split(" ");
-        return parseFloat(arrA[1]) < parseFloat(arrB[1]) ? -1 : 1;  
+        let arrAPoint = a.includes("EVEN") ? "0" : a.split(" ")[1];
+        let arrBPoint = b.includes("EVEN") ? "0" : b.split(" ")[1];
+        return parseFloat(arrAPoint) < parseFloat(arrBPoint) ? -1 : 1;  
+    }
+
+    function partial_periods_sort(a, b){
+        return a < b ? -1 : 1; 
     }
 
     if(status ==="success"){
@@ -283,7 +290,7 @@ const TeamPropDisplay = (game) => {
                             lastIndex={data.get(prop).get(subProp).size-1}
                             prop={prop}
                             checkedBest={game.checkedBest}
-                        />:<span>No odds available</span>}
+                        />:data.size !== 0 ? <></>:<span>No odds available</span>}
                 </div>
                 
                     

@@ -114,8 +114,8 @@ const PlayerPropDisplay = (event) => {
                 window.sessionStorage.setItem('player_prop_player_' + event.game_id, playerChoices[0]);
             }
         }
-        
-    }, [playerChoices, player, event]);
+        // eslint-disable-next-line
+    }, [playerChoices, event]);
 
     useEffect(() => {
         if(sortChoices.length > 0){
