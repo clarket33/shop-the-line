@@ -194,6 +194,16 @@ function App() {
           color="blue-gray"
           className="p-1 font-medium"
         >
+          {sport === 'americanfootball_ncaaf' ?<button className={active}>NCAAF<img className="h-4 w-4 object-cover ml-1" src={sportImages["americanfootball_nfl.png"]} alt={league_titles[sport]} /></button>:
+          <button className={inactive} onClick={() => sportChange('americanfootball_ncaaf')}>NCAAF
+          <img className="h-4 w-4 object-cover ml-1" src={sportImages["americanfootball_nfl.png"]} alt={league_titles[sport]} /></button>}
+        </Typography>
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-medium"
+        >
           {sport === 'icehockey_nhl' ?<button className={active}>NHL<img className="h-4 w-4 object-cover ml-1" src={sportImages["icehockey_nhl.png"]} alt={league_titles[sport]} /></button>:
           <button className={inactive} onClick={() => sportChange('icehockey_nhl')}>NHL
           <img className="h-4 w-4 object-cover ml-1" src={sportImages["icehockey_nhl.png"]} alt={league_titles[sport]} /></button>}
