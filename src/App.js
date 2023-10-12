@@ -5,7 +5,7 @@ import './App.css';
 import Footer from "./Components/Footer";
 import 'bootstrap/dist/css/bootstrap.css';
 import CookieConsent from "react-cookie-consent";
-import { state_bookmakers, team_codes, league_titles, team_titles } from "./Resources.js";
+import { state_bookmakers, league_titles, team_titles } from "./Resources.js";
 import { 
   Collapse,
   Input,
@@ -74,7 +74,7 @@ function App() {
 
   const fetchData = async () => {
     
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    if (false) {
       let odds;
       let scores;
       if(sport === 'americanfootball_nfl'){
