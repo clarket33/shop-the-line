@@ -41,15 +41,15 @@ const GameOverview = (game) => {
                         <div className="h-8 align-top">
                             
                             <div className="flex">
-                                <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-right m-auto" : "w-4/12 text-center m-auto"}>
+                                <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-right m-auto" : "w-4/12 text-center m-auto overflow-hidden text-ellipsis line-clamp-2"}>
                                     <Typography variant={game.sport !== "americanfootball_ncaaf" ? "h6":"small"} color="blue-gray" className="font-semibold">
-                                        {team_titles[game.awayTeam] || (game.sport !== "americanfootball_ncaaf" ? game.awayTeam.substring(0,3).toUpperCase() : game.awayTeam.split(" ")[0])}
+                                        {team_titles[game.awayTeam] || (game.sport !== "americanfootball_ncaaf" ? game.awayTeam.substring(0,3).toUpperCase() : game.awayTeam)}
                                     </Typography>
                                 </div>
                                 <div className="w-1/12 text-center m-auto"></div>
-                                <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-left m-auto" : "w-4/12 text-center m-auto"}>
+                                <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-left m-auto" : "w-4/12 text-center m-auto overflow-hidden text-ellipsis line-clamp-2"}>
                                     <Typography variant={game.sport !== "americanfootball_ncaaf" ? "h6":"small"} color="blue-gray" className="font-semibold">
-                                        {team_titles[game.homeTeam] || (game.sport !== "americanfootball_ncaaf" ? game.homeTeam.substring(0,3).toUpperCase() : game.homeTeam.split(" ")[0])}
+                                        {team_titles[game.homeTeam] || (game.sport !== "americanfootball_ncaaf" ? game.homeTeam.substring(0,3).toUpperCase() : game.homeTeam)}
                                     </Typography>
                                 </div>
                             </div>
@@ -109,15 +109,15 @@ const GameOverview = (game) => {
                         <div className="h-12 align-top">
                             
                             <div className="flex">
-                                <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-right m-auto" : "w-5/12 text-center m-auto"}>
+                                <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-right m-auto" : "w-5/12 text-center m-auto overflow-hidden text-ellipsis line-clamp-2"}>
                                     <Typography variant={game.sport !== "americanfootball_ncaaf" ? "h5":"h6"} color="blue-gray">
-                                        {team_titles[game.awayTeam] || (game.sport !== "americanfootball_ncaaf" ? game.awayTeam.substring(0,3).toUpperCase() : game.awayTeam.split(" ")[0])}
+                                        {team_titles[game.awayTeam] || (game.sport !== "americanfootball_ncaaf" ? game.awayTeam.substring(0,3).toUpperCase() : game.awayTeam)}
                                     </Typography>
                                 </div>
                                 <div className="w-2/12 text-center m-auto"></div>
-                                <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-left m-auto" : "w-5/12 text-center m-auto"}>
+                                <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-left m-auto" : "w-5/12 text-center m-auto overflow-hidden text-ellipsis line-clamp-2"}>
                                     <Typography variant={game.sport !== "americanfootball_ncaaf" ? "h5":"h6"} color="blue-gray">
-                                        {team_titles[game.homeTeam] || (game.sport !== "americanfootball_ncaaf" ? game.homeTeam.substring(0,3).toUpperCase() : game.homeTeam.split(" ")[0])}
+                                        {team_titles[game.homeTeam] || (game.sport !== "americanfootball_ncaaf" ? game.homeTeam.substring(0,3).toUpperCase() : game.homeTeam)}
                                     </Typography>
                                 </div>
                             </div>
