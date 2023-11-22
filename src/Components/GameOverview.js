@@ -80,7 +80,7 @@ const GameOverview = (game) => {
                             <span>{stringifiedGameStart}</span>
                         </Typography>}
                     
-                    {!isLive && daysTilStart <= 2 && game.sport !== "americanfootball_ncaaf" ?
+                    {!isLive && withinDayThreshold() && game.sport !== "americanfootball_ncaaf" ?
                     <div className="h-18 w-48 mx-auto flex justify-center items-center">
                         {showTeamProps===true?<Button variant="text" className="w-1/2 border-r-2 font-bold" color="blue" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Team<br></br>Props</span></Button>
                         :<Button variant="text" className="w-1/2 border-r-2" color="blue-gray" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Team<br></br>Props</span></Button>}
@@ -136,7 +136,7 @@ const GameOverview = (game) => {
                         </div>:<span>{stringifiedGameStart}</span>}
                        
                     </Typography>
-                    {!isLive && daysTilStart <= 2 && game.sport !== "americanfootball_ncaaf" ?
+                    {!isLive && withinDayThreshold() && game.sport !== "americanfootball_ncaaf" ?
                     <div className="h-24 w-48 mx-auto flex justify-center items-center">
                         {showTeamProps===true?<Button variant="text" className="w-1/2 border-r-2 font-bold" color="blue" onClick={() => teamPress()}>Team<br></br>Props</Button>
                         :<Button variant="text" className="w-1/2 border-r-2" color="blue-gray" onClick={() => teamPress()}>Team<br></br>Props</Button>}
@@ -151,7 +151,7 @@ const GameOverview = (game) => {
                     }
                 </div>
                 
-                {(isLive || daysTilStart > 2) && showTeamProps ? 
+                {(isLive || !withinDayThreshold()) && showTeamProps ? 
                     <TeamPropDisplay
                         key={"team-prop-" + game.game_id}
                         game_id={game.game_id}
@@ -196,6 +196,15 @@ const GameOverview = (game) => {
         </Card>
         
     )
+
+    function withinDayThreshold(){
+        if(["americanfootball_nfl","americanfootball_ncaaf"].includes(game.sport)){
+            return daysTilStart <= 3;
+        }
+        else{
+            return daysTilStart <= 2;
+        }
+    }
 
     function playerPress(){
         if(eitherPropClicked === false) setPlayerPropsClicked(true);
