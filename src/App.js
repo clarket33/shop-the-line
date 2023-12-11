@@ -23,6 +23,7 @@ import {americanfootball_nfl_team_props, americanfootball_nfl_scores} from './Sa
 import {icehockey_nhl_team_props, icehockey_nhl_scores} from './SampleData/hockey_nhl_team_props.js';
 import {baseball_mlb_team_props, baseball_mlb_scores} from './SampleData/baseball_mlb_team_props.js';
 import {basketball_nba_team_props, basketball_nba_scores} from './SampleData/basketball_nba_team_props.js';
+import {americanfootball_ncaaf_team_props, americanfootball_ncaaf_scores} from './SampleData/americanfootball_ncaaf_team_props.js';
 
 
 function App() {
@@ -86,9 +87,12 @@ function App() {
       }else if(sport === 'basketball_nba') {
         odds = basketball_nba_team_props;
         scores = basketball_nba_scores;
-      }else{
+      }else if(sport === 'icehockey_nhl') {
         odds = icehockey_nhl_team_props;
         scores = icehockey_nhl_scores;
+      }else if(sport === 'americanfootball_ncaaf') {
+        odds = americanfootball_ncaaf_team_props;
+        scores = americanfootball_ncaaf_scores;
       }
       let res = scores.map(x => Object.assign(x, odds.find(y => y.id === x.id)));
       return res;

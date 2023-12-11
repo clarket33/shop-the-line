@@ -6,6 +6,7 @@ import football_data from './../SampleData/americanfootball_nfl_player_props.jso
 import basketball_data from './../SampleData/basketball_nba_player_props.json';
 import baseball_data from './../SampleData/baseball_mlb_player_props.json';
 import hockey_data from './../SampleData/hockey_nhl_player_props.json';
+import football_college_data from './../SampleData/americanfootball_ncaaf_player_props.json';
 
 const DataContext = createContext();
 
@@ -23,7 +24,9 @@ export const DataProvider = (event) => {
       if(event.sport === 'americanfootball_nfl') odds = football_data;
       else if(event.sport === 'baseball_mlb') odds = baseball_data;
       else if(event.sport === 'basketball_nba') odds = basketball_data;
-      else odds = hockey_data;
+      else if(event.sport === 'icehockey_nhl') odds = hockey_data;
+      else if(event.sport === 'americanfootball_ncaaf') odds = football_college_data;
+      else odds = {};
     }
     else {
       const url = 'https://' + process.env.REACT_APP_AWS_API_ID + '.execute-api.' + process.env.REACT_APP_AWS_API_REGION + '.amazonaws.com/default/player-data-fetch?sport=' + event.sport + '&game_id=' + event.game_id + '&specMarkets=' + specMarketsForSport;
@@ -41,7 +44,7 @@ export const DataProvider = (event) => {
 
   const { data, status } = useQuery([event.sport + ' - ' + event.game_id], fetchData,
     {
-      staleTime: 300000,
+      staleTime: 30,
       refetchOnWindowFocus: true,
       retry: 2
     }
