@@ -29,7 +29,6 @@ const TeamPropDisplay = (game) => {
 
         let team_props = new Map();
         let prop_choices = [];
-
         
         for (const bookmaker of game.bookmakers){
             for (const market of bookmaker.markets){
@@ -59,11 +58,12 @@ const TeamPropDisplay = (game) => {
                         if(additional_team_props.has(market.key)){
                             let category = "";
                             if(market.key === "alternate_spreads") category = "alternate_spreads";
+                            else if(market.key === "alternate_totals") category = "alternate_totals";
                             else if(market.key.includes("h2h")) category = "h2h";
                             else if(market.key.includes("spreads")) category = "spreads";
                             else if(market.key.includes("totals")) category = "totals";
                             else continue;
-                            if(!team_props.has(category) && category !== "alternate_spreads")continue;
+                            if(!team_props.has(category) && !new Set(["alternate_spreads","alternate_totals"]).has(category))continue;
                             
                             if(market.key === "alternate_spreads"){
                                 if(!team_props.has(category)){
@@ -108,6 +108,38 @@ const TeamPropDisplay = (game) => {
                                     
                                 }
                             }
+                            else if(market.key === "alternate_totals"){
+                                if(!team_props.has(category)){
+                                    team_props.set(market.key, new Map());
+                                    prop_choices.push(market.key);
+                                }
+                                for(let curr of market.outcomes){
+                                    let match = market.outcomes.find((item) => item.point === curr.point && item.name !== curr.name);
+                                    if(!match) continue;
+                                    let curKey = match.point.toString();
+                                    if(!team_props.get(category).has(curKey)){
+                                        team_props.get(category).set(curKey, new Map());
+                                    }
+                                    if(!team_props.get(category).get(curKey).has(bookmaker.key)){
+                                        team_props.get(category).get(curKey).set(bookmaker.key, 
+                                            curr.name === "Over" ? {
+                                            labelA: curr.name,
+                                            priceA: curr.price,
+                                            pointA: curr.point,
+                                            labelB: match.name,
+                                            priceB: match.price,
+                                            pointB: match.point}
+                                            : {
+                                            labelA: match.name,
+                                            priceA: match.price,
+                                            pointA: match.point,
+                                            labelB: curr.name,
+                                            priceB: curr.price,
+                                            pointB: curr.point});
+                                        }
+                                   
+                                }
+                            }
                             else{
                                 if(!team_props.get(category).has(market.key)){
                                     team_props.get(category).set(market.key, new Map());
@@ -120,7 +152,7 @@ const TeamPropDisplay = (game) => {
                                     labelB: market.outcomes[1].name,
                                     priceB: market.outcomes[1].price,
                                     pointB: market.outcomes[1].point ? market.outcomes[1].point : market.outcomes[1].point === 0 ? "EVEN" : ""});
-                            }
+                            }     
                         }
                     }
                 }
@@ -138,7 +170,7 @@ const TeamPropDisplay = (game) => {
             for(const key of data.get(prop).keys()){
                 subPropChoices.push(key);
             }
-            setSubPropChoices(prop === "alternate_spreads" ? subPropChoices.sort(alt_spread_sort) : subPropChoices.sort(partial_periods_sort));
+            setSubPropChoices(prop === "alternate_spreads" ? subPropChoices.sort(alt_spread_sort) : prop === "alternate_totals" ? subPropChoices.sort(alt_tot_sort) : subPropChoices.sort(partial_periods_sort));
         }
       
     }, [data, prop]);
@@ -168,7 +200,7 @@ const TeamPropDisplay = (game) => {
         if(subPropChoices.length > 0){
             let foundSubProp = false;
             for(const subPrp of subPropChoices){
-                if((prop !== "alternate_spreads" && additional_team_prop_titles[subPrp] === additional_team_prop_titles[subProp]) || (prop === "alternate_spreads" && subPrp === subProp)){
+                if((!new Set(["alternate_spreads","alternate_totals"]).has(prop) && additional_team_prop_titles[subPrp] === additional_team_prop_titles[subProp]) || (new Set(["alternate_spreads","alternate_totals"]).has(prop) && subPrp === subProp)){
                     foundSubProp = true;
                     setSubProp(subPrp);
                     window.sessionStorage.setItem('team_sub_prop_' + game.game_id, subPrp);
@@ -230,7 +262,7 @@ const TeamPropDisplay = (game) => {
       const subPropSelector = useMemo(() => {
         if(game.withinRange){
             return (
-                <Select key={"subProp: " + subPropChoices + game.game_id} disabled={!game.withinRange} variant="outlined" label={prop === "alternate_spreads" ? "Spread" : "Type"} color="blue" value={subProp} onChange={(values) => subPropSelect(values)} className="z-10" containerProps={{className: "min-w-[60px]",}}>
+                <Select key={"subProp: " + subPropChoices + game.game_id} disabled={!game.withinRange} variant="outlined" label={prop === "alternate_spreads" ? "Spread" : prop === "alternate_totals" ? "Total" : "Type"} color="blue" value={subProp} onChange={(values) => subPropSelect(values)} className="z-10" containerProps={{className: "min-w-[60px]",}}>
                         {subPropChoices.map((sub_prop) => (
                             <Option key={sub_prop + game.game_id} value={sub_prop} className="flex items-center gap-2">
                                 {prop === "alternate_spreads" ? 
@@ -238,7 +270,8 @@ const TeamPropDisplay = (game) => {
                                     <div className="w-1/2 text-left">{sub_prop.split("|")[0]}</div>
                                     <div className="w-1/2 text-left">{sub_prop.split("|")[1]}</div>
                                 </div>
-                                : <span>{additional_team_prop_titles[sub_prop] || sub_prop}</span>}
+                                : prop === "alternate_totals" ? <span>{sub_prop}</span>
+                                :<span>{additional_team_prop_titles[sub_prop] || sub_prop}</span>}
                             
                             </Option>
                         ))}
@@ -269,6 +302,10 @@ const TeamPropDisplay = (game) => {
 
     function partial_periods_sort(a, b){
         return a < b ? -1 : 1; 
+    }
+
+    function alt_tot_sort(a, b){
+        return parseFloat(a) < parseFloat(b) ? -1 : 1; 
     }
 
     if(status ==="success"){
