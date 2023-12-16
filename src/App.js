@@ -5,7 +5,7 @@ import './App.css';
 import Footer from "./Components/Footer";
 import 'bootstrap/dist/css/bootstrap.css';
 import CookieConsent from "react-cookie-consent";
-import { state_bookmakers, team_codes, league_titles } from "./Resources.js";
+import { state_bookmakers, league_titles, team_titles } from "./Resources.js";
 import { useAuth0 } from '@auth0/auth0-react';
 import { 
   Collapse,
@@ -31,6 +31,7 @@ import {americanfootball_nfl_team_props, americanfootball_nfl_scores} from './Sa
 import {icehockey_nhl_team_props, icehockey_nhl_scores} from './SampleData/hockey_nhl_team_props.js';
 import {baseball_mlb_team_props, baseball_mlb_scores} from './SampleData/baseball_mlb_team_props.js';
 import {basketball_nba_team_props, basketball_nba_scores} from './SampleData/basketball_nba_team_props.js';
+import {americanfootball_ncaaf_team_props, americanfootball_ncaaf_scores} from './SampleData/americanfootball_ncaaf_team_props.js';
 
 
 function App() {
@@ -101,14 +102,19 @@ function App() {
       }else if(sport === 'basketball_nba') {
         odds = basketball_nba_team_props;
         scores = basketball_nba_scores;
-      }else{
+      }else if(sport === 'icehockey_nhl') {
         odds = icehockey_nhl_team_props;
         scores = icehockey_nhl_scores;
+      }else if(sport === 'americanfootball_ncaaf') {
+        odds = americanfootball_ncaaf_team_props;
+        scores = americanfootball_ncaaf_scores;
       }
       let res = scores.map(x => Object.assign(x, odds.find(y => y.id === x.id)));
       return res;
     } else {
-      const url = 'https://' + process.env.REACT_APP_AWS_API_ID + '.execute-api.' + process.env.REACT_APP_AWS_API_REGION + '.amazonaws.com/default/game-data-fetch?sport=' + sport;
+      let today = new Date();
+      let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+8).toISOString().substring(0, 19) + 'Z';
+      const url = 'https://' + process.env.REACT_APP_AWS_API_ID + '.execute-api.' + process.env.REACT_APP_AWS_API_REGION + '.amazonaws.com/default/game-data-fetch?sport=' + sport + '&commenceTimeTo=' + nextweek;
       const playerData = await fetch(url, {
         method: 'GET'
       });
@@ -138,11 +144,11 @@ function App() {
 
     useEffect(() => {
       if(games && !games.error){
-        let gamesFiltered = games.filter((game) => game.away_team.toLowerCase().includes(filterText.toLowerCase()) || game.home_team.toLowerCase().includes(filterText.toLowerCase()) || (team_codes[game.away_team] ? team_codes[game.away_team].toLowerCase().includes(filterText.toLowerCase()):false)
-        || (team_codes[game.home_team] ? team_codes[game.home_team].toLowerCase().includes(filterText.toLowerCase()):false));
+        let gamesFiltered = games.filter((game) => game.away_team.toLowerCase().includes(filterText.toLowerCase()) || game.home_team.toLowerCase().includes(filterText.toLowerCase()) || (team_titles[game.away_team] ? team_titles[game.away_team].toLowerCase().includes(filterText.toLowerCase()):false)
+        || (team_titles[game.home_team] ? team_titles[game.home_team].toLowerCase().includes(filterText.toLowerCase()):false));
         setFilteredGames(gamesFiltered);
       
-        let pageNumber = Math.min(3,Math.ceil(gamesFiltered.length / numGamesPerPage));
+        let pageNumber = Math.ceil(gamesFiltered.length / numGamesPerPage);
         setPages(pageNumber);
         if(parseInt(window.sessionStorage.getItem('page_num')) > pageNumber) setActive(1);
       }
@@ -183,7 +189,7 @@ function App() {
   }
 
   function NavList() {
-    let inactive = "flex items-center hover:text-blue-700 transition-colors";
+    let inactive = "flex items-center hover:text-blue-700 grayscale hover:grayscale-0 transition-colors";
     let active = "flex items-center font-bold text-blue-700 transition-colors";
 
     return (
@@ -196,7 +202,7 @@ function App() {
         >
           {sport === 'basketball_nba' ?<button className={active}>NBA<img className="h-4 w-4 object-cover ml-1" src={sportImages["basketball_nba.png"]} alt={league_titles[sport]} /></button>:
           <button className={inactive} onClick={() => sportChange('basketball_nba')}>NBA
-          <img className="h-4 w-4 object-cover ml-1 grayscale" src={sportImages["basketball_nba.png"]} alt={league_titles[sport]} /></button>}
+          <img className="h-4 w-4 object-cover ml-1" src={sportImages["basketball_nba.png"]} alt={league_titles[sport]} /></button>}
         </Typography>
         <Typography
           as="li"
@@ -206,7 +212,17 @@ function App() {
         >
           {sport === 'americanfootball_nfl' ?<button className={active}>NFL<img className="h-4 w-4 object-cover ml-1" src={sportImages["americanfootball_nfl.png"]} alt={league_titles[sport]} /></button>:
           <button className={inactive} onClick={() => sportChange('americanfootball_nfl')}>NFL
-          <img className="h-4 w-4 object-cover ml-1 grayscale" src={sportImages["americanfootball_nfl.png"]} alt={league_titles[sport]} /></button>}
+          <img className="h-4 w-4 object-cover ml-1" src={sportImages["americanfootball_nfl.png"]} alt={league_titles[sport]} /></button>}
+        </Typography>
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-medium"
+        >
+          {sport === 'americanfootball_ncaaf' ?<button className={active}>NCAAF<img className="h-4 w-4 object-cover ml-1" src={sportImages["americanfootball_ncaaf.png"]} alt={league_titles[sport]} /></button>:
+          <button className={inactive} onClick={() => sportChange('americanfootball_ncaaf')}>NCAAF
+          <img className="h-4 w-4 object-cover ml-1" src={sportImages["americanfootball_nfl.png"]} alt={league_titles[sport]} /></button>}
         </Typography>
         <Typography
           as="li"
@@ -216,7 +232,7 @@ function App() {
         >
           {sport === 'icehockey_nhl' ?<button className={active}>NHL<img className="h-4 w-4 object-cover ml-1" src={sportImages["icehockey_nhl.png"]} alt={league_titles[sport]} /></button>:
           <button className={inactive} onClick={() => sportChange('icehockey_nhl')}>NHL
-          <img className="h-4 w-4 object-cover ml-1 grayscale" src={sportImages["icehockey_nhl.png"]} alt={league_titles[sport]} /></button>}
+          <img className="h-4 w-4 object-cover ml-1" src={sportImages["icehockey_nhl.png"]} alt={league_titles[sport]} /></button>}
         </Typography>
         <Typography
           as="li"
@@ -226,7 +242,7 @@ function App() {
         >
           {sport === 'baseball_mlb' ?<button className={active}>MLB<img className="h-4 w-4 object-cover ml-1" src={sportImages["baseball_mlb.png"]} alt={league_titles[sport]} /></button>:
           <button className={inactive} onClick={() => sportChange('baseball_mlb')}>MLB
-          <img className="h-4 w-4 object-cover ml-1 grayscale" src={sportImages["baseball_mlb.png"]} alt={league_titles[sport]} /></button>}
+          <img className="h-4 w-4 object-cover ml-1" src={sportImages["baseball_mlb.png"]} alt={league_titles[sport]} /></button>}
         </Typography>
       </ul>
     );
