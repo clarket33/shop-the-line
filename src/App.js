@@ -297,7 +297,7 @@ function App() {
           </div>
           <div className="hidden lg:block">
             <div className="min-w-[450px] grid grid-cols-2 gap-2">
-              <div>{SelectInHeader}</div>
+              <div><PopupComponent type="sportsbook-list" text="text-blue-500 text-sm cursor-pointer"></PopupComponent></div>
               <div>{InputInHeader}</div>
             </div>
           </div>
@@ -326,7 +326,7 @@ function App() {
         </Collapse>
         <div className="relative flex w-full gap-2 pt-3 
          lg:hidden">
-            {SelectInHeader}
+            
             {InputInHeader}
         </div>
       </Navbar>
