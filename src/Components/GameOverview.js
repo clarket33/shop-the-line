@@ -151,7 +151,7 @@ const GameOverview = (game) => {
                     }
                 </div>
                 
-                {(isLive || !withinDayThreshold()) && showTeamProps ? 
+                {(isLive || !withinDayThreshold()) ? showTeamProps ? 
                     <TeamPropDisplay
                         key={"team-prop-" + game.game_id}
                         game_id={game.game_id}
@@ -162,7 +162,7 @@ const GameOverview = (game) => {
                         bookies={game.bookie_list}
                         checkedBest={game.checkedBest}
                         withinRange={false}
-                    ></TeamPropDisplay> :
+                    ></TeamPropDisplay> :<></> :
                 eitherPropClicked ? <DataProvider game_id={game.game_id} sport={game.sport} showChild={showTeamProps}>
                     <TeamPropDisplay
                         key={"team-prop-" + game.game_id}
@@ -177,7 +177,7 @@ const GameOverview = (game) => {
                     ></TeamPropDisplay>
                     </DataProvider>:<></>
                 }
-                {eitherPropClicked ? <DataProvider game_id={game.game_id} sport={game.sport} showChild={showPlayerProps}>
+                {!isLive && withinDayThreshold() && game.sport !== "americanfootball_ncaaf" && eitherPropClicked ? <DataProvider game_id={game.game_id} sport={game.sport} showChild={showPlayerProps}>
                         <PlayerPropDisplay
                             key={"player-prop-" + game.game_id}
                             game_id={game.game_id}
