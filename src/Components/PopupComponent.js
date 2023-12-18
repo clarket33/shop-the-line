@@ -6,7 +6,6 @@ import Policy from './Policy';
 
 const PopupComponent = (type) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
   let title;
   if(type.type === "instructions") title = "How to Use"
   else if(type.type === "sportsbook-list") title = "Sportsbooks"
@@ -37,7 +36,7 @@ const PopupComponent = (type) => {
                   </div>
                 </div> : type.type === "sportsbook-list" ?
                 <div>
-                  <SportsBookList></SportsBookList>
+                  <SportsBookList func={type.func}></SportsBookList>
                 </div> : 
                 <div>
                   <Policy title={title}></Policy>

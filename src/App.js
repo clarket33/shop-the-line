@@ -5,15 +5,13 @@ import './App.css';
 import Footer from "./Components/Footer";
 import 'bootstrap/dist/css/bootstrap.css';
 import CookieConsent from "react-cookie-consent";
-import { state_bookmakers, league_titles, team_titles } from "./Resources.js";
+import { bookmaker_names, league_titles, team_titles } from "./Resources.js";
 import { 
   Collapse,
   Input,
   Navbar,
   Typography,
   IconButton,
-  Select,
-  Option,
   Spinner
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon, ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
@@ -31,13 +29,11 @@ function App() {
   const [filteredGames, setFilteredGames] = useState([]);
   const [sport, setSport] = useState(window.localStorage.getItem('sport') || 'americanfootball_nfl');
   const [filterText, setFilterText] = useState(window.sessionStorage.getItem('filter_text_' + sport) ? window.sessionStorage.getItem('filter_text_' + sport) : "");
-  const [bookies, setBookies] = useState(window.localStorage.getItem('usState')?state_bookmakers[window.localStorage.getItem('usState')]:state_bookmakers["New York"]) ;
-  const [stateName, setStateName] = useState(window.localStorage.getItem('usState') || "All");
+  const [bookies, setBookies] = useState(new Set(JSON.parse(window.localStorage.getItem('my_sportsbooks'))) || new Set(Object.keys(bookmaker_names))) ;
   const [openNav, setOpenNav] = useState(false);
   const [pages, setPages] = useState(0);
   const [endIndex, setEndIndex] = useState(numGamesPerPage);
   const [checkedBest, setCheckedBest] = useState(window.sessionStorage.getItem('checkedBest') === 'true' ? true : false);
-  const stateImages = importAll(require.context('./Images/StateIcons/', true, /\.(png|jpe?g|svg)$/));
   const teamImages = importAll(require.context('./Images/TeamImages/', true, /\.(png|jpe?g|svg)$/));
   const sportImages = importAll(require.context('./Images/Sports/', true, /\.(png|jpe?g|svg)$/));
 
@@ -49,6 +45,10 @@ function App() {
     },
     [sport],
   );
+
+  const pull_user_books= (data) => {
+    setBookies(data);
+  }
  
   const handleWindowResize = () =>
     window.innerWidth >= 960 && setOpenNav(false);
@@ -143,20 +143,6 @@ function App() {
       window.sessionStorage.setItem('page_num', active);
       setEndIndex(active*numGamesPerPage);
     }, [active]);
-  
-  function stateSelect(values){
-    if(!values) {
-      setBookies(new Set([]));
-      setStateName("");
-      window.localStorage.removeItem('usState');
-    }
-    else{
-      setBookies(state_bookmakers[values]);
-      setStateName(values);
-      window.localStorage.setItem('usState', values);
-    }
-    
-  }
 
   function sportChange(sportChoice){
     setOpenNav(false);
@@ -227,21 +213,6 @@ function App() {
       </ul>
     );
   }
-
-  const SelectInHeader = useMemo(() => {
-    return (
-      <Select key={stateName} selected={(element) => element && React.cloneElement(element, {className: "flex items-center px-0 gap-2 pointer-events-none",})} 
-      variant="outlined" label="State" color="blue" value={stateName} onChange={(values) => stateSelect(values)} className="z-10" containerProps={{className: "min-w-[60px]",}}>
-                {Object.keys(state_bookmakers).map((state) => (
-                  <Option key={state} value={state} className="flex items-center gap-2">
-                    <img className="h-5 w-5 object-cover" src={stateImages[state + ".png"]} alt={state} />
-                    {state}
-                  </Option>
-                ))}
-              </Select>
-    );
-  }, [stateName, stateImages]);
-
   
   const InputInHeader = useMemo(() => {
     return (
@@ -297,7 +268,7 @@ function App() {
           </div>
           <div className="hidden lg:block">
             <div className="min-w-[450px] grid grid-cols-2 gap-2">
-              <div><PopupComponent type="sportsbook-list" text="text-blue-500 text-sm cursor-pointer"></PopupComponent></div>
+              <div><PopupComponent type="sportsbook-list" func={pull_user_books} text="text-blue-500 text-sm cursor-pointer"></PopupComponent></div>
               <div>{InputInHeader}</div>
             </div>
           </div>
@@ -363,7 +334,7 @@ function App() {
                 bookie_list={bookies}
                 homeTeam={game.home_team}
                 awayTeam={game.away_team}
-                bookmakers={bookies.size > 0?game.bookmakers.filter((bk) => bookies.has(bk.key)):game.bookmakers}
+                bookmakers={game.bookmakers.filter((bk) => bookies.has(bk.key))}
                 startTime={game.commence_time}
                 sport={game.sport_key}
                 curScore={game.scores}
