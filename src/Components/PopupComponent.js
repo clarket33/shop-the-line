@@ -36,7 +36,7 @@ const PopupComponent = (type) => {
                   </div>
                 </div> : type.type === "sportsbook-list" ?
                 <div>
-                  <SportsBookList func={type.func}></SportsBookList>
+                  <SportsBookList></SportsBookList>
                 </div> : 
                 <div>
                   <Policy title={title}></Policy>

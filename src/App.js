@@ -1,6 +1,7 @@
 import React,{ useEffect, useState, useMemo, useCallback } from "react";
 import GameOverview from "./Components/GameOverview";
 import PopupComponent from "./Components/PopupComponent";
+import SportsBookCustomize from "./Components/SportsBookCustomize";
 import './App.css';
 import Footer from "./Components/Footer";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -268,7 +269,7 @@ function App() {
           </div>
           <div className="hidden lg:block">
             <div className="min-w-[450px] grid grid-cols-2 gap-2">
-              <div><PopupComponent type="sportsbook-list" func={pull_user_books} text="text-blue-500 text-sm cursor-pointer"></PopupComponent></div>
+              <SportsBookCustomize func={pull_user_books}></SportsBookCustomize>
               <div>{InputInHeader}</div>
             </div>
           </div>
@@ -297,7 +298,7 @@ function App() {
         </Collapse>
         <div className="relative flex w-full gap-2 pt-3 
          lg:hidden">
-            
+            <SportsBookCustomize func={pull_user_books}></SportsBookCustomize>
             {InputInHeader}
         </div>
       </Navbar>
