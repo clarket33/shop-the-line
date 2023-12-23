@@ -331,7 +331,7 @@ const TeamPropDisplay = (game) => {
                             lastIndex={data.get(prop).get(subProp).size-1}
                             prop={prop}
                             checkedBest={game.checkedBest}
-                        />:data.size !== 0 ? <></>:<span>No odds available</span>}
+                        />:data.size !== 0 ? <></>:<span>No odds available for selected sportsbooks</span>}
                 </div>
                 
                     
