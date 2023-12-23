@@ -1,13 +1,13 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import SportsBookList from '../Components/SportsBookList';
-import {state_bookmakers, bookmaker_names, bookmaker_links} from '../Resources.js';
+import {bookmaker_names, bookmaker_links} from '../Resources.js';
 
 describe('Sportsbook List component', () => {
   test('list should have all sportsbooks', () => {
     render(<SportsBookList />);
     const bookList = screen.getAllByRole('button');
-    expect(bookList).toHaveLength(Array.from(state_bookmakers["All"]).length);
+    expect(bookList).toHaveLength(Object.keys(bookmaker_names).length);
   });
 
   test('books should have correct links', () => {
