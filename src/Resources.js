@@ -157,21 +157,27 @@ export const team_prop_titles={
   }
 
 export const bookmaker_links={ 
-  "barstool":"https://www.barstoolsportsbook.com/",
   "betmgm":"https://sports.betmgm.com/en/sports",
+  "bovada":"https://www.bovada.lv/",
   "betrivers":"https://betrivers.com/?page=landing#home",
   "draftkings":"https://www.draftkings.com/",
   "fanduel":"https://sportsbook.fanduel.com/",
   "pointsbetus":"https://pointsbet.com/",
   "superbook":"https://co.superbook.com/sports",
   "unibet_us":"https://unibet.com/",
-  "williamhill_us":"https://www.williamhill.com/us/nj/bet/",
-  "wynnbet":"https://www.wynnbet.com/"
+  "williamhill_us":"https://www.caesars.com/sportsbook-and-casino",
+  "wynnbet":"https://www.wynnbet.com/",
+  "betparx":"https://betparx.com/#home",
+  "espnbet":"https://espnbet.com/",
+  "fliff":"https://www.getfliff.com/",
+  "sisportsbook":"https://www.sisportsbook.com/",
+  "tipico_us":"https://sportsbook-nj.tipico.us/home",
+  "windcreek":"https://play.windcreekcasino.com/sports/"
 }
 
 export const bookmaker_names={ 
-    "barstool":"Barstool",
     "betmgm":"BetMGM",
+    "bovada":"Bovada",
     "betrivers":"BetRivers",
     "draftkings":"DraftKings",
     "fanduel":"FanDuel",
