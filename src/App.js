@@ -30,7 +30,7 @@ function App() {
   const [filteredGames, setFilteredGames] = useState([]);
   const [sport, setSport] = useState(window.localStorage.getItem('sport') || 'americanfootball_nfl');
   const [filterText, setFilterText] = useState(window.sessionStorage.getItem('filter_text_' + sport) ? window.sessionStorage.getItem('filter_text_' + sport) : "");
-  const [bookies, setBookies] = useState(window.localStorage.getItem('my_sportsbooks') ? new Set(JSON.parse(window.localStorage.getItem('my_sportsbooks'))) : new Set(Object.keys(bookmaker_names))) ;
+  const [bookies, setBookies] = useState(window.localStorage.getItem('my_sportsbooks') !== null ? new Set(JSON.parse(window.localStorage.getItem('my_sportsbooks'))) : new Set(Object.keys(bookmaker_names))) ;
   const [openNav, setOpenNav] = useState(false);
   const [pages, setPages] = useState(0);
   const [endIndex, setEndIndex] = useState(numGamesPerPage);
