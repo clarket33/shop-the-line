@@ -298,7 +298,7 @@ function App() {
         </Collapse>
         <div className="relative flex w-full gap-2 pt-3 
          lg:hidden">
-            <SportsBookCustomize func={pull_user_books}></SportsBookCustomize>
+            <SportsBookCustomize func={pull_user_books} bookies={bookies}></SportsBookCustomize>
             {InputInHeader}
         </div>
       </Navbar>

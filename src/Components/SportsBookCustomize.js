@@ -38,7 +38,10 @@ export default function SportsBookCustomize(props) {
 
   return (
     <div className="flex w-full min-w-[120px] h-10">
-        <Menu handler={handleMenu} open={isMenuOpen}>
+        <Menu handler={handleMenu} open={isMenuOpen} dismiss={{
+        itemPress: false,
+        isRequired: {}   
+      }}>
             <MenuHandler>
                 
                     <Button variant="outlined" size="sm" color="blue" className="flex gap-2 items-center justify-center font-medium text-blue-gray-500 w-full">

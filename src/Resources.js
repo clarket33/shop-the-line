@@ -187,11 +187,11 @@ export const bookmaker_names={
     "williamhill_us":"Caesars",
     "wynnbet":"WynnBET",
     "betparx":"betPARX",
-    "espnbet":"ESPN BET",
+    "espnbet":"ESPN_BET",
     "fliff":"Fliff",
-    "sisportsbook":"SI Sportsbook",
+    "sisportsbook":"SI_Sportsbook",
     "tipico_us":"Tipico",
-    "windcreek":"Wind Creek"
+    "windcreek":"Wind_Creek"
 }
 
 export const team_codes={
