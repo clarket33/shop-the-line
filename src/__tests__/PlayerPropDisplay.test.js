@@ -3,7 +3,7 @@ import { render, screen, fireEvent, act} from '@testing-library/react';
 import PlayerPropDisplay from '../Components/PlayerPropDisplay';
 import DataContext from '../Components/DataContext';
 import football_player_data from './../SampleData/americanfootball_nfl_player_props.json';
-import { state_bookmakers } from "../Resources.js";
+import { bookmaker_names } from "../Resources.js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 global.ResizeObserver = require('resize-observer-polyfill')
 
@@ -49,7 +49,7 @@ describe('Player Props Component success state', () => {
             <PlayerPropDisplay key={"player-prop-" + mockDataContextSuccess.data.id}
                             game_id={mockDataContextSuccess.data.id}
                             sport={"americanfootball_nfl"}
-                            bookies={state_bookmakers["All"]}
+                            bookies={new Set(Object.keys(bookmaker_names))}
                             checkedBest={false}/>
         </DataContext.Provider>
     </QueryClientProvider>
@@ -111,10 +111,11 @@ describe('Player Props Component success state', () => {
     }
     
     fireEvent.click(sortDropdown);
-    const newOptions = screen.getAllByRole('option', {selected:false});
+    const newOptions = screen.getAllByRole('option');
     let newSorter = newOptions[0].textContent;
     fireEvent.click(newOptions[0]);
     expect(sortDropdown.textContent).toBe(newSorter);
+    
   });
   
   
@@ -130,7 +131,7 @@ describe('Player Props Component loading & error states', () => {
                   <PlayerPropDisplay key={"player-prop-" + mockDataContextLoading.data.id}
                                   game_id={mockDataContextLoading.data.id}
                                   sport={"americanfootball_nfl"}
-                                  bookies={state_bookmakers["All"]}
+                                  bookies={new Set(Object.keys(bookmaker_names))}
                                   checkedBest={false}/>
               </DataContext.Provider>
           </QueryClientProvider>
@@ -147,7 +148,7 @@ describe('Player Props Component loading & error states', () => {
                   <PlayerPropDisplay key={"player-prop-" + mockDataContextError.data.id}
                                   game_id={mockDataContextError.data.id}
                                   sport={"americanfootball_nfl"}
-                                  bookies={state_bookmakers["All"]}
+                                  bookies={new Set(Object.keys(bookmaker_names))}
                                   checkedBest={false}/>
               </DataContext.Provider>
           </QueryClientProvider>

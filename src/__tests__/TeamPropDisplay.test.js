@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import TeamPropDisplay from '../Components/TeamPropDisplay';
 import {americanfootball_nfl_team_props, americanfootball_nfl_scores} from './../SampleData/americanfootball_nfl_team_props.js';
-import { state_bookmakers, team_prop_choices } from "../Resources.js";
+import { bookmaker_names, team_prop_choices } from "../Resources.js";
 import DataContext from '../Components/DataContext';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 global.ResizeObserver = require('resize-observer-polyfill')
@@ -41,9 +41,9 @@ describe('Team Props Component', () => {
                             game_id={game_data.id}
                             away_team={game_data.awayTeam}
                             home_team={game_data.homeTeam}
-                            bookmakers={game_data.bookmakers.filter((bk) => state_bookmakers["All"].has(bk.key))}
+                            bookmakers={game_data.bookmakers.filter((bk) => new Set(Object.keys(bookmaker_names)).has(bk.key))}
                             sport={"american_football"}
-                            bookies={state_bookmakers["All"]}
+                            bookies={new Set(Object.keys(bookmaker_names))}
                             checkedBest={false}
                             withinRange={true}/>
         </DataContext.Provider>

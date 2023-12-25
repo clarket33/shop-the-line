@@ -4,7 +4,7 @@ import GameOverview from '../Components/GameOverview';
 import DataContext from '../Components/DataContext';
 import {americanfootball_nfl_team_props, americanfootball_nfl_scores} from './../SampleData/americanfootball_nfl_team_props.js';
 import {basketball_nba_team_props, basketball_nba_scores} from './../SampleData/basketball_nba_team_props.js';
-import { state_bookmakers } from "../Resources.js";
+import { bookmaker_names } from "../Resources.js";
 import chiefs from './../Images/TeamImages/americanfootball_nfl_TeamImages/Kansas City Chiefs.png';
 import lions from './../Images/TeamImages/americanfootball_nfl_TeamImages/Detroit Lions.png';
 import nuggets from './../Images/TeamImages/basketball_nba_TeamImages/Denver Nuggets.png';
@@ -31,7 +31,7 @@ describe('Game Overview component, upcoming game', () => {
     const htmlToRender = <GameOverview 
     key={upcoming_game_data.id}
     game_id={upcoming_game_data.id}
-    bookie_list={state_bookmakers["All"]}
+    bookie_list={new Set(Object.keys(bookmaker_names))}
     homeTeam={upcoming_game_data.home_team}
     awayTeam={upcoming_game_data.away_team}
     bookmakers={upcoming_game_data.bookmakers}
@@ -90,7 +90,7 @@ describe('Game Overview component, Live game', () => {
     const htmlToRender = <GameOverview 
         key={live_game_data.id}
         game_id={live_game_data.id}
-        bookie_list={state_bookmakers["All"]}
+        bookie_list={new Set(Object.keys(bookmaker_names))}
         homeTeam={live_game_data.home_team}
         awayTeam={live_game_data.away_team}
         bookmakers={live_game_data.bookmakers}

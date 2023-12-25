@@ -156,50 +156,28 @@ export const team_prop_titles={
     "alternate_totals":"Alternate Totals"
   }
 
-  export const state_bookmakers = {
-    "All": new Set(["barstool", "betmgm", "betrivers", "draftkings", "fanduel", "pointsbetus", "superbook", "unibet_us", "williamhill_us", "wynnbet"]),
-    "Arizona": new Set(["barstool", "betmgm", "betrivers", "draftkings", "fanduel", "superbook", "unibet_us", "williamhill_us", "wynnbet"]),
-    "Colorado": new Set(["barstool", "betmgm", "betrivers", "draftkings", "fanduel", "pointsbetus", "superbook", "williamhill_us", "wynnbet"]),
-    "Connecticut": new Set(["betrivers", "draftkings", "fanduel"]),
-    "Illinois": new Set(["barstool", "betmgm", "betrivers", "draftkings", "fanduel", "pointsbetus", "williamhill_us"]),
-    "Indiana": new Set(["barstool", "betmgm", "betrivers", "draftkings", "fanduel", "pointsbetus", "unibet_us", "williamhill_us", "wynnbet"]),
-    "Iowa": new Set(["barstool", "betmgm", "betrivers", "draftkings", "fanduel", "pointsbetus", "superbook", "williamhill_us"]),
-    "Kansas": new Set(["barstool", "betmgm", "draftkings", "fanduel", "pointsbetus", "williamhill_us"]),
-    "Louisiana": new Set(["barstool", "betmgm", "betrivers", "draftkings", "fanduel", "pointsbetus", "williamhill_us", "wynnbet"]),
-    "Maryland": new Set(["barstool", "betmgm", "betrivers", "draftkings", "fanduel", "pointsbetus", "superbook", "williamhill_us"]),
-    "Massachusetts": new Set(["barstool", "betmgm", "draftkings", "fanduel", "williamhill_us", "wynnbet"]),
-    "Michigan": new Set(["barstool", "betmgm", "betrivers", "draftkings", "fanduel", "pointsbetus", "williamhill_us", "wynnbet"]),
-    "Mississippi": new Set(["betmgm"]),
-    "Nevada": new Set(["superbook", "williamhill_us"]),
-    "New Hampshire": new Set(["draftkings"]),
-    "New Jersey": new Set(["barstool", "betfair", "betmgm", "betrivers", "draftkings", "fanduel", "pointsbetus", "superbook", "unibet_us", "williamhill_us", "wynnbet"]),
-    "New York": new Set(["betmgm", "betrivers", "draftkings", "fanduel", "pointsbetus", "williamhill_us", "wynnbet"]),
-    "Ohio": new Set(["betmgm", "betrivers", "draftkings", "fanduel", "pointsbetus", "superbook", "williamhill_us"]),
-    "Oregon": new Set(["draftkings"]),
-    "Pennsylvania": new Set(["barstool", "betmgm", "betrivers", "draftkings", "fanduel", "pointsbetus", "unibet_us", "williamhill_us"]),
-    "Tennessee": new Set(["barstool", "betmgm", "draftkings", "fanduel", "superbook", "williamhill_us", "wynnbet"]),
-    "Virginia": new Set(["barstool", "betmgm", "betrivers", "draftkings", "fanduel", "pointsbetus", "unibet_us", "williamhill_us", "wynnbet"]),
-    "Washington DC": new Set(["betmgm", "williamhill_us"]),
-    "West Virginia": new Set(["barstool", "betmgm", "betrivers", "draftkings", "fanduel", "pointsbetus", "williamhill_us", "wynnbet"]),
-    "Wyoming": new Set(["betmgm", "draftkings", "fanduel", "williamhill_us"])
-  };
-
 export const bookmaker_links={ 
-  "barstool":"https://www.barstoolsportsbook.com/",
   "betmgm":"https://sports.betmgm.com/en/sports",
+  "bovada":"https://www.bovada.lv/",
   "betrivers":"https://betrivers.com/?page=landing#home",
   "draftkings":"https://www.draftkings.com/",
   "fanduel":"https://sportsbook.fanduel.com/",
   "pointsbetus":"https://pointsbet.com/",
   "superbook":"https://co.superbook.com/sports",
   "unibet_us":"https://unibet.com/",
-  "williamhill_us":"https://www.williamhill.com/us/nj/bet/",
-  "wynnbet":"https://www.wynnbet.com/"
+  "williamhill_us":"https://www.caesars.com/sportsbook-and-casino",
+  "wynnbet":"https://www.wynnbet.com/",
+  "betparx":"https://betparx.com/#home",
+  "espnbet":"https://espnbet.com/",
+  "fliff":"https://www.getfliff.com/",
+  "sisportsbook":"https://www.sisportsbook.com/",
+  "tipico_us":"https://sportsbook-nj.tipico.us/home",
+  "windcreek":"https://play.windcreekcasino.com/sports/"
 }
 
 export const bookmaker_names={ 
-    "barstool":"Barstool",
     "betmgm":"BetMGM",
+    "bovada":"Bovada",
     "betrivers":"BetRivers",
     "draftkings":"DraftKings",
     "fanduel":"FanDuel",
@@ -207,7 +185,13 @@ export const bookmaker_names={
     "superbook":"Superbook",
     "unibet_us":"Unibet",
     "williamhill_us":"Caesars",
-    "wynnbet":"WynnBET"
+    "wynnbet":"WynnBET",
+    "betparx":"betPARX",
+    "espnbet":"ESPN_BET",
+    "fliff":"Fliff",
+    "sisportsbook":"SI_Sportsbook",
+    "tipico_us":"Tipico",
+    "windcreek":"Wind_Creek"
 }
 
 export const team_codes={
