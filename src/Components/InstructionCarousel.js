@@ -27,7 +27,7 @@ const InstructionCarousel = (size) => {
         },
         {
             slide: (size.size === "big" ? slide2 : slide2_small),
-            instruction: "The \"State\" dropdown allows you to view sportsbooks legally operating in your location. Select the \"All\" option to view all supported sportsbooks."
+            instruction: "The \"SPORTSBOOKS\" dropdown allows you to customize which sportsbooks will appear while you are shopping. Don't use/like a sportsbook? Simply uncheck it here."
         },
         {
             slide: (size.size === "big" ? slide3 : slide3_small),
@@ -39,7 +39,7 @@ const InstructionCarousel = (size) => {
         },
         {
             slide: (size.size === "big" ? slide5 : slide5_small),
-            instruction: "The \"Player Props\" button on a game card will allow you to toggle seeing upcoming lines for player-related props, which vary depending on the sport. Appears when event is within 2 days."
+            instruction: "The \"Player Props\" button on a game card will allow you to toggle seeing upcoming lines for player-related props, which vary depending on the sport. Appears when event is within a few days."
         },
         {
             slide: (size.size === "big" ? slide6 : slide6_small),
