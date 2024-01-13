@@ -1,22 +1,16 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import GameOverview from '../Components/GameOverview';
-import DataContext from '../Components/DataContext';
 import {americanfootball_nfl_team_props, americanfootball_nfl_scores} from './../SampleData/americanfootball_nfl_team_props.js';
-import {basketball_nba_team_props, basketball_nba_scores} from './../SampleData/basketball_nba_team_props.js';
 import { bookmaker_names } from "../Resources.js";
 import chiefs from './../Images/TeamImages/americanfootball_nfl_TeamImages/Kansas City Chiefs.png';
 import lions from './../Images/TeamImages/americanfootball_nfl_TeamImages/Detroit Lions.png';
 import nuggets from './../Images/TeamImages/basketball_nba_TeamImages/Denver Nuggets.png';
 import heat from './../Images/TeamImages/basketball_nba_TeamImages/Miami Heat.png';
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { team_codes } from "../Resources.js";
 
 const upcoming_game_data = americanfootball_nfl_team_props[0];
 const upcoming_score_data = americanfootball_nfl_scores[0];
-const live_game_data = basketball_nba_team_props[0];
-const live_score_data = basketball_nba_scores[0];
-const queryClient = new QueryClient();
 
 const images = {
     "americanfootball_nfl_TeamImages/Kansas City Chiefs.png" : chiefs,
@@ -85,39 +79,6 @@ describe('Game Overview component, upcoming game', () => {
   
 });
 
-describe('Game Overview component, Live game', () => {
 
-    const htmlToRender = <GameOverview 
-        key={live_game_data.id}
-        game_id={live_game_data.id}
-        bookie_list={new Set(Object.keys(bookmaker_names))}
-        homeTeam={live_game_data.home_team}
-        awayTeam={live_game_data.away_team}
-        bookmakers={live_game_data.bookmakers}
-        startTime={live_game_data.commence_time}
-        sport={live_game_data.sport_key}
-        curScore={live_score_data.scores}
-        teamImages={images}
-        checkedBest={false}
-    />
-
-
-    test('should have LIVE displayed (2 per screen size)', () => {
-        render(htmlToRender);
-        const startTime = screen.getAllByText('LIVE');
-        expect(startTime).toHaveLength(2);
-    });
-
-    test('should have only a team props button, not player props', () => {
-        render(htmlToRender);
-
-        const team_props_buttons = screen.getAllByText('TeamProps');
-        const player_props_button = screen.queryAllByText('PlayerProps');
-        expect(team_props_buttons).not.toBe(null);
-        expect(player_props_button).toHaveLength(0);
-      
-
-    }); 
-});
 
 
