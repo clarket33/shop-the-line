@@ -18,11 +18,11 @@ import {
 import { Bars3Icon, XMarkIcon, ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 
-import {americanfootball_nfl_team_props, americanfootball_nfl_scores} from './SampleData/americanfootball_nfl_team_props.js';
-import {icehockey_nhl_team_props, icehockey_nhl_scores} from './SampleData/hockey_nhl_team_props.js';
-import {baseball_mlb_team_props, baseball_mlb_scores} from './SampleData/baseball_mlb_team_props.js';
-import {basketball_nba_team_props, basketball_nba_scores} from './SampleData/basketball_nba_team_props.js';
-import {americanfootball_ncaaf_team_props, americanfootball_ncaaf_scores} from './SampleData/americanfootball_ncaaf_team_props.js';
+import {americanfootball_nfl_team_props} from './SampleData/americanfootball_nfl_team_props.js';
+import {icehockey_nhl_team_props} from './SampleData/hockey_nhl_team_props.js';
+import {baseball_mlb_team_props} from './SampleData/baseball_mlb_team_props.js';
+import {basketball_nba_team_props} from './SampleData/basketball_nba_team_props.js';
+import {americanfootball_ncaaf_team_props} from './SampleData/americanfootball_ncaaf_team_props.js';
 
 
 function App() {
@@ -78,43 +78,36 @@ function App() {
     
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
       let odds;
-      let scores;
       if(sport === 'americanfootball_nfl'){
         odds = americanfootball_nfl_team_props;
-        scores = americanfootball_nfl_scores;
       }else if(sport === 'baseball_mlb') {
         odds = baseball_mlb_team_props;
-        scores = baseball_mlb_scores;
       }else if(sport === 'basketball_nba') {
         odds = basketball_nba_team_props;
-        scores = basketball_nba_scores;
       }else if(sport === 'icehockey_nhl') {
         odds = icehockey_nhl_team_props;
-        scores = icehockey_nhl_scores;
       }else if(sport === 'americanfootball_ncaaf') {
         odds = americanfootball_ncaaf_team_props;
-        scores = americanfootball_ncaaf_scores;
       }
-      let res = scores.map(x => Object.assign(x, odds.find(y => y.id === x.id)));
-      return res;
+      let today = new Date();
+      return odds.filter((game) => today < new Date(game.commence_time) );
     } else {
       let today = new Date();
       let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+8).toISOString().substring(0, 19) + 'Z';
       const url = 'https://' + process.env.REACT_APP_AWS_API_ID + '.execute-api.' + process.env.REACT_APP_AWS_API_REGION + '.amazonaws.com/default/game-data-fetch?sport=' + sport + '&commenceTimeTo=' + nextweek;
-      const playerData = await fetch(url, {
+      const gameData = await fetch(url, {
         method: 'GET'
       });
-      if (!playerData.ok) {
-        throw new Error(playerData.status, playerData.statusText);
+      if (!gameData.ok) {
+        throw new Error(gameData.status, gameData.statusText);
       }
-      const odds = await playerData.json();
-      return odds;
+      const odds = await gameData.json();
+      return odds.filter((game) => today < new Date(game.commence_time) );
     }
   };
-
   const { data: games, status } = useQuery([sport], fetchData,
       {
-        staleTime: 7500,
+        staleTime: 120000,
         refetchOnWindowFocus: true,
         retry: 2
       }
@@ -337,7 +330,6 @@ function App() {
                 bookmakers={game.bookmakers.filter((bk) => bookies.has(bk.key))}
                 startTime={game.commence_time}
                 sport={game.sport_key}
-                curScore={game.scores}
                 teamImages={teamImages}
                 checkedBest={checkedBest}
               />:<></>

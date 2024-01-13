@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import TeamPropDisplay from '../Components/TeamPropDisplay';
-import {americanfootball_nfl_team_props, americanfootball_nfl_scores} from './../SampleData/americanfootball_nfl_team_props.js';
+import {americanfootball_nfl_team_props} from './../SampleData/americanfootball_nfl_team_props.js';
 import { bookmaker_names, team_prop_choices } from "../Resources.js";
 import DataContext from '../Components/DataContext';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

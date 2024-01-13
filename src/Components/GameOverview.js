@@ -18,7 +18,6 @@ const GameOverview = (game) => {
     const [eitherPropClicked, setPlayerPropsClicked] = useState(window.sessionStorage.getItem('player_prop_clicked_' + game.game_id) === 'true' || window.sessionStorage.getItem('team_prop_clicked_' + game.game_id) === 'true' ? true : false);
     const gameStart = new Date(game.startTime);
     const today = process.env.JEST_WORKER_ID ? new Date('2023-09-23T00:20:00Z') : new Date();
-    const isLive = today>=gameStart;
     const daysTilStart = (gameStart - today) / (1000 * 3600 * 24)
     const stringifiedGameStart = gameStart.toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'});
 
@@ -59,28 +58,12 @@ const GameOverview = (game) => {
                      
                     
                    
-                    {isLive ? <div className={game.sport !== "americanfootball_ncaaf" ? "flex w-6/12 m-auto": "flex w-11/12 m-auto"}>
-                            <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-center m-auto" : "w-5/12 text-center m-auto"}>
-                                <Typography  variant="small" color="blue-gray" className="font-medium" textGradient>
-                                    {game.curScore?<span>{game.curScore[0].name === game.awayTeam ? game.curScore[0].score : game.curScore[1].score}</span>:<></>}
-                                </Typography>
-                            </div>
-                            <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-center m-auto" : "w-2/12 text-center m-auto"}>
-                                <Typography  variant="small" color="blue-gray" className="font-medium" textGradient>
-                                    <span className="live opacity-60">LIVE</span>
-                                </Typography>
-                            </div>
-                            <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-center m-auto" : "w-5/12 text-center m-auto"}>
-                                <Typography  variant="small" color="blue-gray" className="font-medium" textGradient>
-                                    {game.curScore?<span>{game.curScore[0].name === game.homeTeam ? game.curScore[0].score : game.curScore[1].score}</span>:<></>}
-                                </Typography>
-                            </div>
-                        </div>:
+        
                         <Typography  variant="small" color="blue-gray" className="font-medium" textGradient>
                             <span>{stringifiedGameStart}</span>
-                        </Typography>}
+                        </Typography>
                     
-                    {!isLive && withinDayThreshold() && game.sport !== "americanfootball_ncaaf" ?
+                    {withinDayThreshold() && game.sport !== "americanfootball_ncaaf" ?
                     <div className="h-18 w-48 mx-auto flex justify-center items-center">
                         {showTeamProps===true?<Button variant="text" className="w-1/2 border-r-2 font-bold" color="blue" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Team<br></br>Props</span></Button>
                         :<Button variant="text" className="w-1/2 border-r-2" color="blue-gray" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Team<br></br>Props</span></Button>}
@@ -128,15 +111,9 @@ const GameOverview = (game) => {
                     
                      
                     <Typography  variant="h6" color="blue-gray" className="font-medium" textGradient>
-                        
-                        {isLive ? <div className={game.sport !== "americanfootball_ncaaf" ? "flex w-8/12 m-auto" : "flex"}>
-                            <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-center m-auto":"w-5/12 text-center m-auto"}>{game.curScore?<span>{game.curScore[0].name === game.awayTeam ? game.curScore[0].score : game.curScore[1].score}</span>:<></>}</div>
-                            <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-center m-auto":"w-2/12 text-center m-auto"}><span className="live opacity-60">LIVE</span></div>
-                            <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-center m-auto":"w-5/12 text-center m-auto"}>{game.curScore?<span>{game.curScore[0].name === game.homeTeam ? game.curScore[0].score : game.curScore[1].score}</span>:<></>}</div>
-                        </div>:<span>{stringifiedGameStart}</span>}
-                       
+                        <span>{stringifiedGameStart}</span> 
                     </Typography>
-                    {!isLive && withinDayThreshold() && game.sport !== "americanfootball_ncaaf" ?
+                    {withinDayThreshold() && game.sport !== "americanfootball_ncaaf" ?
                     <div className="h-24 w-48 mx-auto flex justify-center items-center">
                         {showTeamProps===true?<Button variant="text" className="w-1/2 border-r-2 font-bold" color="blue" onClick={() => teamPress()}>Team<br></br>Props</Button>
                         :<Button variant="text" className="w-1/2 border-r-2" color="blue-gray" onClick={() => teamPress()}>Team<br></br>Props</Button>}
@@ -151,7 +128,7 @@ const GameOverview = (game) => {
                     }
                 </div>
                 
-                {(isLive || !withinDayThreshold()) ? showTeamProps ? 
+                {!withinDayThreshold() ? showTeamProps ? 
                     <TeamPropDisplay
                         key={"team-prop-" + game.game_id}
                         game_id={game.game_id}
@@ -177,7 +154,7 @@ const GameOverview = (game) => {
                     ></TeamPropDisplay>
                     </DataProvider>:<></>
                 }
-                {!isLive && withinDayThreshold() && game.sport !== "americanfootball_ncaaf" && eitherPropClicked ? <DataProvider game_id={game.game_id} sport={game.sport} showChild={showPlayerProps}>
+                {withinDayThreshold() && game.sport !== "americanfootball_ncaaf" && eitherPropClicked ? <DataProvider game_id={game.game_id} sport={game.sport} showChild={showPlayerProps}>
                         <PlayerPropDisplay
                             key={"player-prop-" + game.game_id}
                             game_id={game.game_id}

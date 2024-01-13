@@ -17,28 +17,7 @@ a:hover {
   z-index: 999;
 }
 
-@keyframes blink {
-  0% { text-shadow: 0 0 0.938rem red; }
-  50% { text-shadow: none; }
-  100% { text-shadow: 0 0 0.938rem red; }
-}
-
-@-webkit-keyframes blink {
-  0% { text-shadow: 0 0 0.938rem red; }
-  50% { text-shadow: 0 0 0; }
-  100% { text-shadow: 0rem 0 0.938rem red; }
-}
-
 html
   {
     overflow:scroll;    
   } 
-
-.live {
-  color: rgb(126, 11, 11);
-  -webkit-animation: blink 2.0s linear infinite;
-  -moz-animation: blink 2.0s linear infinite;
-  -ms-animation: blink 2.0s linear infinite;
-  -o-animation: blink 2.0s linear infinite;
-  animation: blink 2.0s linear infinite;
-}
