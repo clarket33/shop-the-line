@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import GameOverview from '../Components/GameOverview';
-import {americanfootball_nfl_team_props, americanfootball_nfl_scores} from './../SampleData/americanfootball_nfl_team_props.js';
+import {americanfootball_nfl_team_props} from './../SampleData/americanfootball_nfl_team_props.js';
 import { bookmaker_names } from "../Resources.js";
 import chiefs from './../Images/TeamImages/americanfootball_nfl_TeamImages/Kansas City Chiefs.png';
 import lions from './../Images/TeamImages/americanfootball_nfl_TeamImages/Detroit Lions.png';
@@ -10,7 +10,6 @@ import heat from './../Images/TeamImages/basketball_nba_TeamImages/Miami Heat.pn
 import { team_codes } from "../Resources.js";
 
 const upcoming_game_data = americanfootball_nfl_team_props[0];
-const upcoming_score_data = americanfootball_nfl_scores[0];
 
 const images = {
     "americanfootball_nfl_TeamImages/Kansas City Chiefs.png" : chiefs,
@@ -31,7 +30,6 @@ describe('Game Overview component, upcoming game', () => {
     bookmakers={upcoming_game_data.bookmakers}
     startTime={upcoming_game_data.commence_time}
     sport={upcoming_game_data.sport_key}
-    curScore={upcoming_score_data.scores}
     teamImages={images}
     checkedBest={false}
 />

@@ -105,7 +105,6 @@ function App() {
       return odds.filter((game) => today < new Date(game.commence_time) );
     }
   };
-
   const { data: games, status } = useQuery([sport], fetchData,
       {
         staleTime: 120000,
@@ -331,7 +330,6 @@ function App() {
                 bookmakers={game.bookmakers.filter((bk) => bookies.has(bk.key))}
                 startTime={game.commence_time}
                 sport={game.sport_key}
-                curScore={game.scores}
                 teamImages={teamImages}
                 checkedBest={checkedBest}
               />:<></>
