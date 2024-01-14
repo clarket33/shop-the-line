@@ -13,7 +13,8 @@ import {
   Navbar,
   Typography,
   IconButton,
-  Spinner
+  Spinner,
+  Alert
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon, ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
@@ -27,6 +28,7 @@ import {americanfootball_ncaaf_team_props} from './SampleData/americanfootball_n
 
 function App() {
   const numGamesPerPage = 9;
+  const [xAlertOpen, setXAlertOpen] = useState(window.sessionStorage.getItem('x_alert_dismissed') === 'true' ? false: true);
   const [filteredGames, setFilteredGames] = useState([]);
   const [sport, setSport] = useState(window.localStorage.getItem('sport') || 'americanfootball_nfl');
   const [filterText, setFilterText] = useState(window.sessionStorage.getItem('filter_text_' + sport) ? window.sessionStorage.getItem('filter_text_' + sport) : "");
@@ -146,6 +148,17 @@ function App() {
   function checkedBestChange(checkedChoice){
     setCheckedBest(checkedChoice);
     window.sessionStorage.setItem('checkedBest', checkedChoice);
+  }
+
+  function dismissXAlert(){
+    setXAlertOpen(false);
+    window.sessionStorage.setItem('x_alert_dismissed', true);
+  }
+
+  function Icon() {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="32px" height="32px"><path d="M 4.0175781 4 L 13.091797 17.609375 L 4.3359375 28 L 6.9511719 28 L 14.246094 19.34375 L 20.017578 28 L 20.552734 28 L 28.015625 28 L 18.712891 14.042969 L 27.175781 4 L 24.560547 4 L 17.558594 12.310547 L 12.017578 4 L 4.0175781 4 z M 7.7558594 6 L 10.947266 6 L 24.279297 26 L 21.087891 26 L 7.7558594 6 z"/></svg>
+    );
   }
 
   function NavList() {
@@ -296,24 +309,32 @@ function App() {
         </div>
       </Navbar>
 
-      
-     
-
       {status === "loading" || status === "error" ?
         <div className="flex flex-wrap justify-center items-center mt-8 mb-8">
           {status === "loading" ? <Spinner className="h-12 w-12" />:
           status === "error" ? <span className="text-red-500 font-bold text-sm text-center">An unexpected error has occurred. Please try again later</span>:<></> }
         </div> : <div>
-     
+        
+        <div className="flex items-center justify-center mt-2 max-w-screen-md mx-auto">
+          <Alert open={xAlertOpen} icon={<Icon/>} color="gray" variant="ghost"  onClose={() => dismissXAlert()}>
+            <div>
+              <span className="text-sm">Stay updated - <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/shopthe_line/">
+              <span className="text-blue-500 text-sm">Follow us on X!</span></a></span>
+            </div>
+          </Alert>
+        </div>
+
       {filteredGames.length > 0 ?
-      <div className="flex items-center justify-center mt-3">
-        <label className="relative inline-flex items-center cursor-pointer">
-            <input type="checkbox" checked={checkedBest} className="sr-only peer" onChange={(value) => checkedBestChange(value.target.checked)}></input>
-            <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-400 dark:peer-focus:ring-blue-700 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-300"></div>
-        </label>
-        <span className="lg:hidden ml-3 text-xs font-medium text-blue-gray-500"> Only Show Best Lines</span>    
-        <span className="hidden lg:block ml-3 text-sm font-medium text-blue-gray-500"> Only Show Best Lines</span> 
-      </div>
+      
+        <div className="flex items-center justify-center mt-3">
+          <label className="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" checked={checkedBest} className="sr-only peer" onChange={(value) => checkedBestChange(value.target.checked)}></input>
+              <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-400 dark:peer-focus:ring-blue-700 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-300"></div>
+          </label>
+          <span className="lg:hidden ml-3 text-xs font-medium text-blue-gray-500"> Only Show Best Lines</span>    
+          <span className="hidden lg:block ml-3 text-sm font-medium text-blue-gray-500"> Only Show Best Lines</span> 
+        </div>
+      
       :<></>}
       
 
