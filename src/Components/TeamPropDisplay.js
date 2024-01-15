@@ -158,7 +158,6 @@ const TeamPropDisplay = (game) => {
                 }
             }
         }
-
         setPropChoices(prop_choices);
         setData(team_props);
     
