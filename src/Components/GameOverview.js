@@ -20,6 +20,7 @@ const GameOverview = (game) => {
     const today = process.env.JEST_WORKER_ID ? new Date('2023-09-23T00:20:00Z') : new Date();
     const daysTilStart = (gameStart - today) / (1000 * 3600 * 24)
     const stringifiedGameStart = gameStart.toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+    const collegeSports = ["americanfootball_ncaaf", "basketball_ncaab"];
 
     return (
                 
@@ -27,28 +28,28 @@ const GameOverview = (game) => {
         <Card className="w-80" color="transparent" variant="gradient">
             <CardBody className="text-center">
                 <div className="lg:hidden">
-                    <div className={game.sport !== "americanfootball_ncaaf" ? "h-24 mb-1"  : "h-24 mb-3" }>
-                        <div className={game.sport !== "americanfootball_ncaaf" ? "h-16 flex mb-1" : "h-16 flex w-10/12 m-auto mb-1"}>
-                            <div className={game.sport !== "americanfootball_ncaaf" ? "w-6/12" : "w-5/12"}>
-                                <img className={game.sport !== "americanfootball_ncaaf" ? "w-16 h-16 opacity-80 ml-auto":"w-16 h-16 opacity-80 m-auto"} src={game.teamImages[game.sport + "_TeamImages/" + game.awayTeam + ".png"] || game.teamImages[game.sport + "_TeamImages/NotFound.png"]} alt={game.awayTeam} />
+                    <div className={!collegeSports.includes(game.sport) ? "h-24 mb-1"  : "h-24 mb-3" }>
+                        <div className={!collegeSports.includes(game.sport) ? "h-16 flex mb-1" : "h-16 flex w-10/12 m-auto mb-1"}>
+                            <div className={!collegeSports.includes(game.sport) ? "w-6/12" : "w-5/12"}>
+                                <img className={!collegeSports.includes(game.sport) ? "w-16 h-16 opacity-80 ml-auto":"w-16 h-16 opacity-80 m-auto"} src={game.teamImages[game.sport + "_TeamImages/" + game.awayTeam + ".png"] || game.teamImages[game.sport + "_TeamImages/NotFound.png"]} alt={game.awayTeam} />
                             </div>
-                            <div className={game.sport !== "americanfootball_ncaaf" ? "w-1/12 mt-10" : "w-2/12 mt-10"}><Typography variant="h6" color="gray">@</Typography></div>
-                            <div className={game.sport !== "americanfootball_ncaaf" ? "w-6/12" : "w-5/12"}>
-                                <img className={game.sport !== "americanfootball_ncaaf" ? "w-16 h-16 transform -scale-x-100 opacity-80 mr-auto":"w-16 h-16 transform -scale-x-100 opacity-80 m-auto"} src={game.teamImages[game.sport + "_TeamImages/" + game.homeTeam + ".png"] || game.teamImages[game.sport + "_TeamImages/NotFound.png"]} alt={game.homeTeam} />
+                            <div className={!collegeSports.includes(game.sport) ? "w-1/12 mt-10" : "w-2/12 mt-10"}><Typography variant="h6" color="gray">@</Typography></div>
+                            <div className={!collegeSports.includes(game.sport) ? "w-6/12" : "w-5/12"}>
+                                <img className={!collegeSports.includes(game.sport) ? "w-16 h-16 transform -scale-x-100 opacity-80 mr-auto":"w-16 h-16 transform -scale-x-100 opacity-80 m-auto"} src={game.teamImages[game.sport + "_TeamImages/" + game.homeTeam + ".png"] || game.teamImages[game.sport + "_TeamImages/NotFound.png"]} alt={game.homeTeam} />
                             </div>
                         </div>
                         <div className="h-8 align-top">
                             
-                            <div className={game.sport !== "americanfootball_ncaaf" ? "flex w-6/12 m-auto": "flex w-11/12 m-auto"}>
-                                <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-center m-auto" : "w-5/12 text-center m-auto overflow-hidden text-ellipsis line-clamp-2"}>
-                                    <Typography variant={game.sport !== "americanfootball_ncaaf" ? "h6":"small"} color="blue-gray" className="font-semibold">
-                                        {team_titles[game.awayTeam] || (game.sport !== "americanfootball_ncaaf" ? game.awayTeam.substring(0,3).toUpperCase() : game.awayTeam)}
+                            <div className={!collegeSports.includes(game.sport) ? "flex w-6/12 m-auto": "flex w-11/12 m-auto"}>
+                                <div className={!collegeSports.includes(game.sport) ? "w-4/12 text-center m-auto" : "w-5/12 text-center m-auto overflow-hidden text-ellipsis line-clamp-2"}>
+                                    <Typography variant={!collegeSports.includes(game.sport) ? "h6":"small"} color="blue-gray" className="font-semibold">
+                                        {team_titles[game.awayTeam] || (!collegeSports.includes(game.sport) ? game.awayTeam.substring(0,3).toUpperCase() : game.awayTeam)}
                                     </Typography>
                                 </div>
-                                <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-center m-auto" : "w-2/12 text-center m-auto"}></div>
-                                <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-center m-auto" : "w-5/12 text-center m-auto overflow-hidden text-ellipsis line-clamp-2"}>
-                                    <Typography variant={game.sport !== "americanfootball_ncaaf" ? "h6":"small"} color="blue-gray" className="font-semibold">
-                                        {team_titles[game.homeTeam] || (game.sport !== "americanfootball_ncaaf" ? game.homeTeam.substring(0,3).toUpperCase() : game.homeTeam)}
+                                <div className={!collegeSports.includes(game.sport) ? "w-4/12 text-center m-auto" : "w-2/12 text-center m-auto"}></div>
+                                <div className={!collegeSports.includes(game.sport) ? "w-4/12 text-center m-auto" : "w-5/12 text-center m-auto overflow-hidden text-ellipsis line-clamp-2"}>
+                                    <Typography variant={!collegeSports.includes(game.sport) ? "h6":"small"} color="blue-gray" className="font-semibold">
+                                        {team_titles[game.homeTeam] || (!collegeSports.includes(game.sport) ? game.homeTeam.substring(0,3).toUpperCase() : game.homeTeam)}
                                     </Typography>
                                 </div>
                             </div>
@@ -63,7 +64,7 @@ const GameOverview = (game) => {
                             <span>{stringifiedGameStart}</span>
                         </Typography>
                     
-                    {withinDayThreshold() && game.sport !== "americanfootball_ncaaf" ?
+                    {withinDayThreshold() && !collegeSports.includes(game.sport) ?
                     <div className="h-18 w-48 mx-auto flex justify-center items-center">
                         {showTeamProps===true?<Button variant="text" className="w-1/2 border-r-2 font-bold" color="blue" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Team<br></br>Props</span></Button>
                         :<Button variant="text" className="w-1/2 border-r-2" color="blue-gray" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Team<br></br>Props</span></Button>}
@@ -91,16 +92,16 @@ const GameOverview = (game) => {
                         </div>
                         <div className="h-12 align-top">
                             
-                            <div className={game.sport !== "americanfootball_ncaaf" ? "flex w-8/12 m-auto" : "flex"}>
-                                <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-center m-auto" : "w-5/12 text-center m-auto overflow-hidden text-ellipsis line-clamp-2"}>
-                                    <Typography variant={game.sport !== "americanfootball_ncaaf" ? "h5":"h6"} color="blue-gray">
-                                        {team_titles[game.awayTeam] || (game.sport !== "americanfootball_ncaaf" ? game.awayTeam.substring(0,3).toUpperCase() : game.awayTeam)}
+                            <div className={!collegeSports.includes(game.sport) ? "flex w-8/12 m-auto" : "flex"}>
+                                <div className={!collegeSports.includes(game.sport) ? "w-4/12 text-center m-auto" : "w-5/12 text-center m-auto overflow-hidden text-ellipsis line-clamp-2"}>
+                                    <Typography variant={!collegeSports.includes(game.sport) ? "h5":"h6"} color="blue-gray">
+                                        {team_titles[game.awayTeam] || (!collegeSports.includes(game.sport) ? game.awayTeam.substring(0,3).toUpperCase() : game.awayTeam)}
                                     </Typography>
                                 </div>
-                                {game.sport !== "americanfootball_ncaaf" ? <div className="w-4/12 text-center m-auto"></div> : <div className="w-2/12 text-center m-auto"></div>}
-                                <div className={game.sport !== "americanfootball_ncaaf" ? "w-4/12 text-center m-auto" : "w-5/12 text-center m-auto overflow-hidden text-ellipsis line-clamp-2"}>
-                                    <Typography variant={game.sport !== "americanfootball_ncaaf" ? "h5":"h6"} color="blue-gray">
-                                        {team_titles[game.homeTeam] || (game.sport !== "americanfootball_ncaaf" ? game.homeTeam.substring(0,3).toUpperCase() : game.homeTeam)}
+                                {!collegeSports.includes(game.sport) ? <div className="w-4/12 text-center m-auto"></div> : <div className="w-2/12 text-center m-auto"></div>}
+                                <div className={!collegeSports.includes(game.sport) ? "w-4/12 text-center m-auto" : "w-5/12 text-center m-auto overflow-hidden text-ellipsis line-clamp-2"}>
+                                    <Typography variant={!collegeSports.includes(game.sport) ? "h5":"h6"} color="blue-gray">
+                                        {team_titles[game.homeTeam] || (!collegeSports.includes(game.sport) ? game.homeTeam.substring(0,3).toUpperCase() : game.homeTeam)}
                                     </Typography>
                                 </div>
                             </div>
@@ -113,7 +114,7 @@ const GameOverview = (game) => {
                     <Typography  variant="h6" color="blue-gray" className="font-medium" textGradient>
                         <span>{stringifiedGameStart}</span> 
                     </Typography>
-                    {withinDayThreshold() && game.sport !== "americanfootball_ncaaf" ?
+                    {withinDayThreshold() && !collegeSports.includes(game.sport) ?
                     <div className="h-24 w-48 mx-auto flex justify-center items-center">
                         {showTeamProps===true?<Button variant="text" className="w-1/2 border-r-2 font-bold" color="blue" onClick={() => teamPress()}>Team<br></br>Props</Button>
                         :<Button variant="text" className="w-1/2 border-r-2" color="blue-gray" onClick={() => teamPress()}>Team<br></br>Props</Button>}
@@ -154,7 +155,7 @@ const GameOverview = (game) => {
                     ></TeamPropDisplay>
                     </DataProvider>:<></>
                 }
-                {withinDayThreshold() && game.sport !== "americanfootball_ncaaf" && eitherPropClicked ? <DataProvider game_id={game.game_id} sport={game.sport} showChild={showPlayerProps}>
+                {withinDayThreshold() && !collegeSports.includes(game.sport) && eitherPropClicked ? <DataProvider game_id={game.game_id} sport={game.sport} showChild={showPlayerProps}>
                         <PlayerPropDisplay
                             key={"player-prop-" + game.game_id}
                             game_id={game.game_id}

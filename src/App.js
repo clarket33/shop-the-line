@@ -24,6 +24,7 @@ import {icehockey_nhl_team_props} from './SampleData/hockey_nhl_team_props.js';
 import {baseball_mlb_team_props} from './SampleData/baseball_mlb_team_props.js';
 import {basketball_nba_team_props} from './SampleData/basketball_nba_team_props.js';
 import {americanfootball_ncaaf_team_props} from './SampleData/americanfootball_ncaaf_team_props.js';
+import {basketball_ncaab_team_props} from './SampleData/basketball_ncaab_team_props.js';
 
 
 function App() {
@@ -90,6 +91,8 @@ function App() {
         odds = icehockey_nhl_team_props;
       }else if(sport === 'americanfootball_ncaaf') {
         odds = americanfootball_ncaaf_team_props;
+      }else if(sport === 'basketball_ncaab') {
+        odds = basketball_ncaab_team_props;
       }
       let today = new Date();
       return odds.filter((game) => today < new Date(game.commence_time) );
@@ -175,6 +178,16 @@ function App() {
         >
           {sport === 'basketball_nba' ?<button className={active}>NBA<img className="h-4 w-4 object-cover ml-1" src={sportImages["basketball_nba.png"]} alt={league_titles[sport]} /></button>:
           <button className={inactive} onClick={() => sportChange('basketball_nba')}>NBA
+          <img className="h-4 w-4 object-cover ml-1" src={sportImages["basketball_nba.png"]} alt={league_titles[sport]} /></button>}
+        </Typography>
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-medium"
+        >
+          {sport === 'basketball_ncaab' ?<button className={active}>NCAAB<img className="h-4 w-4 object-cover ml-1" src={sportImages["basketball_nba.png"]} alt={league_titles[sport]} /></button>:
+          <button className={inactive} onClick={() => sportChange('basketball_ncaab')}>NCAAB
           <img className="h-4 w-4 object-cover ml-1" src={sportImages["basketball_nba.png"]} alt={league_titles[sport]} /></button>}
         </Typography>
         <Typography
