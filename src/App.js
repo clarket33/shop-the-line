@@ -95,8 +95,9 @@ function App() {
       return odds.filter((game) => today < new Date(game.commence_time) );
     } else {
       let today = new Date();
-      let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+8).toISOString().substring(0, 19) + 'Z';
-      const url = 'https://' + process.env.REACT_APP_AWS_API_ID + '.execute-api.' + process.env.REACT_APP_AWS_API_REGION + '.amazonaws.com/default/game-data-fetch?sport=' + sport + '&commenceTimeTo=' + nextweek;
+      let daysInAdvance = today.getMonth()+1 === 2 && sport === 'americanfootball_nfl' ? 14 : 8;
+      let getGamesUpTo = new Date(today.getFullYear(), today.getMonth(), today.getDate()+daysInAdvance).toISOString().substring(0, 19) + 'Z';
+      const url = 'https://' + process.env.REACT_APP_AWS_API_ID + '.execute-api.' + process.env.REACT_APP_AWS_API_REGION + '.amazonaws.com/default/game-data-fetch?sport=' + sport + '&commenceTimeTo=' + getGamesUpTo;
       const gameData = await fetch(url, {
         method: 'GET'
       });
