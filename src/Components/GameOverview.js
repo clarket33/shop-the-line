@@ -177,6 +177,7 @@ const GameOverview = (game) => {
 
     function withinDayThreshold(){
         if(["americanfootball_nfl","americanfootball_ncaaf"].includes(game.sport)){
+            if(game.sport === "americanfootball_nfl" && today.getMonth()+1 === 2) return daysTilStart <= 14;
             return daysTilStart <= 3;
         }
         else{
