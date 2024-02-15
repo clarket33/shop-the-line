@@ -66,15 +66,15 @@ const GameOverview = (game) => {
                     
                     {withinDayThreshold() && !collegeSports.includes(game.sport) ?
                     <div className="h-18 w-48 mx-auto flex justify-center items-center">
-                        {showTeamProps===true?<Button variant="text" className="w-1/2 border-r-2 font-bold" color="blue" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Team<br></br>Props</span></Button>
-                        :<Button variant="text" className="w-1/2 border-r-2" color="blue-gray" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Team<br></br>Props</span></Button>}
+                        {showTeamProps===true?<Button variant="text" className="w-1/2 border-r-2 font-bold" color="blue" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Game<br></br>Props</span></Button>
+                        :<Button variant="text" className="w-1/2 border-r-2" color="blue-gray" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Game<br></br>Props</span></Button>}
                         {showPlayerProps===true?<Button variant="text" className="w-1/2 border-l-2 font-bold" color="blue" size="sm" onClick={() => playerPress()}><span className='text-miniscule'>Player<br></br>Props</span></Button>
                         :<Button variant="text" className="w-1/2 border-l-2" color="blue-gray" size="sm" onClick={() => playerPress()}><span className='text-miniscule'>Player<br></br>Props</span></Button>}
                     </div>
                     : 
                     <div className="h-18 w-24 mx-auto flex justify-center items-center">
-                        {showTeamProps===true?<Button variant="text" className="border-l-2 border-r-2 font-bold" color="blue" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Team<br></br>Props</span></Button>
-                        :<Button variant="text" className="border-l-2 border-r-2" color="blue-gray" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Team<br></br>Props</span></Button>}
+                        {showTeamProps===true?<Button variant="text" className="border-l-2 border-r-2 font-bold" color="blue" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Game<br></br>Props</span></Button>
+                        :<Button variant="text" className="border-l-2 border-r-2" color="blue-gray" size="sm" onClick={() => teamPress()}><span className='text-miniscule'>Game<br></br>Props</span></Button>}
                     </div>
                     }
                     {showPlayerProps || showTeamProps ? <br></br>:<></>}
@@ -116,15 +116,15 @@ const GameOverview = (game) => {
                     </Typography>
                     {withinDayThreshold() && !collegeSports.includes(game.sport) ?
                     <div className="h-24 w-48 mx-auto flex justify-center items-center">
-                        {showTeamProps===true?<Button variant="text" className="w-1/2 border-r-2 font-bold" color="blue" onClick={() => teamPress()}>Team<br></br>Props</Button>
-                        :<Button variant="text" className="w-1/2 border-r-2" color="blue-gray" onClick={() => teamPress()}>Team<br></br>Props</Button>}
+                        {showTeamProps===true?<Button variant="text" className="w-1/2 border-r-2 font-bold" color="blue" onClick={() => teamPress()}>Game<br></br>Props</Button>
+                        :<Button variant="text" className="w-1/2 border-r-2" color="blue-gray" onClick={() => teamPress()}>Game<br></br>Props</Button>}
                         {showPlayerProps===true?<Button variant="text" className="w-1/2 border-l-2 font-bold" color="blue" onClick={() => playerPress()}>Player<br></br>Props</Button>
                         :<Button variant="text" className="w-1/2 border-l-2" color="blue-gray" onClick={() => playerPress()}>Player<br></br>Props</Button>}
                     </div>
                     : 
                     <div className="h-24 w-24 mx-auto flex justify-center items-center">
-                        {showTeamProps===true?<Button variant="text" className="border-l-2 border-r-2 font-bold" color="blue" onClick={() => teamPress()}>Team<br></br>Props</Button>
-                        :<Button variant="text" className="border-l-2 border-r-2" color="blue-gray" onClick={() => teamPress()}>Team<br></br>Props</Button>}
+                        {showTeamProps===true?<Button variant="text" className="border-l-2 border-r-2 font-bold" color="blue" onClick={() => teamPress()}>Game<br></br>Props</Button>
+                        :<Button variant="text" className="border-l-2 border-r-2" color="blue-gray" onClick={() => teamPress()}>Game<br></br>Props</Button>}
                     </div>
                     }
                 </div>
@@ -138,7 +138,6 @@ const GameOverview = (game) => {
                         bookmakers={game.bookmakers}
                         sport={game.sport}
                         bookies={game.bookie_list}
-                        checkedBest={game.checkedBest}
                         withinRange={false}
                     ></TeamPropDisplay> :<></> :
                 eitherPropClicked ? <DataProvider game_id={game.game_id} sport={game.sport} showChild={showTeamProps}>
@@ -150,7 +149,6 @@ const GameOverview = (game) => {
                         bookmakers={game.bookmakers}
                         sport={game.sport}
                         bookies={game.bookie_list}
-                        checkedBest={game.checkedBest}
                         withinRange={true}
                     ></TeamPropDisplay>
                     </DataProvider>:<></>
@@ -161,7 +159,6 @@ const GameOverview = (game) => {
                             game_id={game.game_id}
                             sport={game.sport}
                             bookies={game.bookie_list}
-                            checkedBest={game.checkedBest}
                         ></PlayerPropDisplay>
                     
                     </DataProvider> : <></>

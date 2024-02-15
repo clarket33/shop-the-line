@@ -40,7 +40,7 @@ const PropContainer = (bookmakerList) => {
                 }
             }
 
-            if((bookmakerList.checkedBest && bestOption) || !bookmakerList.checkedBest)propDisp.push(<PropDisplay
+            propDisp.push(<PropDisplay
                 key={bookmaker.bookmaker}
                 bookmaker={bookmaker.bookmaker}
                 bookmakerLink={bookmaker_links[bookmaker.bookmaker]}
