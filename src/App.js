@@ -118,7 +118,7 @@ function App() {
   };
   const { data: games, status } = useQuery([sport], fetchData,
       {
-        staleTime: 120000,
+        staleTime: 60000,
         refetchOnWindowFocus: true,
         retry: 2
       }
