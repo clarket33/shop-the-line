@@ -95,7 +95,7 @@ export default function SportSelector(props) {
                                     </Typography>
                                     <div>
                                         {category["subcategories"].map((item) => {
-                                            return  <MenuItem disabled={sport === item["name"] ? true : false} className="text-center border-t-2 border-b-2 font-semibold text-blue-gray-500" onClick={handleClick} id={item["name"]} key={item["name"]}>
+                                            return  <MenuItem disabled={sport === item["name"] ? true : false} className="text-center border-b-2 font-semibold text-blue-gray-500" onClick={handleClick} id={item["name"]} key={item["name"]}>
                                                      
                                                     {league_titles[item["name"]]}
                                                     
@@ -127,7 +127,7 @@ export default function SportSelector(props) {
                             </Typography>
                             <div>
                                 {category["subcategories"].map((item) => {
-                                    return  <Button variant="text" color="blue-gray" disabled={sport === item["name"] ? true : false} className="text-center border-t-2 border-b-2 w-24" onClick={handleClick} id={item["name"]} key={item["name"]}>
+                                    return  <Button variant="text" size="sm" color="blue-gray" disabled={sport === item["name"] ? true : false} className="text-center border-b-2 w-24" onClick={handleClick} id={item["name"]} key={item["name"]}>
                                             {league_titles[item["name"]]}
                                         </Button> 
                                 
