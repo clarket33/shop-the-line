@@ -35,7 +35,7 @@ const InstructionCarousel = (size) => {
         },
         {
             slide: (size.size === "big" ? slide4 : slide4_small),
-            instruction: "The \"Team Props\" button on a game card will allow you to toggle seeing upcoming lines for team-related props, such as moneyline, spreads, and totals."
+            instruction: "The \"Game Props\" button on a game card will allow you to toggle seeing upcoming lines for game-related props, such as moneyline, spreads, and totals."
         },
         {
             slide: (size.size === "big" ? slide5 : slide5_small),
