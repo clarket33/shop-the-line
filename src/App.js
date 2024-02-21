@@ -2,6 +2,7 @@ import React,{ useEffect, useState, useMemo, useCallback } from "react";
 import GameOverview from "./Components/GameOverview";
 import PopupComponent from "./Components/PopupComponent";
 import SportsBookCustomize from "./Components/SportsBookCustomize";
+import SportSelector from "./Components/SportSelector";
 import './App.css';
 import Footer from "./Components/Footer";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -24,6 +25,7 @@ import {icehockey_nhl_team_props} from './SampleData/hockey_nhl_team_props.js';
 import {baseball_mlb_team_props} from './SampleData/baseball_mlb_team_props.js';
 import {basketball_nba_team_props} from './SampleData/basketball_nba_team_props.js';
 import {americanfootball_ncaaf_team_props} from './SampleData/americanfootball_ncaaf_team_props.js';
+import {basketball_ncaab_team_props} from './SampleData/basketball_ncaab_team_props.js';
 
 
 function App() {
@@ -36,7 +38,6 @@ function App() {
   const [openNav, setOpenNav] = useState(false);
   const [pages, setPages] = useState(0);
   const [endIndex, setEndIndex] = useState(numGamesPerPage);
-  const [checkedBest, setCheckedBest] = useState(window.sessionStorage.getItem('checkedBest') === 'true' ? true : false);
   const teamImages = importAll(require.context('./Images/TeamImages/', true, /\.(png|jpe?g|svg)$/));
   const sportImages = importAll(require.context('./Images/Sports/', true, /\.(png|jpe?g|svg)$/));
 
@@ -49,8 +50,13 @@ function App() {
     [sport],
   );
 
-  const pull_user_books= (data) => {
+  const pull_user_books = (data) => {
     setBookies(data);
+  }
+
+  const sportChange = (sportChoice) => {
+    setOpenNav(false);
+    setSport(sportChoice);
   }
  
   const handleWindowResize = () =>
@@ -90,6 +96,8 @@ function App() {
         odds = icehockey_nhl_team_props;
       }else if(sport === 'americanfootball_ncaaf') {
         odds = americanfootball_ncaaf_team_props;
+      }else if(sport === 'basketball_ncaab') {
+        odds = basketball_ncaab_team_props;
       }
       let today = new Date();
       return odds.filter((game) => today < new Date(game.commence_time) );
@@ -110,7 +118,7 @@ function App() {
   };
   const { data: games, status } = useQuery([sport], fetchData,
       {
-        staleTime: 120000,
+        staleTime: 60000,
         refetchOnWindowFocus: true,
         retry: 2
       }
@@ -141,15 +149,6 @@ function App() {
       setEndIndex(active*numGamesPerPage);
     }, [active]);
 
-  function sportChange(sportChoice){
-    setOpenNav(false);
-    setSport(sportChoice);
-  }
-
-  function checkedBestChange(checkedChoice){
-    setCheckedBest(checkedChoice);
-    window.sessionStorage.setItem('checkedBest', checkedChoice);
-  }
 
   function dismissXAlert(){
     setXAlertOpen(false);
@@ -159,66 +158,6 @@ function App() {
   function Icon() {
     return (
       <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="32px" height="32px"><path d="M 4.0175781 4 L 13.091797 17.609375 L 4.3359375 28 L 6.9511719 28 L 14.246094 19.34375 L 20.017578 28 L 20.552734 28 L 28.015625 28 L 18.712891 14.042969 L 27.175781 4 L 24.560547 4 L 17.558594 12.310547 L 12.017578 4 L 4.0175781 4 z M 7.7558594 6 L 10.947266 6 L 24.279297 26 L 21.087891 26 L 7.7558594 6 z"/></svg>
-    );
-  }
-
-  function NavList() {
-    let inactive = "flex items-center hover:text-blue-700 grayscale hover:grayscale-0 transition-colors";
-    let active = "flex items-center font-bold text-blue-700 transition-colors";
-
-    return (
-      <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-        <Typography
-          as="li"
-          variant="small"
-          color="blue-gray"
-          className="p-1 font-medium"
-        >
-          {sport === 'basketball_nba' ?<button className={active}>NBA<img className="h-4 w-4 object-cover ml-1" src={sportImages["basketball_nba.png"]} alt={league_titles[sport]} /></button>:
-          <button className={inactive} onClick={() => sportChange('basketball_nba')}>NBA
-          <img className="h-4 w-4 object-cover ml-1" src={sportImages["basketball_nba.png"]} alt={league_titles[sport]} /></button>}
-        </Typography>
-        <Typography
-          as="li"
-          variant="small"
-          color="blue-gray"
-          className="p-1 font-medium"
-        >
-          {sport === 'americanfootball_nfl' ?<button className={active}>NFL<img className="h-4 w-4 object-cover ml-1" src={sportImages["americanfootball_nfl.png"]} alt={league_titles[sport]} /></button>:
-          <button className={inactive} onClick={() => sportChange('americanfootball_nfl')}>NFL
-          <img className="h-4 w-4 object-cover ml-1" src={sportImages["americanfootball_nfl.png"]} alt={league_titles[sport]} /></button>}
-        </Typography>
-        <Typography
-          as="li"
-          variant="small"
-          color="blue-gray"
-          className="p-1 font-medium"
-        >
-          {sport === 'americanfootball_ncaaf' ?<button className={active}>NCAAF<img className="h-4 w-4 object-cover ml-1" src={sportImages["americanfootball_ncaaf.png"]} alt={league_titles[sport]} /></button>:
-          <button className={inactive} onClick={() => sportChange('americanfootball_ncaaf')}>NCAAF
-          <img className="h-4 w-4 object-cover ml-1" src={sportImages["americanfootball_nfl.png"]} alt={league_titles[sport]} /></button>}
-        </Typography>
-        <Typography
-          as="li"
-          variant="small"
-          color="blue-gray"
-          className="p-1 font-medium"
-        >
-          {sport === 'icehockey_nhl' ?<button className={active}>NHL<img className="h-4 w-4 object-cover ml-1" src={sportImages["icehockey_nhl.png"]} alt={league_titles[sport]} /></button>:
-          <button className={inactive} onClick={() => sportChange('icehockey_nhl')}>NHL
-          <img className="h-4 w-4 object-cover ml-1" src={sportImages["icehockey_nhl.png"]} alt={league_titles[sport]} /></button>}
-        </Typography>
-        <Typography
-          as="li"
-          variant="small"
-          color="blue-gray"
-          className="p-1 font-medium"
-        >
-          {sport === 'baseball_mlb' ?<button className={active}>MLB<img className="h-4 w-4 object-cover ml-1" src={sportImages["baseball_mlb.png"]} alt={league_titles[sport]} /></button>:
-          <button className={inactive} onClick={() => sportChange('baseball_mlb')}>MLB
-          <img className="h-4 w-4 object-cover ml-1" src={sportImages["baseball_mlb.png"]} alt={league_titles[sport]} /></button>}
-        </Typography>
-      </ul>
     );
   }
   
@@ -272,7 +211,7 @@ function App() {
             Shop the Line
           </Typography>
           <div className="hidden lg:block">
-            <NavList />
+            <SportSelector func={sportChange} sport={sport}></SportSelector>
           </div>
           <div className="hidden lg:block">
             <div className="min-w-[450px] grid grid-cols-2 gap-2">
@@ -301,7 +240,7 @@ function App() {
           </IconButton>
         </div>
         <Collapse open={openNav}>
-          <NavList />
+            <SportSelector func={sportChange} sport={sport}></SportSelector>
         </Collapse>
         <div className="relative flex w-full gap-2 pt-3 
          lg:hidden">
@@ -325,20 +264,6 @@ function App() {
           </Alert>
         </div>
 
-      {filteredGames.length > 0 ?
-      
-        <div className="flex items-center justify-center mt-3">
-          <label className="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" checked={checkedBest} className="sr-only peer" onChange={(value) => checkedBestChange(value.target.checked)}></input>
-              <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-400 dark:peer-focus:ring-blue-700 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-300"></div>
-          </label>
-          <span className="lg:hidden ml-3 text-xs font-medium text-blue-gray-500"> Only Show Best Lines</span>    
-          <span className="hidden lg:block ml-3 text-sm font-medium text-blue-gray-500"> Only Show Best Lines</span> 
-        </div>
-      
-      :<></>}
-      
-
       <div className="mx-auto max-w-screen-xl mb-16 mt-8">
           <div className="flex flex-wrap justify-center items-center mb-16 gap-4">
             {filteredGames.length > 0 ? filteredGames.slice(endIndex-numGamesPerPage,endIndex).map((game) => (
@@ -353,7 +278,6 @@ function App() {
                 startTime={game.commence_time}
                 sport={game.sport_key}
                 teamImages={teamImages}
-                checkedBest={checkedBest}
               />:<></>
             )): <span className="text-gray-500 font-bold drop-shadow-lg text-5xl text-center">No Upcoming Games</span>}
           </div>

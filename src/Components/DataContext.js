@@ -7,6 +7,7 @@ import basketball_data from './../SampleData/basketball_nba_player_props.json';
 import baseball_data from './../SampleData/baseball_mlb_player_props.json';
 import hockey_data from './../SampleData/hockey_nhl_player_props.json';
 import football_college_data from './../SampleData/americanfootball_ncaaf_player_props.json';
+import basketball_college_data from './../SampleData/basketball_ncaab_player_props.json';
 
 const DataContext = createContext();
 
@@ -26,6 +27,7 @@ export const DataProvider = (event) => {
       else if(event.sport === 'basketball_nba') odds = basketball_data;
       else if(event.sport === 'icehockey_nhl') odds = hockey_data;
       else if(event.sport === 'americanfootball_ncaaf') odds = football_college_data;
+      else if(event.sport === 'basketball_ncaab') odds = basketball_college_data;
       else odds = {};
     }
     else {
@@ -44,7 +46,7 @@ export const DataProvider = (event) => {
 
   const { data, status } = useQuery([event.sport + ' - ' + event.game_id], fetchData,
     {
-      staleTime: 250000,
+      staleTime: 60000,
       refetchOnWindowFocus: true,
       retry: 2
     }

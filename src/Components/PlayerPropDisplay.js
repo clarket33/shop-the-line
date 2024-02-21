@@ -226,7 +226,6 @@ const PlayerPropDisplay = (event) => {
                             sorter={sorter}
                             lastIndex={individualProps.get(prop).get(player).size-1}
                             prop={prop}
-                            checkedBest={event.checkedBest}
                         />:individualProps.size !== 0 ? <></>:<span className="text-gray-500 font-medium text-center">No odds available for selected sportsbooks</span>}
                 </div>
             </div>

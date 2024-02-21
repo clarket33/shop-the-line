@@ -68,7 +68,7 @@ describe('Game Overview component, upcoming game', () => {
 
     test('should have team props and player props buttons', () => {
         render(htmlToRender);
-        const team_props_buttons = screen.getAllByText('TeamProps');
+        const team_props_buttons = screen.getAllByText('GameProps');
         const player_props_button = screen.getAllByText('PlayerProps');
         expect(team_props_buttons).not.toBe(null);
         expect(player_props_button).not.toBe(null);
