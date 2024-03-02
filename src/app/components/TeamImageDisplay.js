@@ -6,7 +6,6 @@ export default function TeamImageDisplay(imageProperties) {
 
     return (
         <Image
-        unoptimized
         className={imageProperties.className}
         width={imageProperties.width}
         height={imageProperties.height}

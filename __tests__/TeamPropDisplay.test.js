@@ -1,11 +1,11 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react';
 import TeamPropDisplay from '../src/app/components/TeamPropDisplay';
-import {americanfootball_nfl_team_props} from '../src/app/lib/SampleData/americanfootball_nfl_team_props.js';
+import {americanfootball_nfl_team_props} from '../src/app/lib/sampledata/americanfootball_nfl_team_props.js';
 import { bookmaker_names, team_prop_choices } from "../src/app/lib/Resources.js";
 import DataContext from '../src/app/components/DataContext';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import football_extended_data from '../src/app/lib/SampleData/americanfootball_nfl_player_props.json';
+import football_extended_data from '../src/app/lib/sampledata/americanfootball_nfl_player_props.json';
 
 const game_data = americanfootball_nfl_team_props[0];
 

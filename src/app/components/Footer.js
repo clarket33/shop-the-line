@@ -1,5 +1,5 @@
 import PopupComponent from "./PopupComponent";
-import logo from'../../../public/Images/Misc/logo.png';
+import logo from '../../../public/Images/Misc/logo.png';
 import {  Typography } from "@material-tailwind/react";
 import Image from "next/image";
 

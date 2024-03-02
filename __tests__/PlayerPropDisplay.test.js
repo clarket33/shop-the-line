@@ -2,7 +2,7 @@ import { render, screen, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import PlayerPropDisplay from '../src/app/components/PlayerPropDisplay';
 import DataContext from '../src/app/components/DataContext';
-import football_player_data from '../src/app/lib/SampleData/americanfootball_nfl_player_props.json';
+import football_player_data from '../src/app/lib/sampledata/americanfootball_nfl_player_props.json';
 import { bookmaker_names } from "../src/app/lib/Resources.js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 

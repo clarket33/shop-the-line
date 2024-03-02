@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react';
 import GameOverview from '../src/app/components/GameOverview';
-import {americanfootball_nfl_team_props} from '../src/app/lib/SampleData/americanfootball_nfl_team_props.js';
+import {americanfootball_nfl_team_props} from '../src/app/lib/sampledata/americanfootball_nfl_team_props.js';
 import { bookmaker_names, team_codes } from "../src/app/lib/Resources.js";
-import chiefs from 'Images/TeamImages/americanfootball_nfl_TeamImages/Kansas City Chiefs.png';
-import lions from 'Images/TeamImages/americanfootball_nfl_TeamImages/Detroit Lions.png';
-import nuggets from 'Images/TeamImages/basketball_nba_TeamImages/Denver Nuggets.png';
-import heat from 'Images/TeamImages/basketball_nba_TeamImages/Miami Heat.png';
+import chiefs from '../public/Images/TeamImages/americanfootball_nfl_TeamImages/Kansas City Chiefs.png';
+import lions from '../public/Images/TeamImages/americanfootball_nfl_TeamImages/Detroit Lions.png';
+import nuggets from '../public/Images/TeamImages/basketball_nba_TeamImages/Denver Nuggets.png';
+import heat from '../public/Images/TeamImages/basketball_nba_TeamImages/Miami Heat.png';
 
 const upcoming_game_data = americanfootball_nfl_team_props[0];
 
