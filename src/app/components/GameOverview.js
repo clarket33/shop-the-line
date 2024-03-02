@@ -31,11 +31,11 @@ const GameOverview = (game) => {
                     <div className={!collegeSports.includes(game.sport) ? "h-24 mb-1"  : "h-24 mb-3" }>
                         <div className={!collegeSports.includes(game.sport) ? "h-16 flex mb-1" : "h-16 flex w-10/12 m-auto mb-1"}>
                             <div className={!collegeSports.includes(game.sport) ? "w-6/12" : "w-5/12"}>
-                                <TeamImageDisplay className={!collegeSports.includes(game.sport) ? "w-16 h-16 opacity-80 ml-auto":"w-16 h-16 opacity-80 m-auto"} height={64} width={64} src={`/Images/TeamImages/${game.sport}_TeamImages/${game.awayTeam}.png`} alt={game.awayTeam} sport={game.sport}/>
+                                <TeamImageDisplay className={!collegeSports.includes(game.sport) ? "w-16 h-16 opacity-80 ml-auto":"w-16 h-16 opacity-80 m-auto"} height={64} width={64} src={`/Images/TeamImages/${game.sport}_TeamImages/${game.awayTeam.replaceAll(" ","_")}.png`} alt={game.awayTeam} sport={game.sport}/>
                             </div>
                             <div className={!collegeSports.includes(game.sport) ? "w-1/12 mt-10" : "w-2/12 mt-10"}><Typography variant="h6" color="gray">@</Typography></div>
                             <div className={!collegeSports.includes(game.sport) ? "w-6/12" : "w-5/12"}>
-                                <TeamImageDisplay className={!collegeSports.includes(game.sport) ? "w-16 h-16 transform -scale-x-100 opacity-80 mr-auto":"w-16 h-16 transform -scale-x-100 opacity-80 m-auto"} height={64} width={64} src={`/Images/TeamImages/${game.sport}_TeamImages/${game.homeTeam}.png`} alt={game.homeTeam} sport={game.sport}/>
+                                <TeamImageDisplay className={!collegeSports.includes(game.sport) ? "w-16 h-16 transform -scale-x-100 opacity-80 mr-auto":"w-16 h-16 transform -scale-x-100 opacity-80 m-auto"} height={64} width={64} src={`/Images/TeamImages/${game.sport}_TeamImages/${game.homeTeam.replaceAll(" ","_")}.png`} alt={game.homeTeam} sport={game.sport}/>
                             </div>
                         </div>
                         <div className="h-8 align-top">
@@ -83,11 +83,11 @@ const GameOverview = (game) => {
                     <div className="h-36 mb-1">
                         <div className="h-24 flex">
                             <div className="w-6/12 text-right">
-                                <TeamImageDisplay className="opacity-80 ml-auto" height={96} width={96} src={`/Images/TeamImages/${game.sport}_TeamImages/${game.awayTeam.replace(" ","_")}.png`} alt={game.awayTeam} sport={game.sport}/>
+                                <TeamImageDisplay className="opacity-80 ml-auto" height={96} width={96} src={`/Images/TeamImages/${game.sport}_TeamImages/${game.awayTeam.replaceAll(" ","_")}.png`} alt={game.awayTeam} sport={game.sport}/>
                             </div>
                             <div className="w-1/12 mt-16"><Typography variant="h5" color="gray">@</Typography></div>
                             <div className="w-6/12 text-left">  
-                                <TeamImageDisplay className="transform -scale-x-100 opacity-80 mr-auto" height={96} width={96} src={`/Images/TeamImages/${game.sport}_TeamImages/${game.homeTeam.replace(" ","_")}.png`} alt={game.homeTeam} sport={game.sport}/>
+                                <TeamImageDisplay className="transform -scale-x-100 opacity-80 mr-auto" height={96} width={96} src={`/Images/TeamImages/${game.sport}_TeamImages/${game.homeTeam.replaceAll(" ","_")}.png`} alt={game.homeTeam} sport={game.sport}/>
                             </div>
                         </div>
                         <div className="h-12 align-top">
