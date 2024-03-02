@@ -1,24 +1,36 @@
-# Shop the Line
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-React App (Javascript, HTML, CSS) that allows the user to view various upcoming/live professional sports games and the live betting odds from established bookmakers (DraftKings, Fanduel, William Hill, etc) in the US, filtered by states they operate in. The purpose of the app is for the user to monitor the live odds of a match they're interested in to possibly place a wager with a bookmaker that's offering favorable odds (as long as that bookmaker is legally operating in their state/country). Currently supports NFL, NBA, NHL & MLB games.
+## Getting Started
 
-The application leverages serverless AWS Lambda functions for handling external api calls, Redis for in-memory caching, and Sentry for error logging. 
+First, run the development server:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## Website
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-The application is currently deployed with Netlify [here](https://master--stunning-belekoy-7251e6.netlify.app/)
+You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-## Images
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-![image](https://github.com/clarket33/shop-the-line/assets/43187188/c6ab47d7-f405-4d5c-8300-5220c0c7213c)
+## Learn More
 
-## Credits
+To learn more about Next.js, take a look at the following resources:
 
-This project utilizes [The Odds API](https://the-odds-api.com/)
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-State Icons & Medal Icon by [Icons8](https://icons8.com)
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
+## Deploy on Vercel
 
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
