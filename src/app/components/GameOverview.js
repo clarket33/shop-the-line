@@ -83,11 +83,11 @@ const GameOverview = (game) => {
                     <div className="h-36 mb-1">
                         <div className="h-24 flex">
                             <div className="w-6/12 text-right">
-                                <TeamImageDisplay className="opacity-80 ml-auto" height={96} width={96} src={`/Images/TeamImages/${game.sport}_TeamImages/${game.awayTeam}.png` || `/Images/TeamImages/${game.sport}_TeamImages/NotFound.png`} alt={game.awayTeam} sport={game.sport}/>
+                                <TeamImageDisplay className="opacity-80 ml-auto" height={96} width={96} src={`/Images/TeamImages/${game.sport}_TeamImages/${game.awayTeam}.png`} alt={game.awayTeam} sport={game.sport}/>
                             </div>
                             <div className="w-1/12 mt-16"><Typography variant="h5" color="gray">@</Typography></div>
                             <div className="w-6/12 text-left">  
-                                <TeamImageDisplay className="transform -scale-x-100 opacity-80 mr-auto" height={96} width={96} src={`/Images/TeamImages/${game.sport}_TeamImages/${game.homeTeam}.png` || `/Images/TeamImages/${game.sport}_TeamImages/NotFound.png`} alt={game.homeTeam} sport={game.sport}/>
+                                <TeamImageDisplay className="transform -scale-x-100 opacity-80 mr-auto" height={96} width={96} src={`/Images/TeamImages/${game.sport}_TeamImages/${game.homeTeam}.png`} alt={game.homeTeam} sport={game.sport}/>
                             </div>
                         </div>
                         <div className="h-12 align-top">
