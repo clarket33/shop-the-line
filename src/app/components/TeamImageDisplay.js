@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 export default function TeamImageDisplay(imageProperties) {
     const [imageSrc, setImageSRC] = useState(imageProperties.src);
+    if(!imageSrc) return (<></>);
 
     return (
         <Image
