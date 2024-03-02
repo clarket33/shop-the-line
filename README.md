@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Shop the Line
 
-First, run the development server:
+Nextjs React App (Javascript, HTML, CSS) that allows the user to view various upcoming sports matches and the betting odds from established bookmakers (DraftKings, Fanduel, William Hill, etc) in the US. A user can monitor the odds of a match/props they're interested in to see which sportsbooks are offering the most favorable odds. Currently supports NFL, NBA, NHL, MLB, NCAAF & NCAAB games.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The application leverages serverless AWS Lambda functions for handling external api calls, Redis for in-memory caching, and Sentry for error logging. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project was bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Website
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The application is currently deployed with Netlify [here](https://master--stunning-belekoy-7251e6.netlify.app/)
 
-## Learn More
+## Images
 
-To learn more about Next.js, take a look at the following resources:
+![image](image.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Credits
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+This project utilizes [The Odds API](https://the-odds-api.com/)
 
-## Deploy on Vercel
+State Icons & Medal Icon by [Icons8](https://icons8.com)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
