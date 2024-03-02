@@ -1,7 +1,7 @@
 
 # Shop the Line
 
-Nextjs React App (Javascript, HTML, CSS) that allows the user to view various upcoming sports matches and the betting odds from established bookmakers (DraftKings, Fanduel, William Hill, etc) in the US. A user can monitor the odds of a match/props they're interested in to see which sportsbooks are offering the most favorable odds. Currently supports NFL, NBA, NHL, MLB, NCAAF & NCAAB games.
+Nextjs React App (Javascript, HTML, CSS) that allows the user to view various upcoming sports matches and the betting odds from established bookmakers (DraftKings, Fanduel, William Hill, etc) in the US. A user can monitor the odds of props they're interested in to see which sportsbooks are offering the most favorable odds. Currently supports NFL, NBA, NHL, MLB, NCAAF & NCAAB games.
 
 The application leverages serverless AWS Lambda functions for handling external api calls, Redis for in-memory caching, and Sentry for error logging. 
 
