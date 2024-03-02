@@ -82,7 +82,7 @@ export default function Main() {
 
   const fetchData = async () => {
     
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    if (true) {
       let odds;
       if(sport === 'americanfootball_nfl'){
         odds = americanfootball_nfl_team_props;

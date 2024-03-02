@@ -21,7 +21,7 @@ export const DataProvider = (event) => {
 
   const fetchData = async () => {
     let odds;
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    if (true) {
       if(event.sport === 'americanfootball_nfl') odds = football_data;
       else if(event.sport === 'baseball_mlb') odds = baseball_data;
       else if(event.sport === 'basketball_nba') odds = basketball_data;
