@@ -71,7 +71,6 @@ export const player_prop_choices = {
   "player_rebounds":"Rebounds",
   "player_assists":"Assists", //also covers hockey
   "player_threes":"Threes",
-  "player_double_double":"Double Double",
   "player_blocks":"Blocks",
   "player_steals":"Steals",
   "player_turnovers":"Turnovers",
@@ -79,6 +78,9 @@ export const player_prop_choices = {
   "player_points_rebounds":"Points + Rebounds",
   "player_points_assists":"Points + Assists",
   "player_rebounds_assists":"Rebounds + Assists",
+  "player_first_basket":"First Basket Scorer",
+  "player_double_double":"Double Double",
+  "player_triple_double":"Triple Double",
   //baseball
   "batter_home_runs":"Batter Home Runs",
   "batter_hits":"Batter Hits",
@@ -176,6 +178,7 @@ export const bookmaker_links={
   "betparx":"https://betparx.com/#home",
   "espnbet":"https://espnbet.com/",
   "fliff":"https://www.getfliff.com/",
+  "hardrockbet":"https://app.hardrock.bet/",
   "sisportsbook":"https://www.sisportsbook.com/",
   "tipico_us":"https://sportsbook-nj.tipico.us/home",
   "windcreek":"https://play.windcreekcasino.com/sports/"
@@ -195,6 +198,7 @@ export const bookmaker_names={
     "betparx":"betPARX",
     "espnbet":"ESPN_BET",
     "fliff":"Fliff",
+	"hardrockbet":"Hard_Rock",
     "sisportsbook":"SI_Sportsbook",
     "tipico_us":"Tipico",
     "windcreek":"Wind_Creek"
