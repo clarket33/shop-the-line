@@ -26,7 +26,8 @@ const menuItems = [
         "category": "Basketball",
         "subcategories": [
             { "name": "basketball_nba" },
-            { "name": "basketball_ncaab" }
+            { "name": "basketball_ncaab" },
+            { "name": "basketball_wnba" }
         ]
     },
     {

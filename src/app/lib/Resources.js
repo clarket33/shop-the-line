@@ -42,6 +42,7 @@ export const league_titles = {
   "americanfootball_ncaaf":"NCAAF",
   "basketball_nba":"NBA",
   "basketball_ncaab":"NCAAB",
+  "basketball_wnba":"WNBA",
   "baseball_mlb":"MLB",
   "icehockey_nhl":"NHL",
 }
