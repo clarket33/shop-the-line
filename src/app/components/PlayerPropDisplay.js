@@ -1,5 +1,5 @@
 import React,{ useEffect, useState, useMemo, useCallback } from "react";
-import { player_prop_choices, all_player_props } from "../Resources.js";
+import { player_prop_choices, all_player_props } from '../lib/Resources.js';
 import { useData } from './DataContext.js';
 import { 
     Select,
