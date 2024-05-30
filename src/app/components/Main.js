@@ -24,6 +24,7 @@ import {americanfootball_nfl_team_props} from '../lib/sampledata/americanfootbal
 import {icehockey_nhl_team_props} from '../lib/sampledata/hockey_nhl_team_props.js';
 import {baseball_mlb_team_props} from '../lib/sampledata/baseball_mlb_team_props.js';
 import {basketball_nba_team_props} from '../lib/sampledata/basketball_nba_team_props.js';
+import {basketball_wnba_team_props} from '../lib/sampledata/basketball_wnba_team_props.js';
 import {americanfootball_ncaaf_team_props} from '../lib/sampledata/americanfootball_ncaaf_team_props.js';
 import {basketball_ncaab_team_props} from '../lib/sampledata/basketball_ncaab_team_props.js';
 
@@ -96,6 +97,11 @@ export default function Main() {
         odds = americanfootball_ncaaf_team_props;
       }else if(sport === 'basketball_ncaab') {
         odds = basketball_ncaab_team_props;
+      }else if(sport === 'basketball_wnba') {
+        odds = basketball_wnba_team_props;
+      }
+      else{
+        odds = [];
       }
       let today = new Date();
       return odds.filter((game) => today < new Date(game.commence_time) );
