@@ -14,6 +14,11 @@ export const player_prop_markets = [
       team_markets: "alternate_spreads,alternate_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,",
       label: "basketball_nba"
     },
+	{
+		player_markets: "player_points,player_rebounds,player_assists,player_threes,player_blocks,player_steals,player_turnovers,player_points_rebounds_assists,player_points_rebounds,player_points_assists,player_rebounds_assists,player_double_double,player_first_basket,player_triple_double",
+		team_markets: "alternate_spreads,alternate_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,",
+		label: "basketball_wnba"
+	},
     {
       player_markets: "",
       team_markets: "alternate_spreads,alternate_totals,h2h_h1,h2h_h2,spreads_h1,spreads_h2,totals_h1,totals_h2",
@@ -42,6 +47,7 @@ export const league_titles = {
   "americanfootball_ncaaf":"NCAAF",
   "basketball_nba":"NBA",
   "basketball_ncaab":"NCAAB",
+  "basketball_wnba":"WNBA",
   "baseball_mlb":"MLB",
   "icehockey_nhl":"NHL",
 }
@@ -272,6 +278,19 @@ export const team_codes={
     "Toronto Raptors":"TOR",
     "Utah Jazz":"UTA",
     "Washington Wizards":"WAS",
+	//wnba
+	"Atlanta Dream":"ATL",
+	"Chicago Sky":"CHI",
+	"Connecticut Sun":"CONN",
+	"Dallas Wings":"DAL",
+	"Indiana Fever":"IND",
+	"Las Vegas Aces":"LV",
+	"Los Angeles Sparks":"LA",
+	"Minnesota Lynx":"MIN",
+	"New York Liberty":"NY",
+	"Phoenix Mercury":"PHX",
+	"Seattle Storm":"SEA",
+	"Washington Mystics":"WSH",
     //nhl
     "Anaheim Ducks":"ANA",
     "Arizona Coyotes":"ARI",
@@ -796,6 +815,19 @@ export const team_titles={
   "Toronto Raptors":"TOR",
   "Utah Jazz":"UTA",
   "Washington Wizards":"WAS",
+  //wnba
+  "Atlanta Dream":"ATL",
+	"Chicago Sky":"CHI",
+	"Connecticut Sun":"CONN",
+	"Dallas Wings":"DAL",
+	"Indiana Fever":"IND",
+	"Las Vegas Aces":"LV",
+	"Los Angeles Sparks":"LA",
+	"Minnesota Lynx":"MIN",
+	"New York Liberty":"NY",
+	"Phoenix Mercury":"PHX",
+	"Seattle Storm":"SEA",
+	"Washington Mystics":"WSH",
   //nhl
   "Anaheim Ducks":"ANA",
   "Arizona Coyotes":"ARI",

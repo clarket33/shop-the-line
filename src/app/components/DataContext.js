@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import football_data from '../lib/sampledata/americanfootball_nfl_player_props.json';
 import basketball_data from '../lib/sampledata/basketball_nba_player_props.json';
+import basketball_women_data from '../lib/sampledata/basketball_wnba_player_props.json';
 import baseball_data from '../lib/sampledata/baseball_mlb_player_props.json';
 import hockey_data from '../lib/sampledata/hockey_nhl_player_props.json';
 import football_college_data from '../lib/sampledata/americanfootball_ncaaf_player_props.json';
@@ -25,6 +26,7 @@ export const DataProvider = (event) => {
       if(event.sport === 'americanfootball_nfl') odds = football_data;
       else if(event.sport === 'baseball_mlb') odds = baseball_data;
       else if(event.sport === 'basketball_nba') odds = basketball_data;
+      else if(event.sport === 'basketball_wnba') odds = basketball_women_data;
       else if(event.sport === 'icehockey_nhl') odds = hockey_data;
       else if(event.sport === 'americanfootball_ncaaf') odds = football_college_data;
       else if(event.sport === 'basketball_ncaab') odds = basketball_college_data;
