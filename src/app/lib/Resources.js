@@ -25,7 +25,7 @@ export const player_prop_markets = [
       label: "basketball_ncaab"
     },
     {
-      player_markets: "batter_home_runs,batter_first_home_run,batter_hits,batter_total_bases,batter_rbis,batter_runs_scored,batter_hits_runs_rbis,batter_singles,batter_doubles,batter_triples,batter_walks,batter_strikeouts,batter_stolen_bases,pitcher_strikeouts,pitcher_record_a_win,pitcher_hits_allowed,pitcher_walks,pitcher_earned_runs,pitcher_outs",
+      player_markets: "batter_home_runs,batter_first_home_run,batter_hits,batter_total_bases,batter_rbis,batter_runs_scored,batter_hits_runs_rbis,batter_singles,batter_doubles,batter_triples,batter_walks,batter_strikeouts,batter_stolen_bases,pitcher_strikeouts,pitcher_record_a_win,pitcher_hits_allowed,pitcher_walks,pitcher_earned_runs,pitcher_outs,batter_total_bases_alternate,batter_home_runs_alternate,batter_hits_alternate,batter_rbis_alternate,pitcher_hits_allowed_alternate,pitcher_walks_alternate,pitcher_strikeouts_alternate",
       team_markets: "alternate_spreads,alternate_totals,h2h_1st_1_innings,h2h_1st_3_innings,h2h_1st_5_innings,h2h_1st_7_innings,spreads_1st_1_innings,spreads_1st_3_innings,spreads_1st_5_innings,spreads_1st_7_innings,totals_1st_1_innings,totals_1st_3_innings,totals_1st_5_innings,totals_1st_7_innings,",
       label: "baseball_mlb"
     },
@@ -40,6 +40,7 @@ export const additional_team_props = new Set(["alternate_spreads","alternate_tot
                                               "h2h_p1","h2h_p2","h2h_p3","spreads_p1","spreads_p2","spreads_p3","totals_p1","totals_p2","totals_p3"]);
 export const all_player_props = new Set(["player_pass_tds","player_pass_yds","player_pass_completions","player_pass_attempts","player_pass_interceptions","player_pass_longest_completion","player_rush_yds","player_rush_attempts","player_rush_longest","player_receptions","player_reception_yds","player_reception_longest","player_kicking_points","player_field_goals","player_tackles_assists","player_1st_td","player_last_td","player_anytime_td","player_points","player_rebounds","player_assists","player_threes",
                                           "player_blocks","player_steals","player_turnovers","player_points_rebounds_assists","player_points_rebounds","player_points_assists","player_rebounds_assists","player_double_double","player_triple_double","player_first_basket","batter_home_runs","batter_first_home_run","batter_hits","batter_total_bases","batter_rbis","batter_runs_scored","batter_hits_runs_rbis","batter_singles","batter_doubles","batter_triples","batter_walks","batter_strikeouts","batter_stolen_bases","pitcher_strikeouts",
+										  "batter_total_bases_alternate","batter_home_runs_alternate","batter_hits_alternate","batter_rbis_alternate","pitcher_hits_allowed_alternate","pitcher_walks_alternate","pitcher_strikeouts_alternate",
                                           "pitcher_record_a_win","pitcher_hits_allowed","pitcher_walks","pitcher_earned_runs","pitcher_outs","player_power_play_points","player_blocked_shots","player_shots_on_goal","player_total_saves","player_goal_scorer_first","player_goal_scorer_last","player_goal_scorer_anytime", "player_goals","player_points_alternate","player_assists_alternate","player_power_play_points_alternate","player_goals_alternate","player_shots_on_goal_alternate","player_blocked_shots_alternate","player_total_saves_alternate"])
 
 export const league_titles = {
@@ -107,6 +108,13 @@ export const player_prop_choices = {
   "pitcher_walks":"Pitcher Walks",
   "pitcher_earned_runs":"Pitcher Earned Runs",
   "pitcher_outs":"Pitcher Outs",
+  "batter_total_bases_alternate":"Alternate Batter Total Bases",
+  "batter_home_runs_alternate":"Alternate Batter Home Runs",
+  "batter_hits_alternate":"Alternate Batter Hits",
+  "batter_rbis_alternate":"Alternate Batter RBIs",
+  "pitcher_hits_allowed_alternate":"Alternate Pitcher Hits Allowed",
+  "pitcher_walks_alternate":"Alternate Pitcher Walks Allowed",
+  "pitcher_strikeouts_alternate":"Alternate Pitcher Strikeouts",
   //hockey
   "player_power_play_points":"Power Play Points",
   "player_blocked_shots":"Blocked Shots",
@@ -196,7 +204,9 @@ export const bookmaker_links={
   "hardrockbet":"https://app.hardrock.bet/",
   "sisportsbook":"https://www.sisportsbook.com/",
   "tipico_us":"https://sportsbook-nj.tipico.us/home",
-  "windcreek":"https://play.windcreekcasino.com/sports/"
+  "windcreek":"https://play.windcreekcasino.com/sports/",
+  "prizepicks":"PrizePicks",
+  "underdog":"Underdog"
 }
 
 export const bookmaker_names={ 
@@ -216,7 +226,9 @@ export const bookmaker_names={
 	"hardrockbet":"Hard_Rock",
     "sisportsbook":"SI_Sportsbook",
     "tipico_us":"Tipico",
-    "windcreek":"Wind_Creek"
+    "windcreek":"Wind_Creek",
+	"prizepicks":"PrizePicks",
+	"underdog":"Underdog"
 }
 
 export const team_codes={

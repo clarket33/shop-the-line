@@ -26,7 +26,7 @@ const PlayerPropDisplay = (event) => {
         let individual_props = new Map();
         let playerPropChoices = [];
         if(data){
-           
+            console.log(data);
             for(const bookmaker of data.bookmakers){
                 if(event.bookies.has(bookmaker.key)){
                     for(const market of bookmaker.markets){
