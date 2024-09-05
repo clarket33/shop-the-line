@@ -1,32 +1,32 @@
 export const player_prop_markets = [
     { 
       player_markets: "player_pass_tds,player_pass_yds,player_pass_completions,player_pass_attempts,player_pass_interceptions,player_pass_longest_completion,player_rush_yds,player_rush_attempts,player_rush_longest,player_receptions,player_reception_yds,player_reception_longest,player_kicking_points,player_field_goals,player_tackles_assists,player_1st_td,player_last_td,player_anytime_td",
-      team_markets:"alternate_spreads,alternate_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,alternate_spreads_q1,alternate_spreads_h1,alternate_totals_q1,alternate_totals_h1,alternate_team_totals,",
+      team_markets:"alternate_spreads,alternate_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,alternate_team_totals,",
       label: "americanfootball_nfl"
     },
     { 
       player_markets: "",
-      team_markets:"alternate_spreads,alternate_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,alternate_spreads_q1,alternate_spreads_h1,alternate_totals_q1,alternate_totals_h1,alternate_team_totals",
+      team_markets:"alternate_spreads,alternate_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,alternate_team_totals",
       label: "americanfootball_ncaaf"
     },
     {
       player_markets: "player_points,player_rebounds,player_assists,player_threes,player_blocks,player_steals,player_turnovers,player_points_rebounds_assists,player_points_rebounds,player_points_assists,player_rebounds_assists,player_double_double,player_first_basket,player_triple_double",
-      team_markets: "alternate_spreads,alternate_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,alternate_spreads_q1,alternate_spreads_h1,alternate_totals_q1,alternate_totals_h1,alternate_team_totals,",
+      team_markets: "alternate_spreads,alternate_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,alternate_team_totals,",
       label: "basketball_nba"
     },
 	{
 		player_markets: "player_points,player_rebounds,player_assists,player_threes,player_blocks,player_steals,player_turnovers,player_points_rebounds_assists,player_points_rebounds,player_points_assists,player_rebounds_assists,player_double_double,player_first_basket,player_triple_double",
-		team_markets: "alternate_spreads,alternate_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,alternate_spreads_q1,alternate_spreads_h1,alternate_totals_q1,alternate_totals_h1,alternate_team_totals,",
+		team_markets: "alternate_spreads,alternate_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,alternate_team_totals,",
 		label: "basketball_wnba"
 	},
     {
       player_markets: "",
-      team_markets: "alternate_spreads,alternate_totals,h2h_h1,h2h_h2,spreads_h1,spreads_h2,totals_h1,totals_h2,alternate_spreads_q1,alternate_spreads_h1,alternate_totals_q1,alternate_totals_h1,alternate_team_totals",
+      team_markets: "alternate_spreads,alternate_totals,h2h_h1,h2h_h2,spreads_h1,spreads_h2,totals_h1,totals_h2,alternate_team_totals",
       label: "basketball_ncaab"
     },
     {
       player_markets: "batter_home_runs,batter_first_home_run,batter_hits,batter_total_bases,batter_rbis,batter_runs_scored,batter_hits_runs_rbis,batter_singles,batter_doubles,batter_triples,batter_walks,batter_strikeouts,batter_stolen_bases,pitcher_strikeouts,pitcher_record_a_win,pitcher_hits_allowed,pitcher_walks,pitcher_earned_runs,pitcher_outs",
-      team_markets: "alternate_team_totals,alternate_spreads,alternate_totals,h2h_1st_1_innings,h2h_1st_3_innings,h2h_1st_5_innings,h2h_1st_7_innings,spreads_1st_1_innings,spreads_1st_3_innings,spreads_1st_5_innings,spreads_1st_7_innings,totals_1st_1_innings,totals_1st_3_innings,totals_1st_5_innings,totals_1st_7_innings,alternate_team_totals,",
+      team_markets: "alternate_team_totals,alternate_spreads,alternate_totals,h2h_1st_1_innings,h2h_1st_3_innings,h2h_1st_5_innings,spreads_1st_1_innings,spreads_1st_3_innings,spreads_1st_5_innings,totals_1st_1_innings,totals_1st_3_innings,totals_1st_5_innings,alternate_team_totals,",
       label: "baseball_mlb"
     },
     {
