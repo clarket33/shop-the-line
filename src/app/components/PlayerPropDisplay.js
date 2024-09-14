@@ -95,14 +95,17 @@ const PlayerPropDisplay = (event) => {
                                 else{
                                     let line = individual_props.get(market.key).get(player_line.description).get(bookmaker.key);
                                     if(player_line.name === 'Over' || player_line.name === 'Yes'){
+                                        if(line.priceA !== "" && parseInt(line.priceA) < parseInt(player_line.price)) continue;
                                         line.priceA = player_line.price;
                                         line.labelA = player_line.name;
                                         line.pointA = player_line.point;
                                     }else{
+                                        if(line.priceB !== "" && parseInt(line.priceB) > parseInt(player_line.price))continue;
                                         line.priceB = player_line.price;
                                         line.labelB = player_line.name;
                                         line.pointB = player_line.point;
                                     }
+                                    if(line.pointA !== "" && line.pointB !== "" && line.pointA !== line.pointB) individual_props.get(market.key).get(player_line.description).delete(bookmaker.key);
                                 }
                             }
                         }
