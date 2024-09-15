@@ -226,9 +226,7 @@ export const bookmaker_links={
   "hardrockbet":"https://app.hardrock.bet/",
   "sisportsbook":"https://www.sisportsbook.com/",
   "tipico_us":"https://sportsbook-nj.tipico.us/home",
-  "windcreek":"https://play.windcreekcasino.com/sports/",
-  "prizepicks":"PrizePicks",
-  "underdog":"Underdog"
+  "windcreek":"https://play.windcreekcasino.com/sports/"
 }
 
 export const bookmaker_names={ 
@@ -248,9 +246,7 @@ export const bookmaker_names={
 	"hardrockbet":"Hard_Rock",
     "sisportsbook":"SI_Sportsbook",
     "tipico_us":"Tipico",
-    "windcreek":"Wind_Creek",
-	"prizepicks":"PrizePicks",
-	"underdog":"Underdog"
+    "windcreek":"Wind_Creek"
 }
 
 export const team_codes={
