@@ -367,7 +367,7 @@ const PlayerPropDisplay = (event) => {
     else{
         return (
             <div className="flex flex-wrap justify-center items-center">
-                {status === "loading" ? <Spinner data-testid="loader" className="h-8 w-8" />:
+                {status === "loading" ? <Spinner data-testid="loader" color="blue" className="h-8 w-8" />:
                 status === "error" ? <span className="text-red-500 font-bold text-sm text-center">An unexpected error has occurred. Please try again later</span>:<></> }
             </div>
         )
