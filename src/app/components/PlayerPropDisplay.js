@@ -26,7 +26,6 @@ const PlayerPropDisplay = (event) => {
         let individual_props = new Map();
         let playerPropChoices = [];
         if(data){
-            console.log(data);
             for(const bookmaker of data.bookmakers){
                 if(event.bookies.has(bookmaker.key)){
                     for(const market of bookmaker.markets){
@@ -41,43 +40,41 @@ const PlayerPropDisplay = (event) => {
                                 if(!individual_props.get(market.key).has(player_line.description)){
                                     individual_props.get(market.key).set(player_line.description, new Map());
                                 }
-                                for(let curr of market.outcomes){
-                                    let currKey = curr.point.toString();
-                                    if(!individual_props.get(market.key).get(player_line.description).has(currKey)){
-                                        individual_props.get(market.key).get(player_line.description).set(currKey, new Map());
-                                    } 
-                                    if(!individual_props.get(market.key).get(player_line.description).get(currKey).has(bookmaker.key)){
-                                        individual_props.get(market.key).get(player_line.description).get(currKey).set(bookmaker.key, 
-                                            curr.name === "Over" ? {
-                                            labelA: curr.name,
-                                            priceA: curr.price,
-                                            pointA: curr.point}
-                                            : {
-                                            labelB: curr.name,
-                                            priceB: curr.price,
-                                            pointB: curr.point});
-                                    }
-                                    else{
-                                        let existing = individual_props.get(market.key).get(player_line.description).get(currKey).get(bookmaker.key);
-                                        individual_props.get(market.key).get(player_line.description).get(currKey).set(bookmaker.key, 
-                                            curr.name === "Over" ? {
-                                            labelA: curr.name,
-                                            priceA: curr.price,
-                                            pointA: curr.point,
-                                            labelB: existing.labelB,
-                                            priceB: existing.priceB,
-                                            pointB: existing.point}
-                                            : {
-                                            labelA: existing.labelA,
-                                            priceA: existing.priceA,
-                                            pointA: existing.pointA,
-                                            labelB: curr.name,
-                                            priceB: curr.price,
-                                            pointB: curr.point});
-                                
-                                    }
-                                    
+                                let currKey = player_line.point
+                                if(!individual_props.get(market.key).get(player_line.description).has(currKey)){
+                                    individual_props.get(market.key).get(player_line.description).set(currKey, new Map());
+                                } 
+                                if(!individual_props.get(market.key).get(player_line.description).get(currKey).has(bookmaker.key)){
+                                    individual_props.get(market.key).get(player_line.description).get(currKey).set(bookmaker.key, 
+                                        player_line.name === "Over" ? {
+                                        labelA: player_line.name,
+                                        priceA: player_line.price,
+                                        pointA: player_line.point}
+                                        : {
+                                        labelB: player_line.name,
+                                        priceB: player_line.price,
+                                        pointB: player_line.point});
                                 }
+                                else{
+                                    let existing = individual_props.get(market.key).get(player_line.description).get(currKey).get(bookmaker.key);
+                                    individual_props.get(market.key).get(player_line.description).get(currKey).set(bookmaker.key, 
+                                        player_line.name === "Over" ? {
+                                        labelA: player_line.name,
+                                        priceA: player_line.price,
+                                        pointA: player_line.point,
+                                        labelB: existing.labelB,
+                                        priceB: existing.priceB,
+                                        pointB: existing.point}
+                                        : {
+                                        labelA: existing.labelA,
+                                        priceA: existing.priceA,
+                                        pointA: existing.pointA,
+                                        labelB: player_line.name,
+                                        priceB: player_line.price,
+                                        pointB: player_line.point});
+                            
+                                }
+                                    
                                 
                             }
                             else{
@@ -183,9 +180,19 @@ const PlayerPropDisplay = (event) => {
 
     useEffect(() => {
         if(altLineChoices.length > 0){
-            setAltLine(altLineChoices[0]);
-            window.sessionStorage.setItem('player_prop_alt_line_' + event.game_id, altLineChoices[0]);
+            let foundAltLine= false;
+            for(const altln of altLineChoices){
+                if(altln === altLine){
+                    foundAltLine = true;
+                    break;
+                }
+            }
+            if(!foundAltLine){
+                setAltLine(altLineChoices[0]);
+                window.sessionStorage.setItem('player_prop_alt_line_' + event.game_id, altLineChoices[0]);
+            }
         }
+        // eslint-disable-next-line
     }, [altLineChoices, event]);
 
     useEffect(() => {
