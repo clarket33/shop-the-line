@@ -1,6 +1,6 @@
 export const player_prop_markets = [
     { 
-      player_markets: "player_pass_tds,player_pass_yds,player_pass_completions,player_pass_attempts,player_pass_interceptions,player_pass_longest_completion,player_rush_yds,player_rush_attempts,player_rush_longest,player_receptions,player_reception_yds,player_reception_longest,player_kicking_points,player_field_goals,player_tackles_assists,player_1st_td,player_last_td,player_anytime_td",
+      player_markets: "player_pass_tds,player_pass_yds,player_pass_completions,player_pass_attempts,player_pass_interceptions,player_pass_longest_completion,player_rush_yds,player_rush_attempts,player_rush_longest,player_receptions,player_reception_yds,player_reception_longest,player_kicking_points,player_field_goals,player_tackles_assists,player_1st_td,player_last_td,player_anytime_td,player_rush_yds_alternate,player_reception_yds_alternate",
       team_markets:"alternate_spreads,alternate_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,alternate_team_totals,",
       label: "americanfootball_nfl"
     },
@@ -41,7 +41,8 @@ export const additional_team_props = new Set(["alternate_totals_1st_1_innings","
                                               "h2h_p1","h2h_p2","h2h_p3","spreads_p1","spreads_p2","spreads_p3","totals_p1","totals_p2","totals_p3"]);
 export const all_player_props = new Set(["player_pass_tds","player_pass_yds","player_pass_completions","player_pass_attempts","player_pass_interceptions","player_pass_longest_completion","player_rush_yds","player_rush_attempts","player_rush_longest","player_receptions","player_reception_yds","player_reception_longest","player_kicking_points","player_field_goals","player_tackles_assists","player_1st_td","player_last_td","player_anytime_td","player_points","player_rebounds","player_assists","player_threes",
                                           "player_blocks","player_steals","player_turnovers","player_points_rebounds_assists","player_points_rebounds","player_points_assists","player_rebounds_assists","player_double_double","player_triple_double","player_first_basket","batter_home_runs","batter_first_home_run","batter_hits","batter_total_bases","batter_rbis","batter_runs_scored","batter_hits_runs_rbis","batter_singles","batter_doubles","batter_triples","batter_walks","batter_strikeouts","batter_stolen_bases","pitcher_strikeouts",
-                                          "pitcher_record_a_win","pitcher_hits_allowed","pitcher_walks","pitcher_earned_runs","pitcher_outs","player_power_play_points","player_blocked_shots","player_shots_on_goal","player_total_saves","player_goal_scorer_first","player_goal_scorer_last","player_goal_scorer_anytime"])
+										  "batter_total_bases_alternate","batter_home_runs_alternate","batter_hits_alternate","batter_rbis_alternate","pitcher_hits_allowed_alternate","pitcher_walks_alternate","pitcher_strikeouts_alternate","player_pass_tds_alternate","player_pass_yds_alternate","player_rush_yds_alternate","player_rush_reception_yds_alternate","player_reception_yds_alternate","player_receptions_alternate",
+                                          "pitcher_record_a_win","pitcher_hits_allowed","pitcher_walks","pitcher_earned_runs","pitcher_outs","player_power_play_points","player_blocked_shots","player_shots_on_goal","player_total_saves","player_goal_scorer_first","player_goal_scorer_last","player_goal_scorer_anytime", "player_goals","player_points_alternate","player_assists_alternate","player_power_play_points_alternate","player_goals_alternate","player_shots_on_goal_alternate","player_blocked_shots_alternate","player_total_saves_alternate"])
 
 export const league_titles = {
   "americanfootball_nfl":"NFL",
@@ -73,6 +74,12 @@ export const player_prop_choices = {
   "player_1st_td":"First Touchdown Scorer",
   "player_last_td":"Last Touchdown Scorer",
   "player_anytime_td":"Anytime Touchdown Scorer",
+  "player_pass_tds_alternate":"Alternate Pass Tocuhdowns",
+  "player_pass_yds_alternate":"Alternate Pass Yards",
+  "player_rush_yds_alternate":"Alternate Rush Yards",
+  "player_rush_reception_yds_alternate":"Alternate Rush + Reception Yards",
+  "player_reception_yds_alternate":"Alternate Reception Yards",
+  "player_receptions_alternate":"Alternate Receptions",
   //basketball
   "player_points":"Points", //also covers hockey
   "player_rebounds":"Rebounds",
@@ -108,14 +115,29 @@ export const player_prop_choices = {
   "pitcher_walks":"Pitcher Walks",
   "pitcher_earned_runs":"Pitcher Earned Runs",
   "pitcher_outs":"Pitcher Outs",
+  "batter_total_bases_alternate":"Alternate Batter Total Bases",
+  "batter_home_runs_alternate":"Alternate Batter Home Runs",
+  "batter_hits_alternate":"Alternate Batter Hits",
+  "batter_rbis_alternate":"Alternate Batter RBIs",
+  "pitcher_hits_allowed_alternate":"Alternate Pitcher Hits Allowed",
+  "pitcher_walks_alternate":"Alternate Pitcher Walks Allowed",
+  "pitcher_strikeouts_alternate":"Alternate Pitcher Strikeouts",
   //hockey
   "player_power_play_points":"Power Play Points",
   "player_blocked_shots":"Blocked Shots",
   "player_shots_on_goal":"Shots on Goal",
+  "player_goals":"Goals",
   "player_total_saves":"Total Saves",
   "player_goal_scorer_first":"First Goal Scorer",
   "player_goal_scorer_last":"Last Goal Scorer",
-  "player_goal_scorer_anytime":"Anytime Goal Scorer"
+  "player_goal_scorer_anytime":"Anytime Goal Scorer",
+  "player_points_alternate":"Alternate Points",
+  "player_assists_alternate":"Alternate Assists",
+  "player_power_play_points_alternate":"Alternate Power Play Points",
+  "player_goals_alternate":"Alternate Goals",
+  "player_shots_on_goal_alternate":"Alternate Shots on Goal",
+  "player_blocked_shots_alternate":"Alternate Blocked Shots",
+  "player_total_saves_alternate":"Alternate Total Saves"
 
 }
 
