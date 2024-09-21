@@ -201,33 +201,36 @@ const GameOverview = (game) => {
 
 export function propSortByLabel(sorter){
     return function(a,b) {
+        let lineValA = a.line.pointA || a.line.pointB;
+        let lineValB = b.line.pointA || b.line.pointB;
+
+        let priceValA;
+        let priceValB;
+
         if(sorter === a.line.labelA || sorter === b.line.labelA){
-            if(!a.line.priceA || !b.line.priceA){
-                if(!a.line.priceA && b.line.priceA) return 1;
-                else if(!b.line.priceA && a.line.priceA) return -1;
-            }
-            if((a.line.pointA) < (b.line.pointA)) return -1;
-            else if(a.line.pointA === b.line.pointA){
-                if(a.line.priceA > b.line.priceA) return -1;
-                else if(a.line.priceA === b.line.priceA){
-                    if(bookmaker_names[a.bookmaker] < bookmaker_names[b.bookmaker]) return -1;
-                }
-            }
+            priceValA = a.line.priceA;
+            priceValB = b.line.priceA;
         }
         else{
-            if(!a.line.priceB || !b.line.priceB){
-                if(!a.line.priceB && b.line.priceB) return 1;
-                else if(!b.line.priceB && a.line.priceB) return -1;
-            }
-            if((a.line.pointB) < (b.line.pointB)) return -1;
-            else if(a.line.pointB === b.line.pointB){
-                if(a.line.priceB > b.line.priceB) return -1;
-                else if(a.line.priceB === b.line.priceB){
-                    if(bookmaker_names[a.bookmaker] < bookmaker_names[b.bookmaker]) return -1;
-                }
+            priceValA = a.line.priceB;
+            priceValB = b.line.priceB;
+        }
+
+        if(lineValA && !lineValB) return -1;
+        if(!lineValA && lineValB) return 1;
+
+        if(lineValA < lineValB) return -1;
+        if(lineValA === lineValB || (!lineValA && !lineValB)){
+            if(priceValA && !priceValB) return -1;
+            if(!priceValA && priceValB) return 1;
+
+            if(priceValA > priceValB) return -1;
+            else if(priceValA === priceValB){
+                if(bookmaker_names[a.bookmaker] < bookmaker_names[b.bookmaker]) return -1;
             }
         }
         return 1;
+        
     }
 }
 
