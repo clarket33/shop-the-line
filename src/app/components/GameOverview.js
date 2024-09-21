@@ -201,7 +201,7 @@ const GameOverview = (game) => {
 
 export function propSortByLabel(sorter){
     return function(a,b) {
-        if(sorter === a.line.labelA){
+        if(sorter === a.line.labelA || sorter === b.line.labelA){
             if(!a.line.priceA || !b.line.priceA){
                 if(!a.line.priceA && b.line.priceA) return 1;
                 else if(!b.line.priceA && a.line.priceA) return -1;

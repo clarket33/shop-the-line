@@ -1,6 +1,6 @@
 export const player_prop_markets = [
     { 
-      player_markets: "player_pass_tds,player_pass_yds,player_pass_completions,player_pass_attempts,player_pass_interceptions,player_pass_longest_completion,player_rush_yds,player_rush_attempts,player_rush_longest,player_receptions,player_reception_yds,player_reception_longest,player_kicking_points,player_field_goals,player_tackles_assists,player_1st_td,player_last_td,player_anytime_td,player_rush_yds_alternate,player_reception_yds_alternate",
+      player_markets: "player_pass_tds,player_pass_yds,player_pass_completions,player_pass_attempts,player_pass_interceptions,player_pass_longest_completion,player_rush_yds,player_rush_attempts,player_rush_longest,player_receptions,player_reception_yds,player_reception_longest,player_kicking_points,player_field_goals,player_tackles_assists,player_1st_td,player_last_td,player_anytime_td,player_rush_yds_alternate,player_reception_yds_alternate,player_pass_yds_alternate",
       team_markets:"alternate_spreads,alternate_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,alternate_team_totals,",
       label: "americanfootball_nfl"
     },
