@@ -9,7 +9,7 @@ import {
 
 const PropContainer = (bookmakerList) => {
     
-    let lastPoint = 0.0;
+    let lastPoint;
     let lastPrice = 0;
     let propDisp = [];
     let completeList = [];
@@ -20,14 +20,14 @@ const PropContainer = (bookmakerList) => {
             let bestOption = false;
             let endOfBucket = false;
             let hasOddsforGivenSort = (bookmakerList.sorter === bookmaker.line.labelA || bookmakerList.sorter === bookmaker.line.labelB);
-            if(bookmaker.line.pointA !== lastPoint || index === 0){
+            if(index === 0 || (bookmaker.line.pointA !== lastPoint && bookmaker.line.pointB !== lastPoint && typeof lastPoint === 'number')){
                 if(index !== 0){
                     endOfBucket = true;
                     completeList = propDisp;
                     propDisp = [];
                 }
                 if(hasOddsforGivenSort) bestOption = true;
-                lastPoint = bookmaker.line.pointA;
+                lastPoint = bookmaker.line.pointA || bookmaker.line.pointB;
                 if(bookmakerList.sorter === bookmaker.line.labelA) lastPrice = bookmaker.line.priceA;
                 else if(bookmakerList.sorter === bookmaker.line.labelB) lastPrice = bookmaker.line.priceB;
             }
