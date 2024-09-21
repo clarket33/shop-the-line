@@ -20,14 +20,14 @@ const PropContainer = (bookmakerList) => {
             let bestOption = false;
             let endOfBucket = false;
             let hasOddsforGivenSort = (bookmakerList.sorter === bookmaker.line.labelA || bookmakerList.sorter === bookmaker.line.labelB);
-            if(bookmaker.line.pointA !== lastPoint || index === 0){
+            if((bookmaker.line.pointA !== lastPoint && bookmaker.line.pointB !== lastPoint)  || index === 0){
                 if(index !== 0){
                     endOfBucket = true;
                     completeList = propDisp;
                     propDisp = [];
                 }
                 if(hasOddsforGivenSort) bestOption = true;
-                lastPoint = bookmaker.line.pointA;
+                lastPoint = bookmaker.line.pointA || bookmaker.line.pointB;
                 if(bookmakerList.sorter === bookmaker.line.labelA) lastPrice = bookmaker.line.priceA;
                 else if(bookmakerList.sorter === bookmaker.line.labelB) lastPrice = bookmaker.line.priceB;
             }
