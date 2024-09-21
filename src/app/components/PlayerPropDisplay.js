@@ -40,7 +40,7 @@ const PlayerPropDisplay = (event) => {
                                 if(!individual_props.get(market.key).has(player_line.description)){
                                     individual_props.get(market.key).set(player_line.description, new Map());
                                 }
-                                let currKey = player_line.point
+                                let currKey = player_line.point.toString();
                                 if(!individual_props.get(market.key).get(player_line.description).has(currKey)){
                                     individual_props.get(market.key).get(player_line.description).set(currKey, new Map());
                                 } 
@@ -155,7 +155,7 @@ const PlayerPropDisplay = (event) => {
             for(const key of individualProps.get(prop).get(player).keys()){
                 altLineChoices.push(key);
             }
-            setAltLineChoices(altLineChoices.sort(playerSort));
+            setAltLineChoices(altLineChoices.sort(altLineSort));
         }
       
     }, [individualProps, prop, player]);
@@ -271,6 +271,10 @@ const PlayerPropDisplay = (event) => {
     function playerSort(a, b){
         if(a < b) return -1;
         else return 1;
+    }
+
+    function altLineSort(a, b){
+        return parseFloat(a) < parseFloat(b) ? -1 : 1; 
     }
 
 
