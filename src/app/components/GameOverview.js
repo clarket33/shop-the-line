@@ -201,8 +201,8 @@ const GameOverview = (game) => {
 
 export function propSortByLabel(sorter){
     return function(a,b) {
-        let lineValA = a.line.pointA || a.line.pointB;
-        let lineValB = b.line.pointA || b.line.pointB;
+        let lineValA = Math.abs(a.line.pointA || a.line.pointB);
+        let lineValB = Math.abs(b.line.pointA || b.line.pointB);
 
         let priceValA;
         let priceValB;
