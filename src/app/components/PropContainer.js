@@ -20,6 +20,8 @@ const PropContainer = (bookmakerList) => {
             let bestOption = false;
             let endOfBucket = false;
             let hasOddsforGivenSort = (bookmakerList.sorter === bookmaker.line.labelA || bookmakerList.sorter === bookmaker.line.labelB);
+            console.log(bookmaker.line.linkA);
+            console.log(bookmaker.line.linkB);
             if(index === 0 || (bookmaker.line.pointA !== lastPoint && bookmaker.line.pointB !== lastPoint && typeof lastPoint === 'number')){
                 if(index !== 0){
                     endOfBucket = true;
