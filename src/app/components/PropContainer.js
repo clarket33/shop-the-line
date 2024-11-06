@@ -43,8 +43,8 @@ const PropContainer = (bookmakerList) => {
             propDisp.push(<PropDisplay
                 key={bookmaker.bookmaker}
                 bookmaker={bookmaker.bookmaker}
-                aBookmakerLink={bookmaker.line.linkA.replaceAll('{state}',bookmakerList.usState) || bookmaker_links[bookmaker.bookmaker]}
-                bBookmakerLink={bookmaker.line.linkB.replaceAll('{state}',bookmakerList.usState) || bookmaker_links[bookmaker.bookmaker]}
+                aBookmakerLink={bookmaker.line.linkA !== undefined ? bookmaker.line.linkA.replaceAll('{state}',bookmakerList.usState) : bookmaker_links[bookmaker.bookmaker]}
+                bBookmakerLink={bookmaker.line.linkB !== undefined ? bookmaker.line.linkB.replaceAll('{state}',bookmakerList.usState) : bookmaker_links[bookmaker.bookmaker]}
                 descriptOfPriceALabel={bookmaker.line.labelA}
                 aPrice={bookmaker.line.priceA > 0 ? '+' + bookmaker.line.priceA : bookmaker.line.priceA}
                 aPoint={bookmakerList.prop.includes("spreads") && bookmaker.line.pointA > 0 ? '+' + bookmaker.line.pointA : bookmaker.line.pointA}
