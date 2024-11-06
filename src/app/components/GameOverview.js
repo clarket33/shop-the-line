@@ -139,6 +139,7 @@ const GameOverview = (game) => {
                         sport={game.sport}
                         bookies={game.bookie_list}
                         withinRange={false}
+                        usState={game.usState}
                     ></TeamPropDisplay> :<></> :
                 eitherPropClicked ? <DataProvider game_id={game.game_id} sport={game.sport} showChild={showTeamProps}>
                     <TeamPropDisplay
@@ -150,6 +151,7 @@ const GameOverview = (game) => {
                         sport={game.sport}
                         bookies={game.bookie_list}
                         withinRange={true}
+                        usState={game.usState}
                     ></TeamPropDisplay>
                     </DataProvider>:<></>
                 }
@@ -159,6 +161,7 @@ const GameOverview = (game) => {
                             game_id={game.game_id}
                             sport={game.sport}
                             bookies={game.bookie_list}
+                            usState={game.usState}
                         ></PlayerPropDisplay>
                     
                     </DataProvider> : <></>
@@ -175,7 +178,7 @@ const GameOverview = (game) => {
     function withinDayThreshold(){
         if(["americanfootball_nfl","americanfootball_ncaaf"].includes(game.sport)){
             if(game.sport === "americanfootball_nfl" && today.getMonth()+1 === 2) return daysTilStart <= 14;
-            return daysTilStart <= 3;
+            return daysTilStart <= 4;
         }
         else{
             return daysTilStart <= 2;

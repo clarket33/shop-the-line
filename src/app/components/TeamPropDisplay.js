@@ -33,7 +33,9 @@ const TeamPropDisplay = (game) => {
         let prop_choices = [];
         
         for (const bookmaker of game.bookmakers){
+            let game_link = bookmaker.link;
             for (const market of bookmaker.markets){
+                let market_link = market.link;
                 if(!team_props.has(market.key)){
                     prop_choices.push(market.key);
                     team_props.set(market.key, new Map());
@@ -46,7 +48,9 @@ const TeamPropDisplay = (game) => {
                     pointA: market.outcomes[0].point ? market.outcomes[0].point : "",
                     labelB: market.outcomes[1].name,
                     priceB: market.outcomes[1].price,
-                    pointB: market.outcomes[1].point ? market.outcomes[1].point : ""});
+                    pointB: market.outcomes[1].point ? market.outcomes[1].point : "",
+                    linkA: market.outcomes[0].link || market_link || game_link,
+                    linkB: market.outcomes[1].link || market_link || game_link});
                 
             }
         }
@@ -56,7 +60,9 @@ const TeamPropDisplay = (game) => {
             for(const bookmaker of additionalMarketsData.bookmakers){
                 const i = game.bookmakers.findIndex(b => b.key === bookmaker.key);
                 if (i > -1) {
+                    let game_link = bookmaker.link;
                     for(const market of bookmaker.markets){
+                        let market_link = market.link;
                         if(additional_team_props.has(market.key)){
                             let category = "";
                             if(market.key.includes("alternate_spreads")) category = "alternate_spreads";
@@ -79,6 +85,7 @@ const TeamPropDisplay = (game) => {
                                 let j = 0;
                                 while(j < market.outcomes.length){
                                     let outcome = market.outcomes[j];
+                                    let outcome_link_a = outcome.link;
                                     const k = market.outcomes.findIndex(m => outcome.point <= 0 ? (Math.abs(outcome.point) === m.point && outcome.name !== m.name) : ((outcome.point * -1) === m.point && outcome.name !== m.name));
                                     if(j > k){
                                         j++;
@@ -86,6 +93,7 @@ const TeamPropDisplay = (game) => {
                                     }
                                     if(k > -1){
                                         let matchedSpread = market.outcomes[k];
+                                        let outcome_link_b = matchedSpread.link;
                                         let curKey; 
                                         if(outcome.point === 0) curKey = "EVEN";
                                         else if(outcome.name === game.away_team){
@@ -107,7 +115,9 @@ const TeamPropDisplay = (game) => {
                                                 pointA: outcome.point ? outcome.point : "",
                                                 labelB: matchedSpread.name,
                                                 priceB: matchedSpread.price,
-                                                pointB: matchedSpread.point ? matchedSpread.point : ""});
+                                                pointB: matchedSpread.point ? matchedSpread.point : "",
+                                                linkA: outcome_link_a || market_link || game_link,
+                                                linkB: outcome_link_b || market_link || game_link});
                                             }
                                     }
                                     j++;
@@ -125,6 +135,8 @@ const TeamPropDisplay = (game) => {
                                 for(let curr of market.outcomes){
                                     let match = market.outcomes.find((item) => item.point === curr.point && item.name !== curr.name);
                                     if(!match) continue;
+                                    let outcome_link_curr = curr.link;
+                                    let outcome_link_match = match.link;
                                     let curKey = match.point.toString();
                                     if(!team_props.get(category).get(market.key).has(curKey)){
                                         team_props.get(category).get(market.key).set(curKey, new Map());
@@ -137,14 +149,18 @@ const TeamPropDisplay = (game) => {
                                             pointA: curr.point,
                                             labelB: match.name,
                                             priceB: match.price,
-                                            pointB: match.point}
+                                            pointB: match.point,
+                                            linkA: outcome_link_curr || market_link || game_link,
+                                            linkB: outcome_link_match || market_link || game_link}
                                             : {
                                             labelA: match.name,
                                             priceA: match.price,
                                             pointA: match.point,
                                             labelB: curr.name,
                                             priceB: curr.price,
-                                            pointB: curr.point});
+                                            pointB: curr.point,
+                                            linkA: outcome_link_match || market_link || game_link,
+                                            linkB: outcome_link_curr || market_link || game_link});
                                         }
                                    
                                 }
@@ -155,6 +171,7 @@ const TeamPropDisplay = (game) => {
                                     prop_choices.push(market.key);
                                 }
                                 for(let curr of market.outcomes){
+                                    let outcome_link = curr.link;
                                     let curKey = curr.point.toString();
                                     if(!team_props.get(category).has(curr.description)){
                                         team_props.get(category).set(curr.description, new Map());
@@ -167,11 +184,13 @@ const TeamPropDisplay = (game) => {
                                             curr.name === "Over" ? {
                                             labelA: curr.name,
                                             priceA: curr.price,
-                                            pointA: curr.point}
+                                            pointA: curr.point,
+                                            linkA: outcome_link || market_link || game_link}
                                             : {
                                             labelB: curr.name,
                                             priceB: curr.price,
-                                            pointB: curr.point});
+                                            pointB: curr.point,
+                                            linkB: outcome_link || market_link || game_link});
                                     }
                                     else{
                                         let existing = team_props.get(market.key).get(curr.description).get(curKey).get(bookmaker.key);
@@ -180,16 +199,21 @@ const TeamPropDisplay = (game) => {
                                             labelA: curr.name,
                                             priceA: curr.price,
                                             pointA: curr.point,
+                                            linkA: outcome_link || market_link || game_link,
                                             labelB: existing.labelB,
                                             priceB: existing.priceB,
-                                            pointB: existing.point}
+                                            pointB: existing.point,
+                                            linkB: existing.linkB
+                                            }
                                             : {
                                             labelA: existing.labelA,
                                             priceA: existing.priceA,
                                             pointA: existing.pointA,
+                                            linkA: existing.linkA,
                                             labelB: curr.name,
                                             priceB: curr.price,
-                                            pointB: curr.point});
+                                            pointB: curr.point,
+                                            linkB: outcome_link || market_link || game_link});
                                 
                                     }
                                 }
@@ -205,7 +229,9 @@ const TeamPropDisplay = (game) => {
                                     pointA: market.outcomes[0].point ? market.outcomes[0].point : market.outcomes[0].point === 0 ? "EVEN" : "",
                                     labelB: market.outcomes[1].name,
                                     priceB: market.outcomes[1].price,
-                                    pointB: market.outcomes[1].point ? market.outcomes[1].point : market.outcomes[1].point === 0 ? "EVEN" : ""});
+                                    pointB: market.outcomes[1].point ? market.outcomes[1].point : market.outcomes[1].point === 0 ? "EVEN" : "",
+                                    linkA: market.outcomes[0].link || market_link || game_link,
+                                    linkB: market.outcomes[1].link || market_link || game_link});
                             }     
                         }
                     }
@@ -455,6 +481,7 @@ const TeamPropDisplay = (game) => {
                             sorter={sorter}
                             lastIndex={data.get(prop).get(subProp).size-1}
                             prop={prop}
+                            usState={game.usState}
                         />:
                         data.has(prop) && prop.includes("alternate") && data.get(prop).has(subProp) && data.get(prop).get(subProp).has(subPropPoint) && data.get(prop).get(subProp).get(subPropPoint).size > 0 ?
                         <PropContainer
@@ -464,6 +491,7 @@ const TeamPropDisplay = (game) => {
                             sorter={sorter}
                             lastIndex={data.get(prop).get(subProp).get(subPropPoint).size-1}
                             prop={prop}
+                            usState={game.usState}
                         />
                         :data.size !== 0 ? <></>:<span className="text-gray-500 font-medium text-center">No odds available for selected sportsbooks</span>}
                 </div>

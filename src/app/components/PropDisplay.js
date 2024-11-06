@@ -22,11 +22,13 @@ const PropDisplay = (bookmaker) => {
     if(bookmaker.bestOption && bookmaker.sorter === bookmaker.descriptOfPriceBLabel) fontB = "font-mono font-black tracking-tight";
     else fontB = "font-mono font-thin tracking-tight";
 
+    let bookie_link = bookmaker.sorter === bookmaker.descriptOfPriceALabel ? bookmaker.aBookmakerLink : bookmaker.bBookmakerLink;
+
     
     return (
         
             
-                <a href={bookmaker.bookmakerLink} target="_blank" rel="noopener noreferrer">
+                <a href={bookie_link} target="_blank" rel="noopener noreferrer">
                     <div className="lg:hidden">
                         <ListItem className="h-18 border-b-2 border-t-2">
                             <ListItemPrefix className="text-sm w-3/12 h-6 justify-center">

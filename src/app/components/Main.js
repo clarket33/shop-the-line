@@ -7,7 +7,7 @@ import '../Main.css';
 import Footer from "./Footer";
 import CookieConsent from "react-cookie-consent";
 import Image from 'next/image';
-import { bookmaker_names, league_titles, team_titles } from "../lib/Resources.js";
+import { bookmaker_names, league_titles, team_titles, usStates } from "../lib/Resources.js";
 import { 
   Collapse,
   Input,
@@ -15,9 +15,13 @@ import {
   Typography,
   IconButton,
   Spinner,
-  Alert
+  Alert,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem
 } from "@material-tailwind/react";
-import { Bars3Icon, XMarkIcon, ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon, ArrowRightIcon, ArrowLeftIcon, Cog6ToothIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 
 import {americanfootball_nfl_team_props} from '../lib/sampledata/americanfootball_nfl_team_props.js';
@@ -34,6 +38,7 @@ export default function Main() {
   const [xAlertOpen, setXAlertOpen] = useState(window.sessionStorage.getItem('x_alert_dismissed') === 'true' ? false: true);
   const [filteredGames, setFilteredGames] = useState([]);
   const [sport, setSport] = useState(window.localStorage.getItem('sport') || 'americanfootball_nfl');
+  const [stateName, setStateName] = useState(window.localStorage.getItem('usState') || "ny");
   const [filterText, setFilterText] = useState(window.sessionStorage.getItem('filter_text_' + sport) ? window.sessionStorage.getItem('filter_text_' + sport) : "");
   const [bookies, setBookies] = useState(window.localStorage.getItem('my_sportsbooks') !== null ? new Set(JSON.parse(window.localStorage.getItem('my_sportsbooks'))) : new Set(Object.keys(bookmaker_names))) ;
   const [openNav, setOpenNav] = useState(false);
@@ -164,6 +169,62 @@ export default function Main() {
       <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="32px" height="32px"><path d="M 4.0175781 4 L 13.091797 17.609375 L 4.3359375 28 L 6.9511719 28 L 14.246094 19.34375 L 20.017578 28 L 20.552734 28 L 28.015625 28 L 18.712891 14.042969 L 27.175781 4 L 24.560547 4 L 17.558594 12.310547 L 12.017578 4 L 4.0175781 4 z M 7.7558594 6 L 10.947266 6 L 24.279297 26 L 21.087891 26 L 7.7558594 6 z"/></svg>
     );
   }
+
+  function ProfileMenu(props) {
+    const [openMenu, setOpenMenu] = useState(false);
+   
+    return (
+      <Menu>
+        <MenuHandler>
+          
+           <IconButton variant="text" color={props.color} className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto">
+            <Cog6ToothIcon className="h-4 w-4" />
+          </IconButton>
+          
+        </MenuHandler>
+        <MenuList className="">
+          <Menu
+            placement="left-start"
+            open={openMenu}
+            handler={setOpenMenu}
+            allowHover
+            offset={5}
+            className=""
+          >
+            <MenuHandler className="flex items-center justify-between">
+              <MenuItem>
+              <ChevronUpIcon
+                  strokeWidth={2.5}
+                  className={`h-3.5 w-3.5 transition-transform ${
+                    openMenu ? "-rotate-90" : ""
+                  }`}
+                />
+              <span>My State: </span>
+              <Image className="object-cover" src={`/Images/States/icons8-${usStates[stateName].toLowerCase().replaceAll(' ','-')}-50.png`} alt={stateName} width={20} height={20} style={{ opacity: 0.5 }} />
+              </MenuItem>
+            </MenuHandler>
+            <MenuList className="max-h-72 ">
+            {Object.keys(usStates).map((state) => (
+              <MenuItem key={state} className="" onClick={() => stateSelect(state)}>
+                <div className="grid grid-cols-2 gap-0">
+                <div className='text-center'>{state.toUpperCase()}</div>
+                <div className=''><Image className="object-cover" src={`/Images/States/icons8-${usStates[state].toLowerCase().replaceAll(' ','-')}-50.png`} alt={state} width={20} height={20} style={{ opacity: 0.5 }} /></div>
+                </div>
+              </MenuItem>
+            ))}
+            </MenuList>
+          </Menu>
+          </MenuList>
+      </Menu>
+    );
+  }
+
+  function stateSelect(aState){
+
+    setStateName(aState);
+    window.localStorage.setItem('usState', aState);
+    
+  }
   
   const InputInHeader = useMemo(() => {
     return (
@@ -218,30 +279,34 @@ export default function Main() {
             <SportSelector func={sportChange} sport={sport}></SportSelector>
           </div>
           <div className="hidden lg:block">
-            <div className="min-w-[450px] grid grid-cols-2 gap-2">
-              <SportsBookCustomize func={pull_user_books} bookies={bookies}></SportsBookCustomize>
-              <div>{InputInHeader}</div>
+            <div className="min-w-[450px] grid grid-cols-11 gap-2">
+              <div class='col-span-5'><SportsBookCustomize func={pull_user_books} bookies={bookies}></SportsBookCustomize></div>
+              <div class='col-span-5'>{InputInHeader}</div>
+              <div class='col-span-1'><ProfileMenu color="blue-gray"></ProfileMenu></div>
             </div>
           </div>
           {!openNav ?
-          <div className="lg:hidden absolute  right-20 text-blue-700 opacity-70">
+          <div className="lg:hidden absolute  right-28 text-blue-700 opacity-70">
             <Typography variant="small">
                 <span className="flex items-center justify-center font-semibold">{league_titles[sport]}
                 <Image className="object-cover ml-1" width={16} height={16} src={`/Images/Sports/${sport}.png`} alt={league_titles[sport]} /></span>
             </Typography>
           </div>:<></>}
+          <div className="grid grid-cols-2 gap-1 lg:hidden">
           <IconButton
             variant="text"
-            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent mt-2"
             ripple={false}
             onClick={() => setOpenNav(!openNav)}
           >
             {openNav ? (
               <XMarkIcon className="h-6 w-6" strokeWidth={2} />
             ) : (
-             <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
             )} 
           </IconButton>
+          <ProfileMenu color="blue"></ProfileMenu>
+          </div>
         </div>
         <Collapse open={openNav}>
             <SportSelector func={sportChange} sport={sport}></SportSelector>
@@ -281,6 +346,7 @@ export default function Main() {
                 bookmakers={game.bookmakers.filter((bk) => bookies.has(bk.key))}
                 startTime={game.commence_time}
                 sport={game.sport_key}
+                usState={stateName}
               />:<></>
             )): <span className="text-gray-500 font-bold drop-shadow-lg text-5xl text-center">No Upcoming Games</span>}
           </div>

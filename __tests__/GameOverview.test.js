@@ -31,6 +31,7 @@ describe('Game Overview component, upcoming game', () => {
     sport={upcoming_game_data.sport_key}
     teamImages={images}
     checkedBest={false}
+    usState={'ny'}
 />
 
     test('should be 4 images at the top of the game overview (2 per screen size)', () => {
