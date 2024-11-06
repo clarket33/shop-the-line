@@ -22,7 +22,8 @@
     "react-cookie-consent": "^9.0.0",
     "react-dom": "^18",
     "reactjs-popup": "^2.0.6",
-    "sharp": "^0.33.2"
+    "sharp": "^0.33.2",
+    "sports-odds-app": "file:"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",

@@ -28,14 +28,17 @@ const PlayerPropDisplay = (event) => {
         if(data){
             for(const bookmaker of data.bookmakers){
                 if(event.bookies.has(bookmaker.key)){
+                    let game_link = bookmaker.link;
                     for(const market of bookmaker.markets){
-                      
+                        let market_link = market.link;
                         if(!all_player_props.has(market.key)) continue;
                         if(!individual_props.has(market.key)){
                             individual_props.set(market.key, new Map());
                             playerPropChoices.push(market.key);
                         }
                         for(const player_line of market.outcomes){
+                            let outcome_link = player_line.link;
+
                             if(market.key.includes("alternate")){
                                 if(!individual_props.get(market.key).has(player_line.description)){
                                     individual_props.get(market.key).set(player_line.description, new Map());
@@ -49,11 +52,13 @@ const PlayerPropDisplay = (event) => {
                                         player_line.name === "Over" ? {
                                         labelA: player_line.name,
                                         priceA: player_line.price,
-                                        pointA: player_line.point}
+                                        pointA: player_line.point,
+                                        linkA: outcome_link || market_link || game_link}
                                         : {
                                         labelB: player_line.name,
                                         priceB: player_line.price,
-                                        pointB: player_line.point});
+                                        pointB: player_line.point,
+                                        linkB: outcome_link || market_link || game_link});
                                 }
                                 else{
                                     let existing = individual_props.get(market.key).get(player_line.description).get(currKey).get(bookmaker.key);
@@ -62,16 +67,20 @@ const PlayerPropDisplay = (event) => {
                                         labelA: player_line.name,
                                         priceA: player_line.price,
                                         pointA: player_line.point,
+                                        linkA: outcome_link || market_link || game_link,
                                         labelB: existing.labelB,
                                         priceB: existing.priceB,
-                                        pointB: existing.point}
+                                        pointB: existing.point,
+                                        linkB: existing.link}
                                         : {
                                         labelA: existing.labelA,
                                         priceA: existing.priceA,
                                         pointA: existing.pointA,
+                                        linkA: existing.linkA,
                                         labelB: player_line.name,
                                         priceB: player_line.price,
-                                        pointB: player_line.point});
+                                        pointB: player_line.point,
+                                        linkB: outcome_link || market_link || game_link});
                             
                                 }
                                     
@@ -84,9 +93,11 @@ const PlayerPropDisplay = (event) => {
     
                                 if(!individual_props.get(market.key).get(player_line.description).has(bookmaker.key)){
                                     if(player_line.name === 'Over' || player_line.name === 'Yes'){
-                                        individual_props.get(market.key).get(player_line.description).set(bookmaker.key, {labelA: player_line.name, labelB:'', pointA: player_line.point, pointB:'', priceA: player_line.price, priceB: ''});
+                                        individual_props.get(market.key).get(player_line.description).set(bookmaker.key, {labelA: player_line.name, labelB:'', pointA: player_line.point, pointB:'', priceA: player_line.price, priceB: '', 
+                                            linkA: outcome_link || market_link || game_link, linkB: ''});
                                     }else{
-                                        individual_props.get(market.key).get(player_line.description).set(bookmaker.key, {labelB: player_line.name, labelA:'', pointA:'', pointB:player_line.point, priceA: '', priceB: player_line.price});
+                                        individual_props.get(market.key).get(player_line.description).set(bookmaker.key, {labelB: player_line.name, labelA:'', pointA:'', pointB:player_line.point, priceA: '', priceB: player_line.price, 
+                                            linkA: '', linkB: outcome_link || market_link || game_link});
                                     }
                                 }
                                 else{
@@ -96,11 +107,13 @@ const PlayerPropDisplay = (event) => {
                                         line.priceA = player_line.price;
                                         line.labelA = player_line.name;
                                         line.pointA = player_line.point;
+                                        line.linkA = outcome_link || market_link || game_link;
                                     }else{
                                         if(line.priceB !== "" && parseInt(line.priceB) > parseInt(player_line.price))continue;
                                         line.priceB = player_line.price;
                                         line.labelB = player_line.name;
                                         line.pointB = player_line.point;
+                                        line.linkB = outcome_link || market_link || game_link;
                                     }
                                     if(line.pointA !== "" && line.pointB !== "" && line.pointA !== line.pointB) individual_props.get(market.key).get(player_line.description).delete(bookmaker.key);
                                 }
@@ -351,6 +364,7 @@ const PlayerPropDisplay = (event) => {
                             lastIndex={individualProps.get(prop).get(player).size-1}
                             prop={prop}
                             checkedBest={event.checkedBest}
+                            usState={event.usState}
                         />:
                         individualProps.has(prop) && individualProps.get(prop).has(player) && prop.includes("alternate") && individualProps.get(prop).get(player).has(altLine) && individualProps.get(prop).get(player).get(altLine).size > 0 ?
                         <PropContainer
@@ -361,6 +375,7 @@ const PlayerPropDisplay = (event) => {
                             lastIndex={individualProps.get(prop).get(player).get(altLine).size-1}
                             prop={prop}
                             checkedBest={event.checkedBest}
+                            usState={event.usState}
                         />:
                         individualProps.size !== 0 ? <></>:<span className="text-gray-500 font-medium text-center">No odds available for selected sportsbooks</span>}
                 </div>
