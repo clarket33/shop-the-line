@@ -39,8 +39,9 @@ describe('Team Props Component component', () => {
                     <PropDisplay
                         key={bestOption.bookmaker}
                         bookmaker={bestOption.bookmaker}
-                        bookmakerLink={bookmaker_links[bestOption.bookmaker]}
                         descriptOfPriceALabel={bestOption.line.labelA}
+                        aBookmakerLink={bookmaker_links[bestOption.bookmaker]}
+                        bBookmakerLink={bookmaker_links[bestOption.bookmaker]}
                         aPrice={bestOption.line.priceA > 0 ? '+' + bestOption.line.priceA : bestOption.line.priceA}
                         aPoint={bestOption.prop === "spreads" && bestOption.line.pointA > 0 ? '+' + bestOption.line.pointA : bestOption.line.pointA}
                         descriptOfPriceBLabel={bestOption.line.labelB}

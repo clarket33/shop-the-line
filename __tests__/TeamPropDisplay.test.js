@@ -43,8 +43,8 @@ describe('Team Props Component', () => {
                             bookmakers={game_data.bookmakers.filter((bk) => new Set(Object.keys(bookmaker_names)).has(bk.key))}
                             sport={"american_football"}
                             bookies={new Set(Object.keys(bookmaker_names))}
-                            checkedBest={false}
-                            withinRange={true}/>
+                            withinRange={true}
+                            usState={'ny'}/>
         </DataContext.Provider>
         </QueryClientProvider>
   
