@@ -10,7 +10,7 @@ export const player_prop_markets = [
       label: "americanfootball_ncaaf"
     },
     {
-      player_markets: "player_points,player_rebounds,player_assists,player_threes,player_blocks,player_steals,player_turnovers,player_points_rebounds_assists,player_points_rebounds,player_points_assists,player_rebounds_assists,player_double_double,player_first_basket,player_triple_double",
+      player_markets: "player_points,player_rebounds,player_assists,player_threes,player_blocks,player_steals,player_turnovers,player_points_rebounds_assists,player_points_rebounds,player_points_assists,player_rebounds_assists,player_double_double,player_first_basket,player_triple_double,player_points_alternate,player_assists_alternate,player_rebounds_alternate,player_blocks_alternate,player_steals_alternate,player_threes_alternate,player_points_assists_alternate,player_points_rebounds_alternate,player_rebounds_assists_alternate,player_points_rebounds_assists_alternate",
       team_markets: "alternate_spreads,alternate_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,alternate_team_totals,",
       label: "basketball_nba"
     },
@@ -42,7 +42,8 @@ export const additional_team_props = new Set(["alternate_totals_1st_1_innings","
 export const all_player_props = new Set(["player_pass_tds","player_pass_yds","player_pass_completions","player_pass_attempts","player_pass_interceptions","player_pass_longest_completion","player_rush_yds","player_rush_attempts","player_rush_longest","player_receptions","player_reception_yds","player_reception_longest","player_kicking_points","player_field_goals","player_tackles_assists","player_1st_td","player_last_td","player_anytime_td","player_points","player_rebounds","player_assists","player_threes",
                                           "player_blocks","player_steals","player_turnovers","player_points_rebounds_assists","player_points_rebounds","player_points_assists","player_rebounds_assists","player_double_double","player_triple_double","player_first_basket","batter_home_runs","batter_first_home_run","batter_hits","batter_total_bases","batter_rbis","batter_runs_scored","batter_hits_runs_rbis","batter_singles","batter_doubles","batter_triples","batter_walks","batter_strikeouts","batter_stolen_bases","pitcher_strikeouts",
 										  "batter_total_bases_alternate","batter_home_runs_alternate","batter_hits_alternate","batter_rbis_alternate","pitcher_hits_allowed_alternate","pitcher_walks_alternate","pitcher_strikeouts_alternate","player_pass_tds_alternate","player_pass_yds_alternate","player_rush_yds_alternate","player_rush_reception_yds_alternate","player_reception_yds_alternate","player_receptions_alternate",
-                                          "pitcher_record_a_win","pitcher_hits_allowed","pitcher_walks","pitcher_earned_runs","pitcher_outs","player_power_play_points","player_blocked_shots","player_shots_on_goal","player_total_saves","player_goal_scorer_first","player_goal_scorer_last","player_goal_scorer_anytime", "player_goals","player_points_alternate","player_assists_alternate","player_power_play_points_alternate","player_goals_alternate","player_shots_on_goal_alternate","player_blocked_shots_alternate","player_total_saves_alternate"])
+                                          "pitcher_record_a_win","pitcher_hits_allowed","pitcher_walks","pitcher_earned_runs","pitcher_outs","player_power_play_points","player_blocked_shots","player_shots_on_goal","player_total_saves","player_goal_scorer_first","player_goal_scorer_last","player_goal_scorer_anytime", "player_goals","player_points_alternate","player_assists_alternate","player_power_play_points_alternate","player_goals_alternate","player_shots_on_goal_alternate","player_blocked_shots_alternate","player_total_saves_alternate",
+										  "player_rebounds_alternate", "player_blocks_alternate", "player_steals_alternate", "player_threes_alternate", "player_points_assists_alternate", "player_points_rebounds_alternate", "player_rebounds_assists_alternate", "player_points_rebounds_assists_alternate"])
 
 export const league_titles = {
   "americanfootball_nfl":"NFL",
@@ -95,6 +96,16 @@ export const player_prop_choices = {
   "player_first_basket":"First Basket Scorer",
   "player_double_double":"Double Double",
   "player_triple_double":"Triple Double",
+  "player_points_alternate": "Alternate Points",
+  "player_rebounds_alternate": "Alternate Rebounds",
+  "player_assists_alternate": "Alternate Assists",
+  "player_blocks_alternate": "Alternate Blocks",
+  "player_steals_alternate": "Alternate Steals",
+  "player_threes_alternate": "Alternate Threes",
+  "player_points_assists_alternate": "Alternate Points + Assists",
+  "player_points_rebounds_alternate": "Alternate Points + Rebounds",
+  "player_rebounds_assists_alternate": "Alternate Rebounds + Assists",
+  "player_points_rebounds_assists_alternate": "Alternate Points + Rebounds + Assists",
   //baseball
   "batter_home_runs":"Batter Home Runs",
   "batter_first_home_run":"Batter First Home Run",
