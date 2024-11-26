@@ -10,7 +10,7 @@ export const player_prop_markets = [
       label: "americanfootball_ncaaf"
     },
     {
-      player_markets: "player_points,player_rebounds,player_assists,player_threes,player_blocks,player_steals,player_turnovers,player_points_rebounds_assists,player_points_rebounds,player_points_assists,player_rebounds_assists,player_double_double,player_first_basket,player_triple_double,player_points_alternate,player_assists_alternate,player_rebounds_alternate,player_blocks_alternate,player_steals_alternate,player_threes_alternate,player_points_assists_alternate,player_points_rebounds_alternate,player_rebounds_assists_alternate,player_points_rebounds_assists_alternate",
+      player_markets: "player_points,player_rebounds,player_assists,player_threes,player_blocks,player_steals,player_turnovers,player_points_rebounds_assists,player_points_rebounds,player_points_assists,player_rebounds_assists,player_double_double,player_first_basket,player_triple_double,player_points_alternate,player_assists_alternate,player_rebounds_alternate,player_threes_alternate",
       team_markets: "alternate_spreads,alternate_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,alternate_team_totals,",
       label: "basketball_nba"
     },
