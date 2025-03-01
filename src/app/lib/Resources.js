@@ -237,7 +237,8 @@ export const bookmaker_links={
   "hardrockbet":"https://app.hardrock.bet/",
   "sisportsbook":"https://www.sisportsbook.com/",
   "tipico_us":"https://sportsbook-nj.tipico.us/home",
-  "windcreek":"https://play.windcreekcasino.com/sports/"
+  "windcreek":"https://play.windcreekcasino.com/sports/",
+  "fanatics":"https://sportsbook.fanatics.com/"
 }
 
 export const bookmaker_names={ 
@@ -246,6 +247,7 @@ export const bookmaker_names={
     "betrivers":"BetRivers",
     "draftkings":"DraftKings",
     "fanduel":"FanDuel",
+	"fanatics":"Fanatics",
     "pointsbetus":"PointsBet",
     "superbook":"Superbook",
     "unibet_us":"Unibet",
