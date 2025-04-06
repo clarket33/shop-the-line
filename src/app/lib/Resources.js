@@ -225,20 +225,14 @@ export const bookmaker_links={
   "bovada":"https://www.bovada.lv/",
   "betrivers":"https://betrivers.com/?page=landing#home",
   "draftkings":"https://www.draftkings.com/",
+  "fanatics":"https://sportsbook.fanatics.com/",
   "fanduel":"https://sportsbook.fanduel.com/",
-  "pointsbetus":"https://pointsbet.com/",
-  "superbook":"https://co.superbook.com/sports",
-  "unibet_us":"https://unibet.com/",
   "williamhill_us":"https://www.caesars.com/sportsbook-and-casino",
-  "wynnbet":"https://www.wynnbet.com/",
   "betparx":"https://betparx.com/#home",
   "espnbet":"https://espnbet.com/",
   "fliff":"https://www.getfliff.com/",
   "hardrockbet":"https://app.hardrock.bet/",
-  "sisportsbook":"https://www.sisportsbook.com/",
-  "tipico_us":"https://sportsbook-nj.tipico.us/home",
   "windcreek":"https://play.windcreekcasino.com/sports/",
-  "fanatics":"https://sportsbook.fanatics.com/"
 }
 
 export const bookmaker_names={ 
@@ -246,19 +240,13 @@ export const bookmaker_names={
     "bovada":"Bovada",
     "betrivers":"BetRivers",
     "draftkings":"DraftKings",
-    "fanduel":"FanDuel",
 	"fanatics":"Fanatics",
-    "pointsbetus":"PointsBet",
-    "superbook":"Superbook",
-    "unibet_us":"Unibet",
+    "fanduel":"FanDuel",
     "williamhill_us":"Caesars",
-    "wynnbet":"WynnBET",
     "betparx":"betPARX",
     "espnbet":"ESPN_BET",
     "fliff":"Fliff",
 	"hardrockbet":"Hard_Rock",
-    "sisportsbook":"SI_Sportsbook",
-    "tipico_us":"Tipico",
     "windcreek":"Wind_Creek"
 }
 
